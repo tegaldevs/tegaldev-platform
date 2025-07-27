@@ -95,6 +95,34 @@ export class UserRepositoryImp implements IUserRepository {
     };
   }
 
+  async findByCredential(credential: string): Promise<User | null> {
+    const user = await prisma.user.findFirst({
+      where: {
+        OR: [
+          { username: credential },
+          { email: credential },
+          { phone: credential },
+        ],
+      },
+    });
+
+    if (!user) return null;
+
+    return {
+      id: user.id,
+      role: user.role as Role,
+      name: user.name,
+      username: user.username,
+      email: user.email,
+      phone: user.phone || undefined,
+      password: user.password || undefined,
+      image: user.image || undefined,
+      emailVerified: user.emailVerified || undefined,
+      createdAt: user.createdAt,
+      updatedAt: user.updatedAt,
+    };
+  }
+
   async create(
     registerNewUserRequest: RegisterNewUserRequestDto,
   ): Promise<User> {

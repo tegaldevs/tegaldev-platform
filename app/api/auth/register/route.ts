@@ -1,47 +1,29 @@
+import {
+  createErrorResponse,
+  createSuccessResponse,
+  validateRequestBody,
+} from '@/app/_lib/api-utils';
+import { RegisterNewUserRequestDto } from '@/src/domains/dtos/User';
 import { container } from '@/src/infrastructures/di/container';
 import { TYPES } from '@/src/infrastructures/di/types';
 import { UserController } from '@/src/interfaces/controllers/UserController';
-import { NextRequest, NextResponse } from 'next/server';
+import { NextRequest } from 'next/server';
 
 export async function POST(request: NextRequest) {
   try {
     const userController = container.get<UserController>(TYPES.UserController);
+    const requestBody = await validateRequestBody(request);
+    const typedRequestBody: RegisterNewUserRequestDto = {
+      name: requestBody.name as string,
+      username: requestBody.username as string,
+      email: requestBody.email as string,
+      password: requestBody.password as string,
+      confirmPassword: requestBody.confirmPassword as string,
+    };
+    const result = await userController.register(typedRequestBody);
 
-    let requestBody;
-
-    try {
-      requestBody = await request.json();
-    } catch {
-      return NextResponse.json(
-        {
-          error: true,
-          message: 'Invalid JSON format or no request body provided.',
-        },
-        { status: 400 },
-      );
-    }
-
-    if (!requestBody || Object.keys(requestBody).length === 0) {
-      return NextResponse.json(
-        {
-          error: true,
-          message:
-            'Request body cannot be empty. Please provide required fields.',
-        },
-        { status: 400 },
-      );
-    }
-
-    const result = await userController.register(requestBody);
-
-    return NextResponse.json(
-      { error: false, message: 'User registered successfully', data: result },
-      { status: 201 },
-    );
-  } catch {
-    return NextResponse.json(
-      { error: true, message: 'Internal server error' },
-      { status: 500 },
-    );
+    return createSuccessResponse(result, 'User registered successfully', 201);
+  } catch (error) {
+    return createErrorResponse(error);
   }
 }

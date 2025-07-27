@@ -1,4 +1,5 @@
 import { IHashService } from '@/src/applications/services/IHashService';
+import { ErrorHandler } from '@/src/commons/utils';
 import { injectable } from 'inversify';
 import * as bcrypt from 'bcryptjs';
 
@@ -7,50 +8,30 @@ export class HashServiceImp implements IHashService {
   private readonly defaultSaltRounds = 12;
 
   async hash(password: string): Promise<string> {
-    try {
-      return await bcrypt.hash(password, this.defaultSaltRounds);
-    } catch (error) {
-      throw new Error(
-        `Failed to hash password: ${
-          error instanceof Error ? error.message : 'Unknown error'
-        }`,
-      );
-    }
+    return ErrorHandler.handleAsync(
+      () => bcrypt.hash(password, this.defaultSaltRounds),
+      'Failed to hash password',
+    );
   }
 
   async compare(password: string, hashedPassword: string): Promise<boolean> {
-    try {
-      return await bcrypt.compare(password, hashedPassword);
-    } catch (error) {
-      throw new Error(
-        `Failed to compare passwords: ${
-          error instanceof Error ? error.message : 'Unknown error'
-        }`,
-      );
-    }
+    return ErrorHandler.handleAsync(
+      () => bcrypt.compare(password, hashedPassword),
+      'Failed to compare passwords',
+    );
   }
 
   async generateSalt(rounds: number = this.defaultSaltRounds): Promise<string> {
-    try {
-      return await bcrypt.genSalt(rounds);
-    } catch (error) {
-      throw new Error(
-        `Failed to generate salt: ${
-          error instanceof Error ? error.message : 'Unknown error'
-        }`,
-      );
-    }
+    return ErrorHandler.handleAsync(
+      () => bcrypt.genSalt(rounds),
+      'Failed to generate salt',
+    );
   }
 
   async hashWithSalt(password: string, salt: string): Promise<string> {
-    try {
-      return await bcrypt.hash(password, salt);
-    } catch (error) {
-      throw new Error(
-        `Failed to hash password with salt: ${
-          error instanceof Error ? error.message : 'Unknown error'
-        }`,
-      );
-    }
+    return ErrorHandler.handleAsync(
+      () => bcrypt.hash(password, salt),
+      'Failed to hash password with salt',
+    );
   }
 }
