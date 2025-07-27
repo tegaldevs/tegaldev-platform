@@ -7,6 +7,8 @@ import { UserController } from '@/src/interfaces/controllers/UserController';
 import { TYPES } from '@/src/infrastructures/di/types';
 import { LoginRequestDto } from '@/src/domains/dtos/Auth';
 
+export const dynamic = 'force-dynamic';
+
 const handler = NextAuth({
   adapter: PrismaAdapter(prisma),
   providers: [
