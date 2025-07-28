@@ -130,7 +130,7 @@ export default function LoginPage() {
                 <div className="w-full border-t border-white/20" />
               </div>
               <div className="relative flex justify-center text-sm">
-                <span className="px-3 text-gray-200 font-medium">
+                <span className="px-3 text-gray-200 font-medium bg-black/80 backdrop-blur-sm rounded-md">
                   Or continue with
                 </span>
               </div>
