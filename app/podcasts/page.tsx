@@ -16,7 +16,6 @@ import {
   ExternalLink,
   Mic,
   Users,
-  Download,
 } from 'lucide-react';
 
 interface PodcastEpisode {
@@ -251,8 +250,8 @@ export default function PodcastsPage() {
                 variant="outline"
                 className="w-full sm:w-auto border-white/20 hover:bg-white/70 px-6 sm:px-8 py-3 flex items-center justify-center gap-2"
               >
-                <Download className="h-5 w-5" />
-                Apple Podcasts
+                <Play className="h-5 w-5" />
+                View Episodes
               </Button>
             </Link>
           </div>
