@@ -2,12 +2,13 @@
 
 export const dynamic = 'force-dynamic';
 
-import { AuthNavigation } from '@/app/_components/auth/AuthNavigation';
+import { Navbar } from '@/app/_components/ui/Navbar';
 import { Footer } from '@/app/_components/ui/Footer';
 import { SectionHeader } from '@/app/_components/ui/SectionHeader';
+import { ScrollAnimatedSection } from '@/app/_components/ui/ScrollAnimatedSection';
 import { Button } from '@/app/_components/ui/button';
-import Image from 'next/image';
 import Link from 'next/link';
+import { useState } from 'react';
 import {
   Calendar,
   Clock,
@@ -17,7 +18,6 @@ import {
   Users,
   Download,
 } from 'lucide-react';
-import { useState, useEffect } from 'react';
 
 interface PodcastEpisode {
   id: string;
@@ -122,92 +122,79 @@ const podcastEpisodes: PodcastEpisode[] = [
 
 function PodcastCard({ episode }: { episode: PodcastEpisode }) {
   return (
-    <article className="bg-white/10 backdrop-blur-sm rounded-lg p-6 border border-white/20 hover:bg-white/20 transition-all duration-300 group">
-      <div className="flex items-start space-x-4">
-        <div className="flex-shrink-0">
-          <div className="w-20 h-20 bg-gradient-to-br from-purple-600 to-blue-600 rounded-lg flex items-center justify-center">
-            <Mic className="h-8 w-8 text-white" />
+    <article className="bg-white/10 backdrop-blur-sm rounded-lg p-6 border border-white/20 hover:bg-white/20 hover:cursor-pointer transition-all duration-300 group flex flex-col h-full">
+      <div className="flex items-center justify-between mb-4">
+        <div className="flex items-center space-x-2">
+          <span className="px-2 py-1 bg-purple-600/30 text-purple-300 text-xs rounded-full">
+            S{episode.season}E{episode.episode}
+          </span>
+          <div className="flex items-center text-gray-400 text-xs">
+            <Clock className="h-3 w-3 mr-1" />
+            {episode.duration}
           </div>
         </div>
+        <div className="w-12 h-12 bg-gradient-to-br from-purple-600 to-blue-600 rounded-lg flex items-center justify-center flex-shrink-0">
+          <Mic className="h-5 w-5 text-white" />
+        </div>
+      </div>
 
-        <div className="flex-1 min-w-0">
-          <div className="flex items-center space-x-2 mb-2">
-            <span className="px-2 py-1 bg-purple-600/30 text-purple-300 text-xs rounded-full">
-              S{episode.season}E{episode.episode}
-            </span>
-            <div className="flex items-center text-gray-400 text-xs">
-              <Clock className="h-3 w-3 mr-1" />
-              {episode.duration}
-            </div>
+      <h2 className="text-xl font-semibold text-white mb-3 group-hover:text-purple-300 transition-colors line-clamp-2">
+        {episode.title}
+      </h2>
+
+      <p className="text-gray-300 text-sm mb-4 line-clamp-3 flex-grow">
+        {episode.description}
+      </p>
+
+      <div className="flex items-center space-x-4 text-gray-400 text-xs mb-4">
+        <div className="flex items-center">
+          <Calendar className="h-3 w-3 mr-1" />
+          {new Date(episode.publishedAt).toLocaleDateString('en-US', {
+            month: 'short',
+            day: 'numeric',
+            year: 'numeric',
+          })}
+        </div>
+        {episode.guests.length > 0 && (
+          <div className="flex items-center">
+            <Users className="h-3 w-3 mr-1" />
+            {episode.guests.slice(0, 1).join(', ')}
+            {episode.guests.length > 1 &&
+              ` +${episode.guests.length - 1} more`}
           </div>
+        )}
+      </div>
 
-          <h2 className="text-lg font-semibold text-white mb-2 group-hover:text-purple-300 transition-colors line-clamp-2">
-            {episode.title}
-          </h2>
-
-          <p className="text-gray-300 text-sm mb-3 line-clamp-2">
-            {episode.description}
-          </p>
-
-          <div className="flex items-center space-x-4 text-gray-400 text-xs mb-3">
-            <div className="flex items-center">
-              <Calendar className="h-3 w-3 mr-1" />
-              {new Date(episode.publishedAt).toLocaleDateString('en-US', {
-                month: 'short',
-                day: 'numeric',
-                year: 'numeric',
-              })}
-            </div>
-            {episode.guests.length > 0 && (
-              <div className="flex items-center">
-                <Users className="h-3 w-3 mr-1" />
-                {episode.guests.slice(0, 2).join(', ')}
-                {episode.guests.length > 2 &&
-                  ` +${episode.guests.length - 2} more`}
-              </div>
-            )}
-          </div>
-
-          <div className="flex flex-wrap gap-1 mb-4">
-            {episode.topics.slice(0, 3).map((topic) => (
-              <span
-                key={topic}
-                className="px-2 py-1 bg-blue-600/30 text-blue-300 text-xs rounded-full"
-              >
-                {topic}
-              </span>
-            ))}
-          </div>
-
-          <Link
-            href={episode.spotifyUrl}
-            target="_blank"
-            rel="noopener noreferrer"
+      <div className="flex flex-wrap gap-1 mb-6">
+        {episode.topics.slice(0, 3).map((topic) => (
+          <span
+            key={topic}
+            className="px-2 py-1 bg-blue-600/30 text-blue-300 text-xs rounded-full cursor-default break-all"
           >
-            <Button className="bg-green-600 hover:bg-green-700 text-white flex items-center gap-2">
-              <Play className="h-4 w-4" />
-              Listen on Spotify
-              <ExternalLink className="h-3 w-3" />
-            </Button>
-          </Link>
-        </div>
+            {topic}
+          </span>
+        ))}
+      </div>
+
+      <div className="mt-auto">
+        <Link
+          href={episode.spotifyUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <Button className="w-full bg-green-600 hover:bg-green-700 text-white flex items-center justify-center gap-2 px-4 py-2">
+            <Play className="h-4 w-4" />
+            Listen on Spotify
+            <ExternalLink className="h-3 w-3" />
+          </Button>
+        </Link>
       </div>
     </article>
   );
 }
 
 export default function PodcastsPage() {
-  const [isScrolled, setIsScrolled] = useState(false);
   const [selectedTopic, setSelectedTopic] = useState<string | null>(null);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50);
-    };
-
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
 
   // Get all unique topics
   const allTopics = Array.from(
@@ -223,34 +210,11 @@ export default function PodcastsPage() {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-black to-blue-800">
-      {/* Fixed Navigation */}
-      <nav
-        className={`max-w-5xl mx-auto fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-          isScrolled
-            ? 'bg-black/20 backdrop-blur-md mx-4 mt-4 rounded-md shadow-lg'
-            : 'bg-transparent'
-        }`}
-      >
-        <div className="container max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center py-6">
-            <div className="flex items-center space-x-2">
-              <Link href="/">
-                <Image
-                  src="/Tegal.dev-AAA.png"
-                  alt="TegalDev Logo"
-                  width={96}
-                  height={96}
-                  className="transition-all duration-300 cursor-pointer"
-                />
-              </Link>
-            </div>
-            <AuthNavigation />
-          </div>
-        </div>
-      </nav>
+      <Navbar />
 
       <div className="container max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 pt-24">
         {/* Hero Section */}
+        <ScrollAnimatedSection animationType="fade-up">
         <div className="text-center py-12">
           <h1 className="text-4xl md:text-6xl font-bold text-white mb-6">
             Tech{' '}
@@ -271,7 +235,7 @@ export default function PodcastsPage() {
             >
               <Button
                 size="lg"
-                className="bg-green-600 hover:bg-green-700 text-white px-8 py-3 flex items-center gap-2"
+                className="w-full sm:w-auto bg-green-600 hover:bg-green-700 text-white px-6 sm:px-8 py-3 flex items-center justify-center gap-2"
               >
                 <ExternalLink className="h-5 w-5" />
                 Follow on Spotify
@@ -285,7 +249,7 @@ export default function PodcastsPage() {
               <Button
                 size="lg"
                 variant="outline"
-                className="border-white/20 hover:bg-white/70 px-8 py-3 flex items-center gap-2"
+                className="w-full sm:w-auto border-white/20 hover:bg-white/70 px-6 sm:px-8 py-3 flex items-center justify-center gap-2"
               >
                 <Download className="h-5 w-5" />
                 Apple Podcasts
@@ -293,16 +257,18 @@ export default function PodcastsPage() {
             </Link>
           </div>
         </div>
+        </ScrollAnimatedSection>
 
         {/* Topic Filter */}
+        <ScrollAnimatedSection animationType="slide-left" delay={200}>
         <section className="mb-8">
-          <div className="flex flex-wrap gap-2 justify-center">
+          <div className="flex flex-wrap gap-2 justify-center px-4">
             <button
               onClick={() => setSelectedTopic(null)}
-              className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 ${
+              className={`px-3 py-2 rounded-full text-xs sm:text-sm font-medium transition-all duration-300 ${
                 selectedTopic === null
                   ? 'bg-green-600 text-white'
-                  : 'bg-white/10 text-gray-300 hover:bg-white/20'
+                  : 'bg-white/10 text-gray-300 hover:bg-white/20 hover:cursor-pointer'
               }`}
             >
               All Episodes
@@ -311,10 +277,10 @@ export default function PodcastsPage() {
               <button
                 key={topic}
                 onClick={() => setSelectedTopic(topic)}
-                className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 ${
+                className={`px-3 py-2 rounded-full text-xs sm:text-sm font-medium transition-all duration-300 ${
                   selectedTopic === topic
                     ? 'bg-green-600 text-white'
-                    : 'bg-white/10 text-gray-300 hover:bg-white/20'
+                    : 'bg-white/10 text-gray-300 hover:bg-white/20 hover:cursor-pointer'
                 }`}
               >
                 {topic}
@@ -322,8 +288,10 @@ export default function PodcastsPage() {
             ))}
           </div>
         </section>
+        </ScrollAnimatedSection>
 
         {/* Podcast Episodes */}
+        <ScrollAnimatedSection animationType="fade-up" delay={300}>
         <section className="mb-16">
           <SectionHeader
             title="Latest "
@@ -337,7 +305,7 @@ export default function PodcastsPage() {
             }`}
           />
 
-          <div className="space-y-6 mt-8">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6 mt-8">
             {filteredEpisodes.map((episode) => (
               <PodcastCard key={episode.id} episode={episode} />
             ))}
@@ -351,10 +319,12 @@ export default function PodcastsPage() {
             </div>
           )}
         </section>
+        </ScrollAnimatedSection>
 
         {/* Podcast Stats */}
+        <ScrollAnimatedSection animationType="slide-right" delay={400}>
         <section className="mb-16">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 sm:gap-6">
             <div className="bg-white/10 backdrop-blur-sm rounded-lg p-6 border border-white/20 text-center">
               <div className="text-3xl font-bold text-green-400 mb-2">50+</div>
               <div className="text-gray-300">Episodes Published</div>
@@ -369,8 +339,10 @@ export default function PodcastsPage() {
             </div>
           </div>
         </section>
+        </ScrollAnimatedSection>
 
         {/* Call to Action */}
+        <ScrollAnimatedSection animationType="scale-up" delay={500}>
         <section className="text-center py-16">
           <div className="bg-white/10 backdrop-blur-sm rounded-lg p-8 border border-white/20">
             <h2 className="text-3xl font-bold text-white mb-4">
@@ -384,13 +356,14 @@ export default function PodcastsPage() {
             <Link href="mailto:podcast@tegaldev.com?subject=Podcast Guest Application">
               <Button
                 size="lg"
-                className="bg-gradient-to-r from-green-600 to-blue-600 hover:from-green-700 hover:to-blue-700 text-white px-8 py-3"
+                className="w-full sm:w-auto bg-gradient-to-r from-green-600 to-blue-600 hover:from-green-700 hover:to-blue-700 text-white px-6 sm:px-8 py-3"
               >
                 Apply to be a Guest
               </Button>
             </Link>
           </div>
         </section>
+        </ScrollAnimatedSection>
       </div>
 
       <Footer />

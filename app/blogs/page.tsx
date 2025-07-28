@@ -2,14 +2,14 @@
 
 export const dynamic = 'force-dynamic';
 
-import { AuthNavigation } from '@/app/_components/auth/AuthNavigation';
+import { Navbar } from '@/app/_components/ui/Navbar';
 import { Footer } from '@/app/_components/ui/Footer';
 import { SectionHeader } from '@/app/_components/ui/SectionHeader';
+import { ScrollAnimatedSection } from '@/app/_components/ui/ScrollAnimatedSection';
 import { Button } from '@/app/_components/ui/button';
-import Image from 'next/image';
 import Link from 'next/link';
+import { useState } from 'react';
 import { Calendar, User, ExternalLink, BookOpen, Clock } from 'lucide-react';
-import { useState, useEffect } from 'react';
 
 interface BlogPost {
   id: string;
@@ -101,29 +101,29 @@ const blogPosts: BlogPost[] = [
 
 function BlogCard({ post }: { post: BlogPost }) {
   return (
-    <article className="bg-white/10 backdrop-blur-sm rounded-lg p-6 border border-white/20 hover:bg-white/20 transition-all duration-300 group">
+    <article className="bg-white/10 backdrop-blur-sm rounded-lg p-6 border border-white/20 transition-all duration-300 group flex flex-col h-full">
       <div className="mb-4">
-        <div className="flex flex-wrap gap-2 mb-3">
-          {post.tags.slice(0, 3).map((tag) => (
-            <span
-              key={tag}
-              className="px-2 py-1 bg-purple-600/30 text-purple-300 text-xs rounded-full"
-            >
-              {tag}
-            </span>
-          ))}
+        <div className="flex flex-wrap gap-1 mb-4">
+            {post.tags.slice(0, 3).map((tag) => (
+              <span
+                key={tag}
+                className="px-2 py-1 bg-purple-600/30 text-purple-300 text-xs rounded-full cursor-default break-all"
+              >
+                {tag}
+              </span>
+            ))}
         </div>
 
         <h2 className="text-xl font-semibold text-white mb-3 group-hover:text-purple-300 transition-colors line-clamp-2">
           {post.title}
         </h2>
 
-        <p className="text-gray-300 text-sm mb-4 line-clamp-3">
+        <p className="text-gray-300 text-sm mb-4 line-clamp-3 flex-grow">
           {post.excerpt}
         </p>
       </div>
 
-      <div className="flex items-center justify-between text-gray-400 text-xs mb-4">
+      <div className="flex items-center justify-between text-gray-400 text-xs mb-6">
         <div className="flex items-center space-x-4">
           <div className="flex items-center">
             <User className="h-3 w-3 mr-1" />
@@ -144,29 +144,21 @@ function BlogCard({ post }: { post: BlogPost }) {
         </div>
       </div>
 
-      <Link href={post.mediumUrl} target="_blank" rel="noopener noreferrer">
-        <Button className="w-full bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 text-white flex items-center gap-2">
-          <BookOpen className="h-4 w-4" />
-          Read on Medium
-          <ExternalLink className="h-3 w-3" />
-        </Button>
-      </Link>
+      <div className="mt-auto">
+        <Link href={post.mediumUrl} target="_blank" rel="noopener noreferrer">
+          <Button className="w-full bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 text-white flex items-center gap-2">
+            <BookOpen className="h-4 w-4" />
+            Read on Medium
+            <ExternalLink className="h-3 w-3" />
+          </Button>
+        </Link>
+      </div>
     </article>
   );
 }
 
 export default function BlogsPage() {
-  const [isScrolled, setIsScrolled] = useState(false);
   const [selectedTag, setSelectedTag] = useState<string | null>(null);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50);
-    };
-
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
 
   // Get all unique tags
   const allTags = Array.from(new Set(blogPosts.flatMap((post) => post.tags)));
@@ -178,34 +170,11 @@ export default function BlogsPage() {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-black to-blue-800">
-      {/* Fixed Navigation */}
-      <nav
-        className={`max-w-5xl mx-auto fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-          isScrolled
-            ? 'bg-black/20 backdrop-blur-md mx-4 mt-4 rounded-md shadow-lg'
-            : 'bg-transparent'
-        }`}
-      >
-        <div className="container max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center py-6">
-            <div className="flex items-center space-x-2">
-              <Link href="/">
-                <Image
-                  src="/Tegal.dev-AAA.png"
-                  alt="TegalDev Logo"
-                  width={96}
-                  height={96}
-                  className="transition-all duration-300 cursor-pointer"
-                />
-              </Link>
-            </div>
-            <AuthNavigation />
-          </div>
-        </div>
-      </nav>
+      <Navbar />
 
       <div className="container max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 pt-24">
         {/* Hero Section */}
+        <ScrollAnimatedSection animationType="fade-up">
         <div className="text-center py-12">
           <h1 className="text-4xl md:text-6xl font-bold text-white mb-6">
             Tech{' '}
@@ -232,18 +201,20 @@ export default function BlogsPage() {
             </Button>
           </Link>
         </div>
+        </ScrollAnimatedSection>
 
         {/* Tag Filter */}
+        <ScrollAnimatedSection animationType="slide-left" delay={200}>
         <section className="mb-8">
-          <div className="flex flex-wrap gap-2 justify-center">
+          <div className="flex flex-wrap gap-2 justify-center px-4">
             <Button
               onClick={() => setSelectedTag(null)}
               variant={selectedTag === null ? 'default' : 'outline'}
               size="sm"
-              className={`rounded-full ${
+              className={`rounded-full text-xs sm:text-sm ${
                 selectedTag === null
                   ? 'bg-purple-600 text-white'
-                  : 'bg-white/10 text-gray-300 hover:bg-white/20'
+                  : 'bg-white/10 text-gray-300'
               }`}
             >
               All Posts
@@ -254,10 +225,10 @@ export default function BlogsPage() {
                 onClick={() => setSelectedTag(tag)}
                 variant={selectedTag === tag ? 'default' : 'outline'}
                 size="sm"
-                className={`rounded-full ${
+                className={`rounded-full text-xs sm:text-sm ${
                   selectedTag === tag
                     ? 'bg-purple-600 text-white'
-                    : 'bg-white/10 text-gray-300 hover:bg-white/20'
+                    : 'bg-white/10 text-gray-300'
                 }`}
               >
                 {tag}
@@ -265,8 +236,10 @@ export default function BlogsPage() {
             ))}
           </div>
         </section>
+        </ScrollAnimatedSection>
 
         {/* Blog Posts */}
+        <ScrollAnimatedSection animationType="fade-up" delay={300}>
         <section className="mb-16">
           <SectionHeader
             title="Latest "
@@ -280,7 +253,7 @@ export default function BlogsPage() {
             }`}
           />
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-8">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6 mt-8">
             {filteredPosts.map((post) => (
               <BlogCard key={post.id} post={post} />
             ))}
@@ -294,8 +267,10 @@ export default function BlogsPage() {
             </div>
           )}
         </section>
+        </ScrollAnimatedSection>
 
         {/* Call to Action */}
+        <ScrollAnimatedSection animationType="scale-up" delay={400}>
         <section className="text-center py-16">
           <div className="bg-white/10 backdrop-blur-sm rounded-lg p-8 border border-white/20">
             <h2 className="text-3xl font-bold text-white mb-4">
@@ -316,6 +291,7 @@ export default function BlogsPage() {
             </Link>
           </div>
         </section>
+        </ScrollAnimatedSection>
       </div>
 
       <Footer />

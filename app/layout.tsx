@@ -6,6 +6,9 @@ import { Analytics } from '@vercel/analytics/next';
 import { SpeedInsights } from '@vercel/speed-insights/next';
 import { SessionProvider } from '@/app/_components/providers/SessionProvider';
 import { ProgressProvider } from '@/app/_components/providers/ProgressProvider';
+import SmoothScrollProvider from '@/app/_components/providers/SmoothScrollProvider';
+import { CartProvider } from '@/app/_components/providers/CartProvider';
+import { CartSidebar } from '@/app/_components/ui/CartSidebar';
 
 const geistSans = Geist({
   variable: '--font-geist-sans',
@@ -106,9 +109,16 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         <Suspense fallback={null}>
-          <ProgressProvider>
-            <SessionProvider>{children}</SessionProvider>
-          </ProgressProvider>
+          <SmoothScrollProvider>
+            <ProgressProvider>
+              <SessionProvider>
+                <CartProvider>
+                  {children}
+                  <CartSidebar />
+                </CartProvider>
+              </SessionProvider>
+            </ProgressProvider>
+          </SmoothScrollProvider>
         </Suspense>
         <Analytics />
         <SpeedInsights />

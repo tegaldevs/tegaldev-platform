@@ -2,14 +2,13 @@
 
 export const dynamic = 'force-dynamic';
 
-import { AuthNavigation } from '@/app/_components/auth/AuthNavigation';
+import { Navbar } from '@/app/_components/ui/Navbar';
 import { Footer } from '@/app/_components/ui/Footer';
 import { SectionHeader } from '@/app/_components/ui/SectionHeader';
+import { ScrollAnimatedSection } from '@/app/_components/ui/ScrollAnimatedSection';
 import { Button } from '@/app/_components/ui/button';
-import Image from 'next/image';
 import Link from 'next/link';
 import { Calendar, MapPin, Users, Clock, ExternalLink } from 'lucide-react';
-import { useState, useEffect } from 'react';
 
 interface Event {
   id: string;
@@ -124,7 +123,7 @@ function EventCard({
   };
 
   return (
-    <div className="bg-white/10 backdrop-blur-sm rounded-lg p-6 border border-white/20 hover:bg-white/20 transition-all duration-300">
+    <div className="bg-white/10 backdrop-blur-sm rounded-lg p-6 border border-white/20 hover:bg-white/20 transition-all duration-300 flex flex-col h-full">
       <div className="flex justify-between items-start mb-4">
         <span
           className={`px-3 py-1 rounded-full text-xs font-medium text-white ${getTypeColor(
@@ -141,11 +140,11 @@ function EventCard({
       </div>
 
       <h3 className="text-xl font-semibold text-white mb-3">{event.title}</h3>
-      <p className="text-gray-300 text-sm mb-4 line-clamp-3">
+      <p className="text-gray-300 text-sm mb-4 line-clamp-3 flex-grow">
         {event.description}
       </p>
 
-      <div className="space-y-2 mb-4">
+      <div className="space-y-2 mb-6">
         <div className="flex items-center text-gray-300 text-sm">
           <Calendar className="h-4 w-4 mr-2" />
           {new Date(event.date).toLocaleDateString('en-US', {
@@ -169,65 +168,39 @@ function EventCard({
         </div>
       </div>
 
-      {!isPast && event.registrationUrl && (
-        <Link
-          href={event.registrationUrl}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Button className="w-full bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 text-white flex items-center gap-2">
-            <ExternalLink className="h-4 w-4" />
-            Register Now
+      <div className="mt-auto">
+        {!isPast && event.registrationUrl ? (
+          <Link
+            href={event.registrationUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <Button className="w-full bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 text-white flex items-center gap-2">
+              <ExternalLink className="h-4 w-4" />
+              Register Now
+            </Button>
+          </Link>
+        ) : (
+          <Button 
+            disabled 
+            className="w-full bg-gray-600 text-gray-400 cursor-not-allowed flex items-center gap-2"
+          >
+            {isPast ? 'Event Completed' : 'Registration Closed'}
           </Button>
-        </Link>
-      )}
+        )}
+      </div>
     </div>
   );
 }
 
 export default function EventsPage() {
-  const [isScrolled, setIsScrolled] = useState(false);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50);
-    };
-
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
-
   return (
     <div className="min-h-screen bg-gradient-to-br from-black to-blue-800">
-      {/* Fixed Navigation */}
-      <nav
-        className={`max-w-5xl mx-auto fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-          isScrolled
-            ? 'bg-black/20 backdrop-blur-md mx-4 mt-4 rounded-md shadow-lg'
-            : 'bg-transparent'
-        }`}
-      >
-        <div className="container max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center py-6">
-            <div className="flex items-center space-x-2">
-              <Link href="/">
-                <Image
-                  src="/Tegal.dev-AAA.png"
-                  alt="TegalDev Logo"
-                  width={96}
-                  height={96}
-                  className="transition-all duration-300 cursor-pointer"
-                />
-              </Link>
-            </div>
-            <AuthNavigation />
-          </div>
-        </div>
-      </nav>
+      <Navbar />
 
       <div className="container max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 pt-24">
         {/* Hero Section */}
-        <div className="text-center py-12">
+        <ScrollAnimatedSection className="text-center py-12" animationType="fade-up">
           <h1 className="text-4xl md:text-6xl font-bold text-white mb-6">
             Community{' '}
             <span className="bg-gradient-to-r from-purple-400 to-blue-400 bg-clip-text text-transparent">
@@ -238,40 +211,40 @@ export default function EventsPage() {
             Join our workshops, meetups, conferences, and webinars to learn,
             network, and grow with the TegalDev community.
           </p>
-        </div>
+        </ScrollAnimatedSection>
 
         {/* Upcoming Events */}
-        <section className="mb-16">
+        <ScrollAnimatedSection className="mb-16" animationType="slide-left" delay={200} as="section">
           <SectionHeader
             title="Upcoming "
             highlightedWord="Events"
             subtitle="Don't miss out on these exciting upcoming events and opportunities to connect with fellow developers"
           />
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 mt-8">
             {upcomingEvents.map((event) => (
               <EventCard key={event.id} event={event} />
             ))}
           </div>
-        </section>
+        </ScrollAnimatedSection>
 
         {/* Past Events */}
-        <section className="mb-16">
+        <ScrollAnimatedSection className="mb-16" animationType="slide-right" delay={300} as="section">
           <SectionHeader
             title="Past "
             highlightedWord="Events"
             subtitle="Take a look at our previous events and see what you missed"
           />
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 mt-8">
             {pastEvents.map((event) => (
               <EventCard key={event.id} event={event} isPast={true} />
             ))}
           </div>
-        </section>
+        </ScrollAnimatedSection>
 
         {/* Call to Action */}
-        <section className="text-center py-16">
+        <ScrollAnimatedSection className="text-center py-16" animationType="scale-up" delay={400} as="section">
           <div className="bg-white/10 backdrop-blur-sm rounded-lg p-8 border border-white/20">
             <h2 className="text-3xl font-bold text-white mb-4">
               Want to Host an Event?
@@ -284,13 +257,13 @@ export default function EventsPage() {
             <Link href="mailto:events@tegaldev.com?subject=Event Proposal">
               <Button
                 size="lg"
-                className="bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 text-white px-8 py-3"
+                className="bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 text-white px-6 sm:px-8 py-3 w-full sm:w-auto"
               >
                 Propose an Event
               </Button>
             </Link>
           </div>
-        </section>
+        </ScrollAnimatedSection>
       </div>
 
       <Footer />

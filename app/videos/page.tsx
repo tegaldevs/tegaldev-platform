@@ -2,12 +2,13 @@
 
 export const dynamic = 'force-dynamic';
 
-import { AuthNavigation } from '@/app/_components/auth/AuthNavigation';
+import { Navbar } from '@/app/_components/ui/Navbar';
 import { Footer } from '@/app/_components/ui/Footer';
 import { SectionHeader } from '@/app/_components/ui/SectionHeader';
+import { ScrollAnimatedSection } from '@/app/_components/ui/ScrollAnimatedSection';
 import { Button } from '@/app/_components/ui/button';
-import Image from 'next/image';
 import Link from 'next/link';
+import { useState } from 'react';
 import {
   Calendar,
   Play,
@@ -16,7 +17,6 @@ import {
   Eye,
   ThumbsUp,
 } from 'lucide-react';
-import { useState, useEffect } from 'react';
 
 interface Video {
   id: string;
@@ -149,7 +149,7 @@ const videos: Video[] = [
 
 function VideoCard({ video }: { video: Video }) {
   return (
-    <article className="bg-white/10 backdrop-blur-sm rounded-lg overflow-hidden border border-white/20 hover:bg-white/20 transition-all duration-300 group">
+    <article className="bg-white/10 backdrop-blur-sm rounded-lg overflow-hidden border border-white/20 hover:bg-white/20 cursor-pointer transition-all duration-300 group">
       <div className="relative">
         <div className="aspect-video bg-gradient-to-br from-red-600 to-purple-600 flex items-center justify-center">
           <Youtube className="h-12 w-12 text-white" />
@@ -198,7 +198,7 @@ function VideoCard({ video }: { video: Video }) {
           {video.tags.slice(0, 3).map((tag) => (
             <span
               key={tag}
-              className="px-2 py-1 bg-red-600/30 text-red-300 text-xs rounded-full"
+              className="px-2 py-1 bg-red-600/30 text-red-300 text-xs rounded-full cursor-default break-all"
             >
               {tag}
             </span>
@@ -206,7 +206,7 @@ function VideoCard({ video }: { video: Video }) {
         </div>
 
         <Link href={video.youtubeUrl} target="_blank" rel="noopener noreferrer">
-          <Button className="w-full bg-red-600 hover:bg-red-700 text-white flex items-center gap-2">
+          <Button className="w-full bg-red-600 hover:bg-red-700 text-white flex items-center justify-center gap-2 px-4 py-2">
             <Play className="h-4 w-4" />
             Watch on YouTube
             <ExternalLink className="h-3 w-3" />
@@ -218,17 +218,7 @@ function VideoCard({ video }: { video: Video }) {
 }
 
 export default function VideosPage() {
-  const [isScrolled, setIsScrolled] = useState(false);
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50);
-    };
-
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
 
   // Get all unique categories
   const allCategories = Array.from(
@@ -242,34 +232,11 @@ export default function VideosPage() {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-black to-blue-800">
-      {/* Fixed Navigation */}
-      <nav
-        className={`max-w-5xl mx-auto fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-          isScrolled
-            ? 'bg-black/20 backdrop-blur-md mx-4 mt-4 rounded-md shadow-lg'
-            : 'bg-transparent'
-        }`}
-      >
-        <div className="container max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center py-6">
-            <div className="flex items-center space-x-2">
-              <Link href="/">
-                <Image
-                  src="/Tegal.dev-AAA.png"
-                  alt="TegalDev Logo"
-                  width={96}
-                  height={96}
-                  className="transition-all duration-300 cursor-pointer"
-                />
-              </Link>
-            </div>
-            <AuthNavigation />
-          </div>
-        </div>
-      </nav>
+      <Navbar />
 
       <div className="container max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 pt-24">
         {/* Hero Section */}
+        <ScrollAnimatedSection animationType="fade-up">
         <div className="text-center py-12">
           <h1 className="text-4xl md:text-6xl font-bold text-white mb-6">
             Video{' '}
@@ -291,7 +258,7 @@ export default function VideosPage() {
             >
               <Button
                 size="lg"
-                className="bg-red-600 hover:bg-red-700 text-white px-8 py-3 flex items-center gap-2"
+                className="w-full sm:w-auto bg-red-600 hover:bg-red-700 text-white px-6 sm:px-8 py-3 flex items-center justify-center gap-2"
               >
                 <Youtube className="h-5 w-5" />
                 Subscribe on YouTube
@@ -305,7 +272,7 @@ export default function VideosPage() {
               <Button
                 size="lg"
                 variant="outline"
-                className="border-white/20 hover:bg-white/70 px-8 py-3 flex items-center gap-2"
+                className="w-full sm:w-auto border-white/20 hover:bg-white/70 px-6 sm:px-8 py-3 flex items-center justify-center gap-2"
               >
                 <Play className="h-5 w-5" />
                 View Playlists
@@ -313,16 +280,18 @@ export default function VideosPage() {
             </Link>
           </div>
         </div>
+        </ScrollAnimatedSection>
 
         {/* Category Filter */}
+        <ScrollAnimatedSection animationType="slide-left" delay={200}>
         <section className="mb-8">
-          <div className="flex flex-wrap gap-2 justify-center">
+          <div className="flex flex-wrap gap-2 justify-center px-4">
             <button
               onClick={() => setSelectedCategory(null)}
-              className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 ${
+              className={`px-3 py-2 rounded-full text-xs sm:text-sm font-medium transition-all duration-300 ${
                 selectedCategory === null
                   ? 'bg-red-600 text-white'
-                  : 'bg-white/10 text-gray-300 hover:bg-white/20'
+                  : 'bg-white/10 text-gray-300 hover:bg-white/20 cursor-pointer'
               }`}
             >
               All Videos
@@ -331,10 +300,10 @@ export default function VideosPage() {
               <button
                 key={category}
                 onClick={() => setSelectedCategory(category)}
-                className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 ${
+                className={`px-3 py-2 rounded-full text-xs sm:text-sm font-medium transition-all duration-300 ${
                   selectedCategory === category
                     ? 'bg-red-600 text-white'
-                    : 'bg-white/10 text-gray-300 hover:bg-white/20'
+                    : 'bg-white/10 text-gray-300 hover:bg-white/20 cursor-pointer'
                 }`}
               >
                 {category}
@@ -342,8 +311,10 @@ export default function VideosPage() {
             ))}
           </div>
         </section>
+        </ScrollAnimatedSection>
 
         {/* Videos */}
+        <ScrollAnimatedSection animationType="fade-up" delay={300}>
         <section className="mb-16">
           <SectionHeader
             title="Latest "
@@ -357,7 +328,7 @@ export default function VideosPage() {
             }`}
           />
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 mt-8">
             {filteredVideos.map((video) => (
               <VideoCard key={video.id} video={video} />
             ))}
@@ -371,8 +342,10 @@ export default function VideosPage() {
             </div>
           )}
         </section>
+        </ScrollAnimatedSection>
 
         {/* Channel Stats */}
+        <ScrollAnimatedSection animationType="slide-right" delay={400}>
         <section className="mb-16">
           <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
             <div className="bg-white/10 backdrop-blur-sm rounded-lg p-6 border border-white/20 text-center">
@@ -395,8 +368,10 @@ export default function VideosPage() {
             </div>
           </div>
         </section>
+        </ScrollAnimatedSection>
 
         {/* Popular Playlists */}
+        <ScrollAnimatedSection animationType="fade-up" delay={500}>
         <section className="mb-16">
           <SectionHeader
             title="Popular "
@@ -404,13 +379,13 @@ export default function VideosPage() {
             subtitle="Curated learning paths for different skill levels"
           />
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-8">
+          <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6 mt-8">
             <Link
               href="https://youtube.com/playlist?list=tegaldev-react-series"
               target="_blank"
               rel="noopener noreferrer"
             >
-              <div className="bg-white/10 backdrop-blur-sm rounded-lg p-6 border border-white/20 hover:bg-white/20 transition-all duration-300 group">
+              <div className="bg-white/10 backdrop-blur-sm rounded-lg p-6 border border-white/20 hover:bg-white/20 cursor-pointer transition-all duration-300 group">
                 <div className="flex items-center mb-4">
                   <div className="w-12 h-12 bg-gradient-to-br from-blue-600 to-purple-600 rounded-lg flex items-center justify-center mr-4">
                     <Play className="h-6 w-6 text-white" />
@@ -436,7 +411,7 @@ export default function VideosPage() {
               target="_blank"
               rel="noopener noreferrer"
             >
-              <div className="bg-white/10 backdrop-blur-sm rounded-lg p-6 border border-white/20 hover:bg-white/20 transition-all duration-300 group">
+              <div className="bg-white/10 backdrop-blur-sm rounded-lg p-6 border border-white/20 hover:bg-white/20 cursor-pointer transition-all duration-300 group">
                 <div className="flex items-center mb-4">
                   <div className="w-12 h-12 bg-gradient-to-br from-green-600 to-blue-600 rounded-lg flex items-center justify-center mr-4">
                     <Play className="h-6 w-6 text-white" />
@@ -458,8 +433,10 @@ export default function VideosPage() {
             </Link>
           </div>
         </section>
+        </ScrollAnimatedSection>
 
         {/* Call to Action */}
+        <ScrollAnimatedSection animationType="scale-up" delay={600}>
         <section className="text-center py-16">
           <div className="bg-white/10 backdrop-blur-sm rounded-lg p-8 border border-white/20">
             <h2 className="text-3xl font-bold text-white mb-4">
@@ -473,13 +450,14 @@ export default function VideosPage() {
             <Link href="mailto:videos@tegaldev.com?subject=Video Topic Suggestion">
               <Button
                 size="lg"
-                className="bg-gradient-to-r from-red-600 to-purple-600 hover:from-red-700 hover:to-purple-700 text-white px-8 py-3"
+                className="w-full sm:w-auto bg-gradient-to-r from-red-600 to-purple-600 hover:from-red-700 hover:to-purple-700 text-white px-6 sm:px-8 py-3"
               >
                 Suggest a Topic
               </Button>
             </Link>
           </div>
         </section>
+        </ScrollAnimatedSection>
       </div>
 
       <Footer />
