@@ -2,6 +2,7 @@
 
 export const dynamic = 'force-dynamic';
 
+import React, { useEffect, useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { Navbar } from '@/app/_components/ui/Navbar';
@@ -26,13 +27,36 @@ import {
   ExternalLink,
   Mail,
   HandHeart,
-  Hash,
 } from 'lucide-react';
+import { Input } from '@/app/_components/ui/input';
+import { Label } from '@/app/_components/ui/label';
+import { LoadingButton } from '@/app/_components/ui/LoadingButton';
+import { Accordion, AccordionItem } from '@/app/_components/ui/accordion';
 
 export default function Home() {
+  const [heroVisible, setHeroVisible] = useState(false);
+  const [navbarVisible, setNavbarVisible] = useState(false);
+
+  useEffect(() => {
+    const timeoutNavbar = setTimeout(() => setNavbarVisible(true), 50);
+    const timeoutHero = setTimeout(() => setHeroVisible(true), 100);
+    return () => {
+      clearTimeout(timeoutNavbar);
+      clearTimeout(timeoutHero);
+    };
+  }, []);
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-black to-blue-800">
-      <Navbar />
+      {/* Navbar with home page animation */}
+      <div
+        className={
+          'transition-all duration-1000 ease-out ' +
+          (navbarVisible ? 'opacity-100' : 'opacity-0')
+        }
+      >
+        <Navbar />
+      </div>
 
       <div className="container max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 pt-24">
         {/* Hero Section */}
@@ -44,7 +68,15 @@ export default function Home() {
             <div className="absolute bottom-20 left-1/4 w-20 h-20 bg-cyan-500/10 rounded-full blur-xl animate-pulse delay-2000"></div>
           </div>
 
-          <div className="max-w-6xl space-y-10 relative z-10">
+          {/* Animated Hero Content */}
+          <div
+            className={
+              `max-w-6xl space-y-10 relative z-10 transition-all duration-1000 ease-out ` +
+              (heroVisible
+                ? 'opacity-100 translate-y-0'
+                : 'opacity-0 translate-y-8')
+            }
+          >
             <div className="space-y-12">
               {/* Logo Section with enhanced presentation */}
               <div className="flex flex-col items-center space-y-8">
@@ -76,51 +108,36 @@ export default function Home() {
                 <span className="text-purple-300">
                   We aim to improve educational activities
                 </span>{' '}
-                and foster innovation in technology.
+                and <span className="text-purple-300">
+                foster innovation in technology.
+                </span>
               </p>
 
               {/* Enhanced Hero Input Section */}
-              <div className="mt-12 max-w-lg mx-auto">
-                <div className="bg-white/5 backdrop-blur-md rounded-2xl p-6 border border-white/10 shadow-2xl">
-                  <div className="flex flex-col sm:flex-row gap-4">
-                    <div className="relative flex-1">
-                      <input
-                        type="email"
-                        placeholder="Enter your email to subscribe"
-                        className="w-full px-5 py-4 h-14 rounded-xl bg-white/10 border border-white/20 text-white placeholder-gray-300 focus:outline-none focus:ring-2 focus:ring-purple-400 focus:border-purple-400 transition-all duration-300 backdrop-blur-sm text-lg"
-                      />
-                      <div className="absolute inset-0 rounded-xl bg-gradient-to-r from-purple-500/10 to-blue-500/10 pointer-events-none opacity-0 group-focus-within:opacity-100 transition-opacity duration-300"></div>
-                    </div>
-                    <Button
-                      size="lg"
-                      className="bg-gradient-to-r from-purple-600 via-purple-700 to-blue-600 hover:from-purple-700 hover:via-purple-800 hover:to-blue-700 text-white px-8 h-14 text-lg font-semibold whitespace-nowrap transition-all duration-300 transform hover:scale-105 hover:shadow-lg hover:shadow-purple-500/25 rounded-xl"
-                    >
-                      <Mail className="h-5 w-5 mr-2" />
-                      Subscribe
-                    </Button>
-                  </div>
-                  <p className="text-gray-300 text-sm mt-4 text-center leading-relaxed">
-                    🚀 Join our community and stay updated with the latest tech
-                    events, workshops, and opportunities
-                  </p>
+              <form className="mt-12 max-w-lg mx-auto flex flex-col gap-2 items-center" onSubmit={e => e.preventDefault()}>
+                <div className="w-full flex flex-col gap-2">
+                  <Label htmlFor="hero-email" className="sr-only">Email address</Label>
+                  <Input
+                    id="hero-email"
+                    type="email"
+                    placeholder="Enter your email to subscribe"
+                    className="h-12 bg-white/10 border-white/20 text-white placeholder:text-gray-300 focus:border-purple-400 focus:ring-2 focus:ring-purple-400/20 transition-all duration-200"
+                    required
+                  />
                 </div>
-              </div>
-
-              {/* Enhanced Hashtags */}
-              <div className="mt-10 flex flex-wrap gap-3 justify-center">
-                <span className="inline-flex items-center bg-gradient-to-r from-blue-500/20 to-purple-500/20 text-blue-200 px-4 py-3 rounded-full text-sm font-medium cursor-default border border-blue-400/20 hover:border-blue-400/40 transition-all duration-300 backdrop-blur-sm">
-                  <Hash className="h-4 w-4 mr-1" />
-                  TegalDev
-                </span>
-                <span className="inline-flex items-center bg-gradient-to-r from-purple-500/20 to-pink-500/20 text-purple-200 px-4 py-3 rounded-full text-sm font-medium cursor-default border border-purple-400/20 hover:border-purple-400/40 transition-all duration-300 backdrop-blur-sm">
-                  <Hash className="h-4 w-4 mr-1" />
-                  JakwirDeveloper
-                </span>
-                <span className="inline-flex items-center bg-gradient-to-r from-cyan-500/20 to-blue-500/20 text-cyan-200 px-4 py-3 rounded-full text-sm font-medium cursor-default border border-cyan-400/20 hover:border-cyan-400/40 transition-all duration-300 backdrop-blur-sm">
-                  <Hash className="h-4 w-4 mr-1" />
-                  OraNgodingOraKepenak
-                </span>
-              </div>
+                <LoadingButton
+                  isLoading={false}
+                  loadingText="Subscribing..."
+                  type="submit"
+                  className="w-full h-12 mt-2 bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 text-white font-medium transition-all duration-200 transform hover:scale-[1.02] shadow-lg hover:shadow-purple-500/25 rounded-xl text-lg font-semibold"
+                  icon={Mail}
+                >
+                  Subscribe
+                </LoadingButton>
+                <p className="text-gray-300 text-sm mt-4 text-center leading-relaxed">
+                  🚀 Stay updated with the latest tech events, workshops, and opportunities
+                </p>
+              </form>
             </div>
 
             {/* Enhanced CTA Buttons */}
@@ -549,6 +566,93 @@ export default function Home() {
               <StatCard value="5+" label="Projects" />
               <StatCard value="50+" label="Events" />
               <StatCard value="7+" label="Collaborations" />
+            </ScrollAnimatedSection>
+
+            {/* FAQ Section */}
+            <ScrollAnimatedSection
+              id="faq"
+              className="mt-12"
+              animationType="fade-up"
+              delay={700}
+            >
+              <SectionHeader
+                title="Frequently Asked "
+                highlightedWord="Questions"
+                subtitle="Find answers to common questions about Tegal Dev community and platform"
+              />
+
+              <div className="max-w-4xl mx-auto mt-8">
+                <Accordion>
+                  <AccordionItem title="What is Tegal Dev and how can I join?">
+                    <p>
+                      Tegal Dev is a curated software engineer community based in Tegal, Central Java, Indonesia. 
+                      We focus on improving educational activities and fostering innovation in technology. 
+                      To join, simply register on our platform and start participating in our events, workshops, 
+                      and community activities. We welcome developers of all skill levels!
+                    </p>
+                  </AccordionItem>
+
+                  <AccordionItem title="What types of events and activities do you organize?">
+                    <p>
+                      We organize a variety of activities including tech meetups, workshops, coding challenges, 
+                      tech talks, sharing sessions, and networking events. Our events cover various technologies 
+                      and development practices, from beginner-friendly workshops to advanced technical discussions. 
+                      We also collaborate with other tech communities worldwide to bring diverse perspectives and opportunities.
+                    </p>
+                  </AccordionItem>
+
+                  <AccordionItem title="How can I contribute to the community?">
+                    <p>
+                      There are many ways to contribute! You can share your knowledge through tech talks or workshops, 
+                      participate in coding challenges, mentor other developers, contribute to open-source projects, 
+                      or help organize events. We also welcome collaboration on projects and initiatives that benefit 
+                      the broader tech community.
+                    </p>
+                  </AccordionItem>
+
+                  <AccordionItem title="Do I need to be from Tegal to join the community?">
+                    <p>
+                      Not at all! While we&apos;re based in Tegal, our community is open to software engineers from 
+                      anywhere in Indonesia and around the world. We believe in the power of diverse perspectives 
+                      and welcome members from different backgrounds and locations to enrich our community.
+                    </p>
+                  </AccordionItem>
+
+                  <AccordionItem title="How can I stay updated with community activities?">
+                    <p>
+                      You can stay updated by subscribing to our newsletter, following our social media channels, 
+                      joining our community platforms, and regularly checking our website for upcoming events. 
+                      We also send regular updates about workshops, challenges, and collaboration opportunities.
+                    </p>
+                  </AccordionItem>
+
+                  <AccordionItem title="Are there any membership fees or costs?">
+                    <p>
+                      Most of our community activities and events are free to attend. However, some specialized 
+                      workshops or events may have a small fee to cover materials or venue costs. We always 
+                      strive to keep our events accessible and affordable for all members of our community.
+                    </p>
+                  </AccordionItem>
+
+                  <AccordionItem title="How can companies or organizations collaborate with Tegal Dev?">
+                    <p>
+                      We welcome collaborations with companies and organizations! You can sponsor events, 
+                      provide venues for meetups, offer internship or job opportunities to our members, 
+                      or collaborate on educational initiatives. Contact us through our collaboration email 
+                      to discuss potential partnerships.
+                    </p>
+                  </AccordionItem>
+
+                  <AccordionItem title="What resources and learning materials are available?">
+                    <p>
+                      We provide access to various learning resources including workshop materials, 
+                      recorded tech talks, coding challenge solutions, and curated learning paths. 
+                      Our community also shares knowledge through blogs, podcasts, and video content. 
+                      Members can access these resources through our platform and community channels.
+                    </p>
+                  </AccordionItem>
+                </Accordion>
+              </div>
             </ScrollAnimatedSection>
           </div>
         </main>

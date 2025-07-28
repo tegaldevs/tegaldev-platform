@@ -15,6 +15,9 @@ import {
   ShoppingCart,
   Menu,
   X,
+  ChevronDown,
+  Trophy,
+  Briefcase,
 } from 'lucide-react';
 import Image from 'next/image';
 import {
@@ -24,6 +27,12 @@ import {
   SheetTitle,
   SheetTrigger,
 } from '@/app/_components/ui/sheet';
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from '@/app/_components/ui/dropdown-menu';
 import { useState } from 'react';
 
 export function AuthNavigation() {
@@ -40,41 +49,121 @@ export function AuthNavigation() {
     );
   }
 
-  const navigationLinks = [
-    { href: '/events', label: 'Events', icon: Calendar },
-    { href: '/blogs', label: 'Blog', icon: BookOpen },
-    { href: '/podcasts', label: 'Podcast', icon: Mic },
-    { href: '/videos', label: 'Videos', icon: Youtube },
-    { href: '/merchandise', label: 'Store', icon: ShoppingCart },
+  const activitiesLinks = [
+    { href: '/events', label: 'Events', icon: Calendar, description: 'Workshops, meetups & conferences' },
+    { href: '/challenges', label: 'Challenges', icon: Trophy, description: 'Coding competitions & hackathons' },
+    { href: '/jobs', label: 'Jobs', icon: Briefcase, description: 'Career opportunities & positions' },
   ];
+
+  const contentLinks = [
+    { href: '/blogs', label: 'Blogs', icon: BookOpen, description: 'Articles & tutorials' },
+    { href: '/podcasts', label: 'Podcasts', icon: Mic, description: 'Audio conversations' },
+    { href: '/videos', label: 'Videos', icon: Youtube, description: 'Video tutorials & content' },
+  ];
+
+
 
   if (session) {
     return (
       <div className="flex items-center space-x-4">
         {/* Desktop Navigation Links */}
         <nav className="hidden md:flex items-center space-x-4">
-          {navigationLinks.map(({ href, label, icon: Icon }) => {
-            const isActive = pathname === href;
-            return (
-              <Link key={href} href={href}>
-                <Button
-                  variant="ghost"
-                  size="sm"
-                  className={`flex items-center space-x-1 relative ${
-                    isActive
-                      ? 'text-white bg-white/20 border-b-2 border-purple-400'
-                      : 'text-gray-300 hover:text-white hover:bg-white/10'
-                  }`}
-                >
-                  <Icon className="h-4 w-4" />
-                  <span className="text-sm">{label}</span>
-                  {isActive && (
-                    <div className="absolute -bottom-1 left-1/2 transform -translate-x-1/2 w-1 h-1 bg-purple-400 rounded-full"></div>
-                  )}
-                </Button>
-              </Link>
-            );
-          })}
+          {/* Activities Dropdown */}
+          <DropdownMenu>
+            <DropdownMenuTrigger asChild>
+              <Button
+                variant="ghost"
+                size="sm"
+                className="flex items-center space-x-1 text-gray-300 hover:text-white hover:bg-white/10"
+              >
+                <Calendar className="h-4 w-4" />
+                <span className="text-sm">Activities</span>
+                <ChevronDown className="h-3 w-3" />
+              </Button>
+            </DropdownMenuTrigger>
+            <DropdownMenuContent
+              align="start"
+              className="w-64 bg-black/95 backdrop-blur-md border-white/20"
+            >
+              {activitiesLinks.map(({ href, label, icon: Icon, description }) => {
+                const isActive = pathname === href;
+                return (
+                  <DropdownMenuItem key={href} asChild>
+                    <Link
+                      href={href}
+                      className={`flex items-start gap-3 p-3 hover:bg-white/10 rounded-md cursor-pointer ${
+                        isActive ? 'bg-white/20 text-white' : 'text-gray-300'
+                      }`}
+                    >
+                      <Icon className="h-5 w-5 mt-0.5" />
+                      <div className="flex flex-col">
+                        <span className="font-medium">{label}</span>
+                        <span className="text-xs text-gray-400">{description}</span>
+                      </div>
+                    </Link>
+                  </DropdownMenuItem>
+                );
+              })}
+            </DropdownMenuContent>
+          </DropdownMenu>
+
+          {/* Content Dropdown */}
+          <DropdownMenu>
+            <DropdownMenuTrigger asChild>
+              <Button
+                variant="ghost"
+                size="sm"
+                className="flex items-center space-x-1 text-gray-300 hover:text-white hover:bg-white/10"
+              >
+                <BookOpen className="h-4 w-4" />
+                <span className="text-sm">Content</span>
+                <ChevronDown className="h-3 w-3" />
+              </Button>
+            </DropdownMenuTrigger>
+            <DropdownMenuContent
+              align="start"
+              className="w-64 bg-black/95 backdrop-blur-md border-white/20"
+            >
+              {contentLinks.map(({ href, label, icon: Icon, description }) => {
+                const isActive = pathname === href;
+                return (
+                  <DropdownMenuItem key={href} asChild>
+                    <Link
+                      href={href}
+                      className={`flex items-start gap-3 p-3 hover:bg-white/10 rounded-md cursor-pointer ${
+                        isActive ? 'bg-white/20 text-white' : 'text-gray-300'
+                      }`}
+                    >
+                      <Icon className="h-5 w-5 mt-0.5" />
+                      <div className="flex flex-col">
+                        <span className="font-medium">{label}</span>
+                        <span className="text-xs text-gray-400">{description}</span>
+                      </div>
+                    </Link>
+                  </DropdownMenuItem>
+                );
+              })}
+            </DropdownMenuContent>
+          </DropdownMenu>
+
+          {/* Store Link */}
+          <Link href="/merchandise">
+            <Button
+              variant="ghost"
+              size="sm"
+              className={`flex items-center space-x-1 relative ${
+                pathname === '/merchandise'
+                  ? 'text-white bg-white/20 border-b-2 border-purple-400'
+                  : 'text-gray-300 hover:text-white hover:bg-white/10'
+              }`}
+            >
+              <ShoppingCart className="h-4 w-4" />
+              <span className="text-sm">Store</span>
+              {pathname === '/merchandise' && (
+                <div className="absolute -bottom-1 left-1/2 transform -translate-x-1/2 w-1 h-1 bg-purple-400 rounded-full"></div>
+              )}
+            </Button>
+          </Link>
         </nav>
 
         {/* Mobile Navigation */}
@@ -115,28 +204,85 @@ export function AuthNavigation() {
                 </div>
               </SheetHeader>
               <div className="mt-8 space-y-3 px-2">
-                {navigationLinks.map(({ href, label, icon: Icon }) => {
-                  const isActive = pathname === href;
-                  return (
-                    <Link
-                      key={href}
-                      href={href}
-                      onClick={() => setIsOpen(false)}
+                {/* Activities Section */}
+                <div className="space-y-2">
+                  <h3 className="text-sm font-semibold text-gray-400 uppercase tracking-wider px-4">
+                    Activities
+                  </h3>
+                  {activitiesLinks.map(({ href, label, icon: Icon, description }) => {
+                    const isActive = pathname === href;
+                    return (
+                      <Link key={href} href={href} onClick={() => setIsOpen(false)}>
+                        <Button
+                          variant="ghost"
+                          className={`w-full justify-start space-x-3 px-4 py-3 ${
+                            isActive
+                              ? 'text-white bg-white/20 border-l-2 border-purple-400'
+                              : 'text-gray-300 hover:text-white hover:bg-white/10'
+                          }`}
+                        >
+                          <Icon className="h-4 w-4" />
+                          <div className="flex flex-col items-start">
+                            <span>{label}</span>
+                            <span className="text-xs text-gray-400">{description}</span>
+                          </div>
+                        </Button>
+                      </Link>
+                    );
+                  })}
+                </div>
+
+                {/* Content Section */}
+                <div className="space-y-2">
+                  <h3 className="text-sm font-semibold text-gray-400 uppercase tracking-wider px-4">
+                    Content
+                  </h3>
+                  {contentLinks.map(({ href, label, icon: Icon, description }) => {
+                    const isActive = pathname === href;
+                    return (
+                      <Link key={href} href={href} onClick={() => setIsOpen(false)}>
+                        <Button
+                          variant="ghost"
+                          className={`w-full justify-start space-x-3 px-4 py-3 ${
+                            isActive
+                              ? 'text-white bg-white/20 border-l-2 border-purple-400'
+                              : 'text-gray-300 hover:text-white hover:bg-white/10'
+                          }`}
+                        >
+                          <Icon className="h-4 w-4" />
+                          <div className="flex flex-col items-start">
+                            <span>{label}</span>
+                            <span className="text-xs text-gray-400">{description}</span>
+                          </div>
+                        </Button>
+                      </Link>
+                    );
+                  })}
+                </div>
+
+                {/* Store */}
+                <div className="space-y-2">
+                  <h3 className="text-sm font-semibold text-gray-400 uppercase tracking-wider px-4">
+                    Shop
+                  </h3>
+                  <Link href="/merchandise" onClick={() => setIsOpen(false)}>
+                    <Button
+                      variant="ghost"
+                      className={`w-full justify-start space-x-3 px-4 py-3 ${
+                        pathname === '/merchandise'
+                          ? 'text-white bg-white/20 border-l-2 border-purple-400'
+                          : 'text-gray-300 hover:text-white hover:bg-white/10'
+                      }`}
                     >
-                      <Button
-                        variant="ghost"
-                        className={`w-full justify-start space-x-3 px-4 py-3 ${
-                          isActive
-                            ? 'text-white bg-white/20 border-l-2 border-purple-400'
-                            : 'text-gray-300 hover:text-white hover:bg-white/10'
-                        }`}
-                      >
-                        <Icon className="h-4 w-4" />
-                        <span>{label}</span>
-                      </Button>
-                    </Link>
-                  );
-                })}
+                      <ShoppingCart className="h-4 w-4" />
+                      <div className="flex flex-col items-start">
+                        <span>Store</span>
+                        <span className="text-xs text-gray-400">Merchandise & gear</span>
+                      </div>
+                    </Button>
+                  </Link>
+                </div>
+
                 <div className="border-t border-white/20 pt-6 mt-6">
                   <div className="flex items-center space-x-2 mb-4 px-4">
                     <Image
@@ -167,7 +313,7 @@ export function AuthNavigation() {
           </Sheet>
         </div>
 
-        {/* Desktop User Info & Sign Out */}
+        {/* Desktop Auth Buttons */}
         <div className="hidden md:flex items-center space-x-3">
           <div className="flex items-center space-x-2">
             <Image
@@ -199,28 +345,102 @@ export function AuthNavigation() {
     <div className="flex items-center space-x-4">
       {/* Desktop Navigation Links */}
       <nav className="hidden md:flex items-center space-x-4">
-        {navigationLinks.map(({ href, label, icon: Icon }) => {
-          const isActive = pathname === href;
-          return (
-            <Link key={href} href={href}>
-              <Button
-                variant="ghost"
-                size="sm"
-                className={`flex items-center space-x-1 relative ${
-                  isActive
-                    ? 'text-white bg-white/20 border-b-2 border-purple-400'
-                    : 'text-gray-300 hover:text-white hover:bg-white/10'
-                }`}
-              >
-                <Icon className="h-4 w-4" />
-                <span className="text-sm">{label}</span>
-                {isActive && (
-                  <div className="absolute -bottom-1 left-1/2 transform -translate-x-1/2 w-1 h-1 bg-purple-400 rounded-full"></div>
-                )}
-              </Button>
-            </Link>
-          );
-        })}
+        {/* Activities Dropdown */}
+        <DropdownMenu>
+          <DropdownMenuTrigger asChild>
+            <Button
+              variant="ghost"
+              size="sm"
+              className="flex items-center space-x-1 text-gray-300 hover:text-white hover:bg-white/10"
+            >
+              <Calendar className="h-4 w-4" />
+              <span className="text-sm">Activities</span>
+              <ChevronDown className="h-3 w-3" />
+            </Button>
+          </DropdownMenuTrigger>
+          <DropdownMenuContent
+            align="start"
+            className="w-64 bg-black/95 backdrop-blur-md border-white/20"
+          >
+            {activitiesLinks.map(({ href, label, icon: Icon, description }) => {
+              const isActive = pathname === href;
+              return (
+                <DropdownMenuItem key={href} asChild>
+                  <Link
+                    href={href}
+                    className={`flex items-start gap-3 p-3 hover:bg-white/10 rounded-md cursor-pointer ${
+                      isActive ? 'bg-white/20 text-white' : 'text-gray-300'
+                    }`}
+                  >
+                    <Icon className="h-5 w-5 mt-0.5" />
+                    <div className="flex flex-col">
+                      <span className="font-medium">{label}</span>
+                      <span className="text-xs text-gray-400">{description}</span>
+                    </div>
+                  </Link>
+                </DropdownMenuItem>
+              );
+            })}
+          </DropdownMenuContent>
+        </DropdownMenu>
+
+        {/* Content Dropdown */}
+        <DropdownMenu>
+          <DropdownMenuTrigger asChild>
+            <Button
+              variant="ghost"
+              size="sm"
+              className="flex items-center space-x-1 text-gray-300 hover:text-white hover:bg-white/10"
+            >
+              <BookOpen className="h-4 w-4" />
+              <span className="text-sm">Content</span>
+              <ChevronDown className="h-3 w-3" />
+            </Button>
+          </DropdownMenuTrigger>
+          <DropdownMenuContent
+            align="start"
+            className="w-64 bg-black/95 backdrop-blur-md border-white/20"
+          >
+            {contentLinks.map(({ href, label, icon: Icon, description }) => {
+              const isActive = pathname === href;
+              return (
+                <DropdownMenuItem key={href} asChild>
+                  <Link
+                    href={href}
+                    className={`flex items-start gap-3 p-3 hover:bg-white/10 rounded-md cursor-pointer ${
+                      isActive ? 'bg-white/20 text-white' : 'text-gray-300'
+                    }`}
+                  >
+                    <Icon className="h-5 w-5 mt-0.5" />
+                    <div className="flex flex-col">
+                      <span className="font-medium">{label}</span>
+                      <span className="text-xs text-gray-400">{description}</span>
+                    </div>
+                  </Link>
+                </DropdownMenuItem>
+              );
+            })}
+          </DropdownMenuContent>
+        </DropdownMenu>
+
+        {/* Store Link */}
+        <Link href="/merchandise">
+          <Button
+            variant="ghost"
+            size="sm"
+            className={`flex items-center space-x-1 relative ${
+              pathname === '/merchandise'
+                ? 'text-white bg-white/20 border-b-2 border-purple-400'
+                : 'text-gray-300 hover:text-white hover:bg-white/10'
+            }`}
+          >
+            <ShoppingCart className="h-4 w-4" />
+            <span className="text-sm">Store</span>
+            {pathname === '/merchandise' && (
+              <div className="absolute -bottom-1 left-1/2 transform -translate-x-1/2 w-1 h-1 bg-purple-400 rounded-full"></div>
+            )}
+          </Button>
+        </Link>
       </nav>
 
       {/* Mobile Navigation */}
@@ -261,24 +481,85 @@ export function AuthNavigation() {
               </div>
             </SheetHeader>
             <div className="mt-8 space-y-3 px-2">
-              {navigationLinks.map(({ href, label, icon: Icon }) => {
-                const isActive = pathname === href;
-                return (
-                  <Link key={href} href={href} onClick={() => setIsOpen(false)}>
-                    <Button
-                      variant="ghost"
-                      className={`w-full justify-start space-x-3 px-4 py-3 ${
-                        isActive
-                          ? 'text-white bg-white/20 border-l-2 border-purple-400'
-                          : 'text-gray-300 hover:text-white hover:bg-white/10'
-                      }`}
-                    >
-                      <Icon className="h-4 w-4" />
-                      <span>{label}</span>
-                    </Button>
-                  </Link>
-                );
-              })}
+              {/* Activities Section */}
+              <div className="space-y-2">
+                <h3 className="text-sm font-semibold text-gray-400 uppercase tracking-wider px-4">
+                  Activities
+                </h3>
+                {activitiesLinks.map(({ href, label, icon: Icon, description }) => {
+                  const isActive = pathname === href;
+                  return (
+                    <Link key={href} href={href} onClick={() => setIsOpen(false)}>
+                      <Button
+                        variant="ghost"
+                        className={`w-full justify-start space-x-3 px-4 py-3 ${
+                          isActive
+                            ? 'text-white bg-white/20 border-l-2 border-purple-400'
+                            : 'text-gray-300 hover:text-white hover:bg-white/10'
+                        }`}
+                      >
+                        <Icon className="h-4 w-4" />
+                        <div className="flex flex-col items-start">
+                          <span>{label}</span>
+                          <span className="text-xs text-gray-400">{description}</span>
+                        </div>
+                      </Button>
+                    </Link>
+                  );
+                })}
+              </div>
+
+              {/* Content Section */}
+              <div className="space-y-2">
+                <h3 className="text-sm font-semibold text-gray-400 uppercase tracking-wider px-4">
+                  Content
+                </h3>
+                {contentLinks.map(({ href, label, icon: Icon, description }) => {
+                  const isActive = pathname === href;
+                  return (
+                    <Link key={href} href={href} onClick={() => setIsOpen(false)}>
+                      <Button
+                        variant="ghost"
+                        className={`w-full justify-start space-x-3 px-4 py-3 ${
+                          isActive
+                            ? 'text-white bg-white/20 border-l-2 border-purple-400'
+                            : 'text-gray-300 hover:text-white hover:bg-white/10'
+                        }`}
+                      >
+                        <Icon className="h-4 w-4" />
+                        <div className="flex flex-col items-start">
+                          <span>{label}</span>
+                          <span className="text-xs text-gray-400">{description}</span>
+                        </div>
+                      </Button>
+                    </Link>
+                  );
+                })}
+              </div>
+
+              {/* Store */}
+              <div className="space-y-2">
+                <h3 className="text-sm font-semibold text-gray-400 uppercase tracking-wider px-4">
+                  Shop
+                </h3>
+                <Link href="/merchandise" onClick={() => setIsOpen(false)}>
+                  <Button
+                    variant="ghost"
+                    className={`w-full justify-start space-x-3 px-4 py-3 ${
+                      pathname === '/merchandise'
+                        ? 'text-white bg-white/20 border-l-2 border-purple-400'
+                        : 'text-gray-300 hover:text-white hover:bg-white/10'
+                    }`}
+                  >
+                    <ShoppingCart className="h-4 w-4" />
+                    <div className="flex flex-col items-start">
+                      <span>Store</span>
+                      <span className="text-xs text-gray-400">Merchandise & gear</span>
+                    </div>
+                  </Button>
+                </Link>
+              </div>
+
               <div className="border-t border-white/20 pt-6 mt-6">
                 <Link href="/auth/login" onClick={() => setIsOpen(false)}>
                   <Button

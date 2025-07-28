@@ -9,7 +9,7 @@ import { ScrollAnimatedSection } from '@/app/_components/ui/ScrollAnimatedSectio
 import { Button } from '@/app/_components/ui/button';
 import Link from 'next/link';
 import { useState } from 'react';
-import { Calendar, User, ExternalLink, BookOpen, Clock } from 'lucide-react';
+import { Calendar, User, ExternalLink, BookOpen, Clock, Book } from 'lucide-react';
 
 interface BlogPost {
   id: string;
@@ -186,7 +186,7 @@ export default function BlogsPage() {
             Insights, tutorials, and thoughts from the TegalDev community. Read
             our latest articles on Medium.
           </p>
-
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
           <Link
             href="https://medium.com/@tegaldev"
             target="_blank"
@@ -200,6 +200,21 @@ export default function BlogsPage() {
               Follow us on Medium
             </Button>
           </Link>
+          <Link
+              href="https://podcasts.apple.com/podcast/tegaldev"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <Button
+                size="lg"
+                variant="outline"
+                className="w-full sm:w-auto border-white/20 hover:bg-white/70 px-6 sm:px-8 py-3 flex items-center justify-center gap-2"
+              >
+                <Book className="h-5 w-5" />
+                View Articles
+              </Button>
+            </Link>
+          </div>
         </div>
         </ScrollAnimatedSection>
 
