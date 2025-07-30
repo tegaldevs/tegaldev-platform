@@ -201,7 +201,7 @@ export default function BlogsPage() {
               >
                 <Button
                   size="lg"
-                  className="bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 text-white px-8 py-3 flex items-center gap-2 mx-auto"
+                  className="bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 text-white px-8 py-3 flex items-center gap-2 mx-auto w-full"
                 >
                   <ExternalLink className="h-5 w-5" />
                   Follow us on Medium
