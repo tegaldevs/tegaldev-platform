@@ -9,14 +9,7 @@ import { ScrollAnimatedSection } from '@/app/_components/ui/ScrollAnimatedSectio
 import { Button } from '@/app/_components/ui/button';
 import Link from 'next/link';
 import { useState } from 'react';
-import {
-  Calendar,
-  Clock,
-  Play,
-  ExternalLink,
-  Mic,
-  Users,
-} from 'lucide-react';
+import { Calendar, Clock, Play, ExternalLink, Mic, Users } from 'lucide-react';
 
 interface PodcastEpisode {
   id: string;
@@ -158,8 +151,7 @@ function PodcastCard({ episode }: { episode: PodcastEpisode }) {
           <div className="flex items-center">
             <Users className="h-3 w-3 mr-1" />
             {episode.guests.slice(0, 1).join(', ')}
-            {episode.guests.length > 1 &&
-              ` +${episode.guests.length - 1} more`}
+            {episode.guests.length > 1 && ` +${episode.guests.length - 1} more`}
           </div>
         )}
       </div>
@@ -214,154 +206,160 @@ export default function PodcastsPage() {
       <div className="container max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 pt-24">
         {/* Hero Section */}
         <ScrollAnimatedSection animationType="fade-up">
-        <div className="text-center py-12">
-          <h1 className="text-4xl md:text-6xl font-bold text-white mb-6">
-            Tech{' '}
-            <span className="bg-gradient-to-r from-green-400 to-blue-400 bg-clip-text text-transparent">
-              Podcast
-            </span>
-          </h1>
-          <p className="text-xl text-gray-300 max-w-3xl mx-auto mb-8">
-            Deep conversations about technology, career growth, and the future
-            of software development. Listen to our podcast on Spotify.
-          </p>
+          <div className="text-center py-12">
+            <h1 className="text-4xl md:text-6xl font-bold text-white mb-6">
+              Tech{' '}
+              <span className="bg-gradient-to-r from-green-400 to-blue-400 bg-clip-text text-transparent">
+                Podcast
+              </span>
+            </h1>
+            <p className="text-xl text-gray-300 max-w-3xl mx-auto mb-8">
+              Deep conversations about technology, career growth, and the future
+              of software development. Listen to our podcast on Spotify.
+            </p>
 
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Link
-              href="https://open.spotify.com/show/tegaldev-podcast"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <Button
-                size="lg"
-                className="w-full sm:w-auto bg-green-600 hover:bg-green-700 text-white px-6 sm:px-8 py-3 flex items-center justify-center gap-2"
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <Link
+                href="https://open.spotify.com/show/tegaldev-podcast"
+                target="_blank"
+                rel="noopener noreferrer"
               >
-                <ExternalLink className="h-5 w-5" />
-                Follow on Spotify
-              </Button>
-            </Link>
-            <Link
-              href="https://podcasts.apple.com/podcast/tegaldev"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <Button
-                size="lg"
-                variant="outline"
-                className="w-full sm:w-auto border-white/20 hover:bg-white/70 px-6 sm:px-8 py-3 flex items-center justify-center gap-2"
+                <Button
+                  size="lg"
+                  className="w-full sm:w-auto bg-green-600 hover:bg-green-700 text-white px-6 sm:px-8 py-3 flex items-center justify-center gap-2"
+                >
+                  <ExternalLink className="h-5 w-5" />
+                  Follow on Spotify
+                </Button>
+              </Link>
+              <Link
+                href="https://podcasts.apple.com/podcast/tegaldev"
+                target="_blank"
+                rel="noopener noreferrer"
               >
-                <Play className="h-5 w-5" />
-                View Episodes
-              </Button>
-            </Link>
+                <Button
+                  size="lg"
+                  variant="outline"
+                  className="w-full sm:w-auto border-white/20 hover:bg-white/70 px-6 sm:px-8 py-3 flex items-center justify-center gap-2"
+                >
+                  <Play className="h-5 w-5" />
+                  View Episodes
+                </Button>
+              </Link>
+            </div>
           </div>
-        </div>
         </ScrollAnimatedSection>
 
         {/* Topic Filter */}
-        <ScrollAnimatedSection animationType="slide-left" delay={200}>
-        <section className="mb-8">
-          <div className="flex flex-wrap gap-2 justify-center px-4">
-            <button
-              onClick={() => setSelectedTopic(null)}
-              className={`px-3 py-2 rounded-full text-xs sm:text-sm font-medium transition-all duration-300 ${
-                selectedTopic === null
-                  ? 'bg-green-600 text-white'
-                  : 'bg-white/10 text-gray-300 hover:bg-white/20 hover:cursor-pointer'
-              }`}
-            >
-              All Episodes
-            </button>
-            {allTopics.map((topic) => (
+        <ScrollAnimatedSection animationType="fade-up" delay={200}>
+          <section className="mb-8">
+            <div className="flex flex-wrap gap-2 justify-center px-4">
               <button
-                key={topic}
-                onClick={() => setSelectedTopic(topic)}
+                onClick={() => setSelectedTopic(null)}
                 className={`px-3 py-2 rounded-full text-xs sm:text-sm font-medium transition-all duration-300 ${
-                  selectedTopic === topic
+                  selectedTopic === null
                     ? 'bg-green-600 text-white'
                     : 'bg-white/10 text-gray-300 hover:bg-white/20 hover:cursor-pointer'
                 }`}
               >
-                {topic}
+                All Episodes
               </button>
-            ))}
-          </div>
-        </section>
+              {allTopics.map((topic) => (
+                <button
+                  key={topic}
+                  onClick={() => setSelectedTopic(topic)}
+                  className={`px-3 py-2 rounded-full text-xs sm:text-sm font-medium transition-all duration-300 ${
+                    selectedTopic === topic
+                      ? 'bg-green-600 text-white'
+                      : 'bg-white/10 text-gray-300 hover:bg-white/20 hover:cursor-pointer'
+                  }`}
+                >
+                  {topic}
+                </button>
+              ))}
+            </div>
+          </section>
         </ScrollAnimatedSection>
 
         {/* Podcast Episodes */}
         <ScrollAnimatedSection animationType="fade-up" delay={300}>
-        <section className="mb-16">
-          <SectionHeader
-            title="Latest "
-            highlightedWord="Episodes"
-            subtitle={`${filteredEpisodes.length} episode${
-              filteredEpisodes.length !== 1 ? 's' : ''
-            } ${
-              selectedTopic
-                ? `about "${selectedTopic}"`
-                : 'from TegalDev Podcast'
-            }`}
-          />
+          <section className="mb-16">
+            <SectionHeader
+              title="Latest "
+              highlightedWord="Episodes"
+              subtitle={`${filteredEpisodes.length} episode${
+                filteredEpisodes.length !== 1 ? 's' : ''
+              } ${
+                selectedTopic
+                  ? `about "${selectedTopic}"`
+                  : 'from TegalDev Podcast'
+              }`}
+            />
 
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6 mt-8">
-            {filteredEpisodes.map((episode) => (
-              <PodcastCard key={episode.id} episode={episode} />
-            ))}
-          </div>
-
-          {filteredEpisodes.length === 0 && (
-            <div className="text-center py-12">
-              <p className="text-gray-400 text-lg">
-                No episodes found for the selected topic.
-              </p>
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6 mt-8">
+              {filteredEpisodes.map((episode) => (
+                <PodcastCard key={episode.id} episode={episode} />
+              ))}
             </div>
-          )}
-        </section>
+
+            {filteredEpisodes.length === 0 && (
+              <div className="text-center py-12">
+                <p className="text-gray-400 text-lg">
+                  No episodes found for the selected topic.
+                </p>
+              </div>
+            )}
+          </section>
         </ScrollAnimatedSection>
 
         {/* Podcast Stats */}
-        <ScrollAnimatedSection animationType="slide-right" delay={400}>
-        <section className="mb-16">
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 sm:gap-6">
-            <div className="bg-white/10 backdrop-blur-sm rounded-lg p-6 border border-white/20 text-center">
-              <div className="text-3xl font-bold text-green-400 mb-2">50+</div>
-              <div className="text-gray-300">Episodes Published</div>
+        <ScrollAnimatedSection animationType="fade-up" delay={400}>
+          <section className="mb-16">
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 sm:gap-6">
+              <div className="bg-white/10 backdrop-blur-sm rounded-lg p-6 border border-white/20 text-center">
+                <div className="text-3xl font-bold text-green-400 mb-2">
+                  50+
+                </div>
+                <div className="text-gray-300">Episodes Published</div>
+              </div>
+              <div className="bg-white/10 backdrop-blur-sm rounded-lg p-6 border border-white/20 text-center">
+                <div className="text-3xl font-bold text-blue-400 mb-2">
+                  10K+
+                </div>
+                <div className="text-gray-300">Monthly Listeners</div>
+              </div>
+              <div className="bg-white/10 backdrop-blur-sm rounded-lg p-6 border border-white/20 text-center">
+                <div className="text-3xl font-bold text-purple-400 mb-2">
+                  25+
+                </div>
+                <div className="text-gray-300">Expert Guests</div>
+              </div>
             </div>
-            <div className="bg-white/10 backdrop-blur-sm rounded-lg p-6 border border-white/20 text-center">
-              <div className="text-3xl font-bold text-blue-400 mb-2">10K+</div>
-              <div className="text-gray-300">Monthly Listeners</div>
-            </div>
-            <div className="bg-white/10 backdrop-blur-sm rounded-lg p-6 border border-white/20 text-center">
-              <div className="text-3xl font-bold text-purple-400 mb-2">25+</div>
-              <div className="text-gray-300">Expert Guests</div>
-            </div>
-          </div>
-        </section>
+          </section>
         </ScrollAnimatedSection>
 
         {/* Call to Action */}
         <ScrollAnimatedSection animationType="scale-up" delay={500}>
-        <section className="text-center py-16">
-          <div className="bg-white/10 backdrop-blur-sm rounded-lg p-8 border border-white/20">
-            <h2 className="text-3xl font-bold text-white mb-4">
-              Want to Be a Guest?
-            </h2>
-            <p className="text-gray-300 mb-6 max-w-2xl mx-auto">
-              Share your expertise and insights with our community. We&apos;re
-              always looking for passionate developers and tech leaders to join
-              our conversations.
-            </p>
-            <Link href="mailto:podcast@tegaldev.com?subject=Podcast Guest Application">
-              <Button
-                size="lg"
-                className="w-full sm:w-auto bg-gradient-to-r from-green-600 to-blue-600 hover:from-green-700 hover:to-blue-700 text-white px-6 sm:px-8 py-3"
-              >
-                Apply to be a Guest
-              </Button>
-            </Link>
-          </div>
-        </section>
+          <section className="text-center py-16">
+            <div className="bg-white/10 backdrop-blur-sm rounded-lg p-8 border border-white/20">
+              <h2 className="text-3xl font-bold text-white mb-4">
+                Want to Be a Guest?
+              </h2>
+              <p className="text-gray-300 mb-6 max-w-2xl mx-auto">
+                Share your expertise and insights with our community. We&apos;re
+                always looking for passionate developers and tech leaders to
+                join our conversations.
+              </p>
+              <Link href="mailto:podcast@tegaldev.com?subject=Podcast Guest Application">
+                <Button
+                  size="lg"
+                  className="w-full sm:w-auto bg-gradient-to-r from-green-600 to-blue-600 hover:from-green-700 hover:to-blue-700 text-white px-6 sm:px-8 py-3"
+                >
+                  Apply to be a Guest
+                </Button>
+              </Link>
+            </div>
+          </section>
         </ScrollAnimatedSection>
       </div>
 

@@ -48,7 +48,7 @@ export default function Home() {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-black to-blue-800">
-      {/* Navbar with home page animation */}
+      Navbar with home page animation
       <div
         className={
           'transition-all duration-1000 ease-out ' +
@@ -57,7 +57,6 @@ export default function Home() {
       >
         <Navbar />
       </div>
-
       <div className="container max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 pt-24">
         {/* Hero Section */}
         <main className="flex flex-col items-center justify-center py-16 text-center relative">
@@ -108,15 +107,21 @@ export default function Home() {
                 <span className="text-purple-300">
                   We aim to improve educational activities
                 </span>{' '}
-                and <span className="text-purple-300">
-                foster innovation in technology.
+                and{' '}
+                <span className="text-purple-300">
+                  foster innovation in technology.
                 </span>
               </p>
 
               {/* Enhanced Hero Input Section */}
-              <form className="mt-12 max-w-lg mx-auto flex flex-col gap-2 items-center" onSubmit={e => e.preventDefault()}>
+              <form
+                className="mt-12 max-w-lg mx-auto flex flex-col gap-2 items-center"
+                onSubmit={(e) => e.preventDefault()}
+              >
                 <div className="w-full flex flex-col gap-2">
-                  <Label htmlFor="hero-email" className="sr-only">Email address</Label>
+                  <Label htmlFor="hero-email" className="sr-only">
+                    Email address
+                  </Label>
                   <Input
                     id="hero-email"
                     type="email"
@@ -129,13 +134,14 @@ export default function Home() {
                   isLoading={false}
                   loadingText="Subscribing..."
                   type="submit"
-                  className="w-full h-12 mt-2 bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 text-white font-medium transition-all duration-200 transform hover:scale-[1.02] shadow-lg hover:shadow-purple-500/25 rounded-xl text-lg font-semibold"
+                  className="w-full h-12 mt-2 bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 text-white transition-all duration-200 transform hover:scale-[1.02] shadow-lg hover:shadow-purple-500/25 rounded-xl text-lg font-semibold"
                   icon={Mail}
                 >
                   Subscribe
                 </LoadingButton>
                 <p className="text-gray-300 text-sm mt-4 text-center leading-relaxed">
-                  🚀 Stay updated with the latest tech events, workshops, and opportunities
+                  🚀 Stay updated with the latest tech events, workshops, and
+                  opportunities
                 </p>
               </form>
             </div>
@@ -384,7 +390,7 @@ export default function Home() {
             <ScrollAnimatedSection
               id="activities"
               className="mt-12"
-              animationType="slide-left"
+              animationType="fade-up"
               delay={300}
             >
               <SectionHeader
@@ -428,10 +434,9 @@ export default function Home() {
               </div>
             </ScrollAnimatedSection>
 
-            {/* Community Gallery */}
             <ScrollAnimatedSection
               className="mt-12"
-              animationType="slide-right"
+              animationType="fade-up"
               delay={400}
             >
               <SectionHeader
@@ -441,7 +446,6 @@ export default function Home() {
               />
 
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-                {/* Meetups & Events */}
                 <a
                   href="https://drive.google.com/drive/folders/meetups"
                   target="_blank"
@@ -463,7 +467,6 @@ export default function Home() {
                   </div>
                 </a>
 
-                {/* Workshops */}
                 <a
                   href="https://drive.google.com/drive/folders/workshops"
                   target="_blank"
@@ -485,7 +488,6 @@ export default function Home() {
                   </div>
                 </a>
 
-                {/* Tech Talks */}
                 <a
                   href="https://drive.google.com/drive/folders/techtalks"
                   target="_blank"
@@ -507,7 +509,6 @@ export default function Home() {
                   </div>
                 </a>
 
-                {/* Collaborations */}
                 <a
                   href="https://drive.google.com/drive/folders/collaborations"
                   target="_blank"
@@ -581,74 +582,93 @@ export default function Home() {
                 subtitle="Find answers to common questions about Tegal Dev community and platform"
               />
 
-              <div className="max-w-4xl mx-auto mt-8">
+              <div className="max-w-5xl mx-auto mt-8">
                 <Accordion>
                   <AccordionItem title="What is Tegal Dev and how can I join?">
                     <p>
-                      Tegal Dev is a curated software engineer community based in Tegal, Central Java, Indonesia. 
-                      We focus on improving educational activities and fostering innovation in technology. 
-                      To join, simply register on our platform and start participating in our events, workshops, 
-                      and community activities. We welcome developers of all skill levels!
+                      Tegal Dev is a curated software engineer community based
+                      in Tegal, Central Java, Indonesia. We focus on improving
+                      educational activities and fostering innovation in
+                      technology. To join, simply register on our platform and
+                      start participating in our events, workshops, and
+                      community activities. We welcome developers of all skill
+                      levels!
                     </p>
                   </AccordionItem>
 
                   <AccordionItem title="What types of events and activities do you organize?">
                     <p>
-                      We organize a variety of activities including tech meetups, workshops, coding challenges, 
-                      tech talks, sharing sessions, and networking events. Our events cover various technologies 
-                      and development practices, from beginner-friendly workshops to advanced technical discussions. 
-                      We also collaborate with other tech communities worldwide to bring diverse perspectives and opportunities.
+                      We organize a variety of activities including tech
+                      meetups, workshops, coding challenges, tech talks, sharing
+                      sessions, and networking events. Our events cover various
+                      technologies and development practices, from
+                      beginner-friendly workshops to advanced technical
+                      discussions. We also collaborate with other tech
+                      communities worldwide to bring diverse perspectives and
+                      opportunities.
                     </p>
                   </AccordionItem>
 
                   <AccordionItem title="How can I contribute to the community?">
                     <p>
-                      There are many ways to contribute! You can share your knowledge through tech talks or workshops, 
-                      participate in coding challenges, mentor other developers, contribute to open-source projects, 
-                      or help organize events. We also welcome collaboration on projects and initiatives that benefit 
-                      the broader tech community.
+                      There are many ways to contribute! You can share your
+                      knowledge through tech talks or workshops, participate in
+                      coding challenges, mentor other developers, contribute to
+                      open-source projects, or help organize events. We also
+                      welcome collaboration on projects and initiatives that
+                      benefit the broader tech community.
                     </p>
                   </AccordionItem>
 
                   <AccordionItem title="Do I need to be from Tegal to join the community?">
                     <p>
-                      Not at all! While we&apos;re based in Tegal, our community is open to software engineers from 
-                      anywhere in Indonesia and around the world. We believe in the power of diverse perspectives 
-                      and welcome members from different backgrounds and locations to enrich our community.
+                      Not at all! While we&apos;re based in Tegal, our community
+                      is open to software engineers from anywhere in Indonesia
+                      and around the world. We believe in the power of diverse
+                      perspectives and welcome members from different
+                      backgrounds and locations to enrich our community.
                     </p>
                   </AccordionItem>
 
                   <AccordionItem title="How can I stay updated with community activities?">
                     <p>
-                      You can stay updated by subscribing to our newsletter, following our social media channels, 
-                      joining our community platforms, and regularly checking our website for upcoming events. 
-                      We also send regular updates about workshops, challenges, and collaboration opportunities.
+                      You can stay updated by subscribing to our newsletter,
+                      following our social media channels, joining our community
+                      platforms, and regularly checking our website for upcoming
+                      events. We also send regular updates about workshops,
+                      challenges, and collaboration opportunities.
                     </p>
                   </AccordionItem>
 
                   <AccordionItem title="Are there any membership fees or costs?">
                     <p>
-                      Most of our community activities and events are free to attend. However, some specialized 
-                      workshops or events may have a small fee to cover materials or venue costs. We always 
-                      strive to keep our events accessible and affordable for all members of our community.
+                      Most of our community activities and events are free to
+                      attend. However, some specialized workshops or events may
+                      have a small fee to cover materials or venue costs. We
+                      always strive to keep our events accessible and affordable
+                      for all members of our community.
                     </p>
                   </AccordionItem>
 
                   <AccordionItem title="How can companies or organizations collaborate with Tegal Dev?">
                     <p>
-                      We welcome collaborations with companies and organizations! You can sponsor events, 
-                      provide venues for meetups, offer internship or job opportunities to our members, 
-                      or collaborate on educational initiatives. Contact us through our collaboration email 
-                      to discuss potential partnerships.
+                      We welcome collaborations with companies and
+                      organizations! You can sponsor events, provide venues for
+                      meetups, offer internship or job opportunities to our
+                      members, or collaborate on educational initiatives.
+                      Contact us through our collaboration email to discuss
+                      potential partnerships.
                     </p>
                   </AccordionItem>
 
                   <AccordionItem title="What resources and learning materials are available?">
                     <p>
-                      We provide access to various learning resources including workshop materials, 
-                      recorded tech talks, coding challenge solutions, and curated learning paths. 
-                      Our community also shares knowledge through blogs, podcasts, and video content. 
-                      Members can access these resources through our platform and community channels.
+                      We provide access to various learning resources including
+                      workshop materials, recorded tech talks, coding challenge
+                      solutions, and curated learning paths. Our community also
+                      shares knowledge through blogs, podcasts, and video
+                      content. Members can access these resources through our
+                      platform and community channels.
                     </p>
                   </AccordionItem>
                 </Accordion>
@@ -657,7 +677,6 @@ export default function Home() {
           </div>
         </main>
       </div>
-
       <Footer />
     </div>
   );

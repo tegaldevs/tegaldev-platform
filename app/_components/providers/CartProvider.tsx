@@ -21,7 +21,10 @@ interface CartState {
 }
 
 type CartAction =
-  | { type: 'ADD_ITEM'; payload: Omit<CartItem, 'quantity'> & { quantity?: number } }
+  | {
+      type: 'ADD_ITEM';
+      payload: Omit<CartItem, 'quantity'> & { quantity?: number };
+    }
   | { type: 'REMOVE_ITEM'; payload: string }
   | { type: 'UPDATE_QUANTITY'; payload: { id: string; quantity: number } }
   | { type: 'CLEAR_CART' }
@@ -40,7 +43,7 @@ function calculateTotals(items: CartItem[]) {
   const totalItems = items.reduce((sum, item) => sum + item.quantity, 0);
   const totalPrice = items.reduce((sum, item) => {
     const price = parseFloat(item.price.replace(/[^0-9]/g, ''));
-    return sum + (price * item.quantity);
+    return sum + price * item.quantity;
   }, 0);
   return { totalItems, totalPrice };
 }
@@ -49,20 +52,27 @@ function cartReducer(state: CartState, action: CartAction): CartState {
   switch (action.type) {
     case 'ADD_ITEM': {
       const existingItemIndex = state.items.findIndex(
-        item => item.id === action.payload.id &&
-                item.selectedSize === action.payload.selectedSize &&
-                item.selectedColor === action.payload.selectedColor
+        (item) =>
+          item.id === action.payload.id &&
+          item.selectedSize === action.payload.selectedSize &&
+          item.selectedColor === action.payload.selectedColor,
       );
 
       let newItems;
       if (existingItemIndex >= 0) {
         newItems = state.items.map((item, index) =>
           index === existingItemIndex
-            ? { ...item, quantity: item.quantity + (action.payload.quantity || 1) }
-            : item
+            ? {
+                ...item,
+                quantity: item.quantity + (action.payload.quantity || 1),
+              }
+            : item,
         );
       } else {
-        newItems = [...state.items, { ...action.payload, quantity: action.payload.quantity || 1 }];
+        newItems = [
+          ...state.items,
+          { ...action.payload, quantity: action.payload.quantity || 1 },
+        ];
       }
 
       const { totalItems, totalPrice } = calculateTotals(newItems);
@@ -75,7 +85,7 @@ function cartReducer(state: CartState, action: CartAction): CartState {
     }
 
     case 'REMOVE_ITEM': {
-      const newItems = state.items.filter(item => item.id !== action.payload);
+      const newItems = state.items.filter((item) => item.id !== action.payload);
       const { totalItems, totalPrice } = calculateTotals(newItems);
       return {
         ...state,
@@ -86,11 +96,13 @@ function cartReducer(state: CartState, action: CartAction): CartState {
     }
 
     case 'UPDATE_QUANTITY': {
-      const newItems = state.items.map(item =>
-        item.id === action.payload.id
-          ? { ...item, quantity: Math.max(0, action.payload.quantity) }
-          : item
-      ).filter(item => item.quantity > 0);
+      const newItems = state.items
+        .map((item) =>
+          item.id === action.payload.id
+            ? { ...item, quantity: Math.max(0, action.payload.quantity) }
+            : item,
+        )
+        .filter((item) => item.quantity > 0);
 
       const { totalItems, totalPrice } = calculateTotals(newItems);
       return {
@@ -155,7 +167,9 @@ export function useCart() {
 
   const { state, dispatch } = context;
 
-  const addItem = (item: Omit<CartItem, 'quantity'> & { quantity?: number }) => {
+  const addItem = (
+    item: Omit<CartItem, 'quantity'> & { quantity?: number },
+  ) => {
     dispatch({ type: 'ADD_ITEM', payload: item });
   };
 

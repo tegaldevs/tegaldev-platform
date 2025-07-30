@@ -69,7 +69,7 @@ export default function LoginPage() {
       title="Welcome Back"
       subtitle="Sign in to join our thriving community of software engineers"
     >
-      <Card className="border-0 shadow-2xl bg-white/5 backdrop-blur-md border border-white/10 hover:border-white/20 slide-in hover:shadow-purple-500/10 transition-all duration-300">
+      <Card className="border-0 shadow-2xl bg-white/5 backdrop-blur-md border-white/10 hover:border-white/20 slide-in hover:shadow-purple-500/10 transition-all duration-300">
         <CardHeader className="space-y-1 pb-8">
           <CardTitle className="text-3xl font-bold text-center text-white mb-2">
             Sign In

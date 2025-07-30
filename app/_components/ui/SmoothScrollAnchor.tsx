@@ -1,15 +1,15 @@
-'use client'
+'use client';
 
-import { useSmoothScroll } from '@/app/_hooks/useSmoothScroll'
-import { ReactNode, MouseEvent } from 'react'
+import { useSmoothScroll } from '@/app/_hooks/useSmoothScroll';
+import { ReactNode, MouseEvent } from 'react';
 
 interface SmoothScrollAnchorProps {
-  href: string
-  children: ReactNode
-  className?: string
-  offset?: number
-  duration?: number
-  onClick?: (e: MouseEvent<HTMLAnchorElement>) => void
+  href: string;
+  children: ReactNode;
+  className?: string;
+  offset?: number;
+  duration?: number;
+  onClick?: (e: MouseEvent<HTMLAnchorElement>) => void;
 }
 
 export default function SmoothScrollAnchor({
@@ -21,27 +21,22 @@ export default function SmoothScrollAnchor({
   onClick,
   ...props
 }: SmoothScrollAnchorProps) {
-  const { scrollToElement } = useSmoothScroll()
+  const { scrollToElement } = useSmoothScroll();
 
   const handleClick = (e: MouseEvent<HTMLAnchorElement>) => {
     // Check if it's an internal anchor link
     if (href.startsWith('#')) {
-      e.preventDefault()
-      scrollToElement(href, { offset, duration })
+      e.preventDefault();
+      scrollToElement(href, { offset, duration });
     }
-    
+
     // Call custom onClick if provided
-    onClick?.(e)
-  }
+    onClick?.(e);
+  };
 
   return (
-    <a
-      href={href}
-      className={className}
-      onClick={handleClick}
-      {...props}
-    >
+    <a href={href} className={className} onClick={handleClick} {...props}>
       {children}
     </a>
-  )
+  );
 }

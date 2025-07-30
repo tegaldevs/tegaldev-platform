@@ -47,20 +47,21 @@ const jobs: Job[] = [
     salary: 'IDR 25,000,000 - 35,000,000',
     experience: '3-5 years',
     postedAt: '2024-01-20',
-    description: 'We are looking for a Senior Frontend Developer to join our growing team. You will be responsible for building scalable web applications using modern technologies.',
+    description:
+      'We are looking for a Senior Frontend Developer to join our growing team. You will be responsible for building scalable web applications using modern technologies.',
     requirements: [
       'Strong experience with React, TypeScript, and Next.js',
       'Experience with state management (Redux, Zustand)',
       'Knowledge of modern CSS and responsive design',
       'Experience with testing frameworks (Jest, React Testing Library)',
-      'Good understanding of web performance and optimization'
+      'Good understanding of web performance and optimization',
     ],
     benefits: [
       'Competitive salary and benefits',
       'Flexible working hours',
       'Remote work options',
       'Professional development budget',
-      'Health insurance'
+      'Health insurance',
     ],
     category: 'Frontend',
     tags: ['React', 'TypeScript', 'Next.js', 'Frontend', 'Senior'],
@@ -77,20 +78,21 @@ const jobs: Job[] = [
     salary: 'IDR 20,000,000 - 30,000,000',
     experience: '2-4 years',
     postedAt: '2024-01-18',
-    description: 'Join our backend team to build robust and scalable APIs. We use modern technologies and follow best practices for code quality and performance.',
+    description:
+      'Join our backend team to build robust and scalable APIs. We use modern technologies and follow best practices for code quality and performance.',
     requirements: [
       'Experience with Node.js and Express.js',
       'Knowledge of databases (PostgreSQL, MongoDB)',
       'Experience with RESTful APIs and GraphQL',
       'Understanding of microservices architecture',
-      'Experience with Docker and cloud platforms'
+      'Experience with Docker and cloud platforms',
     ],
     benefits: [
       'Remote-first culture',
       'Stock options',
       'Unlimited PTO',
       'Learning and development opportunities',
-      'Home office setup allowance'
+      'Home office setup allowance',
     ],
     category: 'Backend',
     tags: ['Node.js', 'Express', 'PostgreSQL', 'Backend', 'Remote'],
@@ -107,20 +109,21 @@ const jobs: Job[] = [
     salary: 'IDR 18,000,000 - 25,000,000',
     experience: '1-3 years',
     postedAt: '2024-01-15',
-    description: 'We are seeking a Full Stack Developer to work on exciting projects. You will be involved in both frontend and backend development.',
+    description:
+      'We are seeking a Full Stack Developer to work on exciting projects. You will be involved in both frontend and backend development.',
     requirements: [
       'Experience with React and Node.js',
       'Knowledge of databases and SQL',
       'Understanding of version control (Git)',
       'Good problem-solving skills',
-      'Ability to work in a team environment'
+      'Ability to work in a team environment',
     ],
     benefits: [
       'Competitive salary',
       'Performance bonuses',
       'Health and dental insurance',
       'Professional development',
-      'Team building activities'
+      'Team building activities',
     ],
     category: 'Full Stack',
     tags: ['React', 'Node.js', 'Full Stack', 'JavaScript', 'Junior'],
@@ -137,20 +140,21 @@ const jobs: Job[] = [
     salary: 'IDR 15,000,000 - 22,000,000',
     experience: '2-4 years',
     postedAt: '2024-01-12',
-    description: 'Join our mobile development team to create innovative mobile applications. We work with React Native and native development.',
+    description:
+      'Join our mobile development team to create innovative mobile applications. We work with React Native and native development.',
     requirements: [
       'Experience with React Native or native iOS/Android development',
       'Knowledge of mobile app architecture',
       'Experience with app store deployment',
       'Understanding of mobile UI/UX principles',
-      'Experience with mobile testing'
+      'Experience with mobile testing',
     ],
     benefits: [
       'Flexible contract terms',
       'Project-based bonuses',
       'Latest development tools',
       'Creative work environment',
-      'Portfolio building opportunities'
+      'Portfolio building opportunities',
     ],
     category: 'Mobile',
     tags: ['React Native', 'Mobile', 'iOS', 'Android', 'App Development'],
@@ -167,20 +171,21 @@ const jobs: Job[] = [
     salary: 'IDR 22,000,000 - 32,000,000',
     experience: '3-5 years',
     postedAt: '2024-01-10',
-    description: 'We are looking for a DevOps Engineer to help us build and maintain our cloud infrastructure and CI/CD pipelines.',
+    description:
+      'We are looking for a DevOps Engineer to help us build and maintain our cloud infrastructure and CI/CD pipelines.',
     requirements: [
       'Experience with AWS, Azure, or GCP',
       'Knowledge of Docker and Kubernetes',
       'Experience with CI/CD tools (Jenkins, GitHub Actions)',
       'Understanding of infrastructure as code',
-      'Experience with monitoring and logging tools'
+      'Experience with monitoring and logging tools',
     ],
     benefits: [
       'Remote work options',
       'Cloud certification support',
       'Competitive salary',
       'Health insurance',
-      'Professional development budget'
+      'Professional development budget',
     ],
     category: 'DevOps',
     tags: ['AWS', 'Docker', 'Kubernetes', 'DevOps', 'CI/CD'],
@@ -197,20 +202,21 @@ const jobs: Job[] = [
     salary: 'IDR 16,000,000 - 24,000,000',
     experience: '2-4 years',
     postedAt: '2024-01-08',
-    description: 'Join our design team to create beautiful and functional user interfaces. We focus on user-centered design principles.',
+    description:
+      'Join our design team to create beautiful and functional user interfaces. We focus on user-centered design principles.',
     requirements: [
       'Experience with design tools (Figma, Sketch, Adobe XD)',
       'Understanding of user research and usability testing',
       'Knowledge of design systems and component libraries',
       'Experience with prototyping tools',
-      'Portfolio showcasing web and mobile designs'
+      'Portfolio showcasing web and mobile designs',
     ],
     benefits: [
       'Creative work environment',
       'Latest design tools and software',
       'Professional development opportunities',
       'Flexible working hours',
-      'Health insurance'
+      'Health insurance',
     ],
     category: 'Design',
     tags: ['UI/UX', 'Figma', 'Design', 'Prototyping', 'User Research'],
@@ -229,7 +235,9 @@ function JobCard({ job }: { job: Job }) {
             <Building className="h-6 w-6 text-white" />
           </div>
           <div>
-            <h3 className="text-lg font-semibold text-white mb-1">{job.title}</h3>
+            <h3 className="text-lg font-semibold text-white mb-1">
+              {job.title}
+            </h3>
             <p className="text-gray-300 text-sm">{job.company}</p>
           </div>
         </div>
@@ -247,7 +255,8 @@ function JobCard({ job }: { job: Job }) {
         </div>
         <div className="flex items-center text-gray-300 text-sm">
           <Clock className="h-4 w-4 mr-2" />
-          {job.type.charAt(0).toUpperCase() + job.type.slice(1).replace('-', ' ')}
+          {job.type.charAt(0).toUpperCase() +
+            job.type.slice(1).replace('-', ' ')}
         </div>
         <div className="flex items-center text-gray-300 text-sm">
           <DollarSign className="h-4 w-4 mr-2" />
@@ -259,7 +268,9 @@ function JobCard({ job }: { job: Job }) {
         </div>
       </div>
 
-      <p className="text-gray-300 text-sm mb-4 line-clamp-3">{job.description}</p>
+      <p className="text-gray-300 text-sm mb-4 line-clamp-3">
+        {job.description}
+      </p>
 
       <div className="flex flex-wrap gap-2 mb-4">
         {job.tags.slice(0, 3).map((tag) => (
@@ -305,7 +316,8 @@ export default function JobsPage() {
 
   // Filter jobs by selected category and type
   const filteredJobs = jobs.filter((job) => {
-    const categoryMatch = !selectedCategory || job.category === selectedCategory;
+    const categoryMatch =
+      !selectedCategory || job.category === selectedCategory;
     const typeMatch = !selectedType || job.type === selectedType;
     return categoryMatch && typeMatch;
   });
@@ -328,15 +340,16 @@ export default function JobsPage() {
               </span>
             </h1>
             <p className="text-xl text-gray-300 max-w-3xl mx-auto mb-8">
-              Discover exciting job opportunities in the tech industry. Find your
-              next career move with companies that value innovation and growth.
+              Discover exciting job opportunities in the tech industry. Find
+              your next career move with companies that value innovation and
+              growth.
             </p>
 
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link href="mailto:jobs@tegaldev.com?subject=Job Posting Request">
                 <Button
                   size="lg"
-                  className="bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 text-white px-8 py-3 flex items-center gap-2"
+                  className="bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 text-white px-8 py-3 flex items-center gap-2 w-full"
                 >
                   <Briefcase className="h-5 w-5" />
                   Post a Job
@@ -355,25 +368,35 @@ export default function JobsPage() {
         </ScrollAnimatedSection>
 
         {/* Filters */}
-        <ScrollAnimatedSection animationType="slide-left" delay={200}>
+        <ScrollAnimatedSection animationType="fade-up" delay={200}>
           <section className="mb-8">
             <div className="flex flex-wrap gap-4 justify-center">
               <div className="flex flex-wrap gap-2">
                 <Button
-                  variant={selectedCategory === null ? "default" : "outline"}
+                  variant={selectedCategory === null ? 'default' : 'outline'}
                   size="sm"
                   onClick={() => setSelectedCategory(null)}
-                  className={selectedCategory === null ? "bg-purple-600 text-white" : "border-white/20 hover:bg-white/10"}
+                  className={
+                    selectedCategory === null
+                      ? 'bg-purple-600 text-white'
+                      : 'border-white/20 hover:bg-white/10'
+                  }
                 >
                   All Categories
                 </Button>
                 {allCategories.map((category) => (
                   <Button
                     key={category}
-                    variant={selectedCategory === category ? "default" : "outline"}
+                    variant={
+                      selectedCategory === category ? 'default' : 'outline'
+                    }
                     size="sm"
                     onClick={() => setSelectedCategory(category)}
-                    className={selectedCategory === category ? "bg-purple-600 text-white" : "border-white/20 hover:bg-white/10"}
+                    className={
+                      selectedCategory === category
+                        ? 'bg-purple-600 text-white'
+                        : 'border-white/20 hover:bg-white/70'
+                    }
                   >
                     {category}
                   </Button>
@@ -381,22 +404,31 @@ export default function JobsPage() {
               </div>
               <div className="flex flex-wrap gap-2">
                 <Button
-                  variant={selectedType === null ? "default" : "outline"}
+                  variant={selectedType === null ? 'default' : 'outline'}
                   size="sm"
                   onClick={() => setSelectedType(null)}
-                  className={selectedType === null ? "bg-blue-600 text-white" : "border-white/20 hover:bg-white/10"}
+                  className={
+                    selectedType === null
+                      ? 'bg-blue-600 text-white'
+                      : 'border-white/20 hover:bg-white/10'
+                  }
                 >
                   All Types
                 </Button>
                 {allTypes.map((type) => (
                   <Button
                     key={type}
-                    variant={selectedType === type ? "default" : "outline"}
+                    variant={selectedType === type ? 'default' : 'outline'}
                     size="sm"
                     onClick={() => setSelectedType(type)}
-                    className={selectedType === type ? "bg-blue-600 text-white" : "border-white/20 hover:bg-white/10"}
+                    className={
+                      selectedType === type
+                        ? 'bg-blue-600 text-white'
+                        : 'border-white/20 hover:bg-white/10'
+                    }
                   >
-                    {type.charAt(0).toUpperCase() + type.slice(1).replace('-', ' ')}
+                    {type.charAt(0).toUpperCase() +
+                      type.slice(1).replace('-', ' ')}
                   </Button>
                 ))}
               </div>
@@ -405,7 +437,7 @@ export default function JobsPage() {
         </ScrollAnimatedSection>
 
         {/* Featured Jobs */}
-        <ScrollAnimatedSection animationType="slide-right" delay={300}>
+        <ScrollAnimatedSection animationType="fade-up" delay={300}>
           <section className="mb-16">
             <SectionHeader
               title="Featured "
@@ -455,7 +487,11 @@ export default function JobsPage() {
         </ScrollAnimatedSection>
 
         {/* Call to Action */}
-        <ScrollAnimatedSection className="text-center py-16" animationType="scale-up" delay={500}>
+        <ScrollAnimatedSection
+          className="text-center py-16"
+          animationType="scale-up"
+          delay={500}
+        >
           <div className="bg-white/10 backdrop-blur-sm rounded-lg p-8 border border-white/20">
             <h2 className="text-3xl font-bold text-white mb-4">
               Looking for Talent?
@@ -480,4 +516,4 @@ export default function JobsPage() {
       <Footer />
     </div>
   );
-} 
+}

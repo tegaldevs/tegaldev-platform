@@ -181,8 +181,8 @@ function EventCard({
             </Button>
           </Link>
         ) : (
-          <Button 
-            disabled 
+          <Button
+            disabled
             className="w-full bg-gray-600 text-gray-400 cursor-not-allowed flex items-center gap-2"
           >
             {isPast ? 'Event Completed' : 'Registration Closed'}
@@ -200,7 +200,10 @@ export default function EventsPage() {
 
       <div className="container max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 pt-24">
         {/* Hero Section */}
-        <ScrollAnimatedSection className="text-center py-12" animationType="fade-up">
+        <ScrollAnimatedSection
+          className="text-center py-12"
+          animationType="fade-up"
+        >
           <h1 className="text-4xl md:text-6xl font-bold text-white mb-6">
             Community{' '}
             <span className="bg-gradient-to-r from-purple-400 to-blue-400 bg-clip-text text-transparent">
@@ -214,7 +217,12 @@ export default function EventsPage() {
         </ScrollAnimatedSection>
 
         {/* Upcoming Events */}
-        <ScrollAnimatedSection className="mb-16" animationType="slide-left" delay={200} as="section">
+        <ScrollAnimatedSection
+          className="mb-16"
+          animationType="fade-up"
+          delay={200}
+          as="section"
+        >
           <SectionHeader
             title="Upcoming "
             highlightedWord="Events"
@@ -229,7 +237,12 @@ export default function EventsPage() {
         </ScrollAnimatedSection>
 
         {/* Past Events */}
-        <ScrollAnimatedSection className="mb-16" animationType="slide-right" delay={300} as="section">
+        <ScrollAnimatedSection
+          className="mb-16"
+          animationType="fade-up"
+          delay={300}
+          as="section"
+        >
           <SectionHeader
             title="Past "
             highlightedWord="Events"
@@ -244,7 +257,12 @@ export default function EventsPage() {
         </ScrollAnimatedSection>
 
         {/* Call to Action */}
-        <ScrollAnimatedSection className="text-center py-16" animationType="scale-up" delay={400} as="section">
+        <ScrollAnimatedSection
+          className="text-center py-16"
+          animationType="scale-up"
+          delay={400}
+          as="section"
+        >
           <div className="bg-white/10 backdrop-blur-sm rounded-lg p-8 border border-white/20">
             <h2 className="text-3xl font-bold text-white mb-4">
               Want to Host an Event?

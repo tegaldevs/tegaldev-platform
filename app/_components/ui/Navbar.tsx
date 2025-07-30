@@ -31,14 +31,14 @@ export function Navbar() {
 
   return (
     <nav
-      className={`max-w-5xl mx-auto fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+      className={`max-w-4xl mx-auto fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         isScrolled
           ? 'bg-black/20 backdrop-blur-md mx-4 md:mt-4 rounded-md shadow-lg'
           : 'bg-transparent'
       }`}
       style={{ transform: 'none' }} // Ensure no transform interference
     >
-      <div className="container max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 px-0">
+      <div className="container max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Desktop Layout */}
         <div className="hidden md:flex justify-between items-center py-6">
           <div className="flex items-center space-x-2">

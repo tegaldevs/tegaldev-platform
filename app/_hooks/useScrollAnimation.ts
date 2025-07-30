@@ -30,7 +30,7 @@ export function useScrollAnimation({
           } else {
             setIsVisible(true);
           }
-          
+
           if (triggerOnce) {
             observer.unobserve(element);
           }
@@ -41,7 +41,7 @@ export function useScrollAnimation({
       {
         threshold,
         rootMargin,
-      }
+      },
     );
 
     observer.observe(element);
@@ -78,9 +78,9 @@ export function useStaggeredScrollAnimation({
             const index = elements.indexOf(entry.target as HTMLElement);
             if (index !== -1) {
               setTimeout(() => {
-                setVisibleItems(prev => new Set([...prev, index]));
+                setVisibleItems((prev) => new Set([...prev, index]));
               }, index * staggerDelay);
-              
+
               if (triggerOnce) {
                 observer.unobserve(entry.target);
               }
@@ -88,7 +88,7 @@ export function useStaggeredScrollAnimation({
           } else if (!triggerOnce) {
             const index = elements.indexOf(entry.target as HTMLElement);
             if (index !== -1) {
-              setVisibleItems(prev => {
+              setVisibleItems((prev) => {
                 const newSet = new Set(prev);
                 newSet.delete(index);
                 return newSet;
@@ -100,15 +100,15 @@ export function useStaggeredScrollAnimation({
       {
         threshold,
         rootMargin,
-      }
+      },
     );
 
-    elements.forEach(element => {
+    elements.forEach((element) => {
       if (element) observer.observe(element);
     });
 
     return () => {
-      elements.forEach(element => {
+      elements.forEach((element) => {
         if (element) observer.unobserve(element);
       });
     };
