@@ -237,226 +237,231 @@ export default function VideosPage() {
       <div className="container max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 pt-24">
         {/* Hero Section */}
         <ScrollAnimatedSection animationType="fade-up">
-        <div className="text-center py-12">
-          <h1 className="text-4xl md:text-6xl font-bold text-white mb-6">
-            Video{' '}
-            <span className="bg-gradient-to-r from-red-400 to-purple-400 bg-clip-text text-transparent">
-              Content
-            </span>
-          </h1>
-          <p className="text-xl text-gray-300 max-w-3xl mx-auto mb-8">
-            Learn through comprehensive video tutorials, live coding sessions,
-            and code reviews. Subscribe to our YouTube channel for the latest
-            content.
-          </p>
+          <div className="text-center py-12">
+            <h1 className="text-4xl md:text-6xl font-bold text-white mb-6">
+              Video{' '}
+              <span className="bg-gradient-to-r from-red-400 to-purple-400 bg-clip-text text-transparent">
+                Content
+              </span>
+            </h1>
+            <p className="text-xl text-gray-300 max-w-3xl mx-auto mb-8">
+              Learn through comprehensive video tutorials, live coding sessions,
+              and code reviews. Subscribe to our YouTube channel for the latest
+              content.
+            </p>
 
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Link
-              href="https://youtube.com/@tegaldev"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <Button
-                size="lg"
-                className="w-full sm:w-auto bg-red-600 hover:bg-red-700 text-white px-6 sm:px-8 py-3 flex items-center justify-center gap-2"
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <Link
+                href="https://youtube.com/@tegaldev"
+                target="_blank"
+                rel="noopener noreferrer"
               >
-                <Youtube className="h-5 w-5" />
-                Subscribe on YouTube
-              </Button>
-            </Link>
-            <Link
-              href="https://youtube.com/@tegaldev/playlists"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <Button
-                size="lg"
-                variant="outline"
-                className="w-full sm:w-auto border-white/20 hover:bg-white/70 px-6 sm:px-8 py-3 flex items-center justify-center gap-2"
+                <Button
+                  size="lg"
+                  className="w-full sm:w-auto bg-red-600 hover:bg-red-700 text-white px-6 sm:px-8 py-3 flex items-center justify-center gap-2"
+                >
+                  <Youtube className="h-5 w-5" />
+                  Subscribe on YouTube
+                </Button>
+              </Link>
+              <Link
+                href="https://youtube.com/@tegaldev/playlists"
+                target="_blank"
+                rel="noopener noreferrer"
               >
-                <Play className="h-5 w-5" />
-                View Playlists
-              </Button>
-            </Link>
+                <Button
+                  size="lg"
+                  variant="outline"
+                  className="w-full sm:w-auto border-white/20 hover:bg-white/70 px-6 sm:px-8 py-3 flex items-center justify-center gap-2"
+                >
+                  <Play className="h-5 w-5" />
+                  View Playlists
+                </Button>
+              </Link>
+            </div>
           </div>
-        </div>
         </ScrollAnimatedSection>
 
         {/* Category Filter */}
-        <ScrollAnimatedSection animationType="slide-left" delay={200}>
-        <section className="mb-8">
-          <div className="flex flex-wrap gap-2 justify-center px-4">
-            <button
-              onClick={() => setSelectedCategory(null)}
-              className={`px-3 py-2 rounded-full text-xs sm:text-sm font-medium transition-all duration-300 ${
-                selectedCategory === null
-                  ? 'bg-red-600 text-white'
-                  : 'bg-white/10 text-gray-300 hover:bg-white/20 cursor-pointer'
-              }`}
-            >
-              All Videos
-            </button>
-            {allCategories.map((category) => (
+        <ScrollAnimatedSection animationType="fade-up" delay={200}>
+          <section className="mb-8">
+            <div className="flex flex-wrap gap-2 justify-center px-4">
               <button
-                key={category}
-                onClick={() => setSelectedCategory(category)}
+                onClick={() => setSelectedCategory(null)}
                 className={`px-3 py-2 rounded-full text-xs sm:text-sm font-medium transition-all duration-300 ${
-                  selectedCategory === category
+                  selectedCategory === null
                     ? 'bg-red-600 text-white'
                     : 'bg-white/10 text-gray-300 hover:bg-white/20 cursor-pointer'
                 }`}
               >
-                {category}
+                All Videos
               </button>
-            ))}
-          </div>
-        </section>
+              {allCategories.map((category) => (
+                <button
+                  key={category}
+                  onClick={() => setSelectedCategory(category)}
+                  className={`px-3 py-2 rounded-full text-xs sm:text-sm font-medium transition-all duration-300 ${
+                    selectedCategory === category
+                      ? 'bg-red-600 text-white'
+                      : 'bg-white/10 text-gray-300 hover:bg-white/20 cursor-pointer'
+                  }`}
+                >
+                  {category}
+                </button>
+              ))}
+            </div>
+          </section>
         </ScrollAnimatedSection>
 
         {/* Videos */}
         <ScrollAnimatedSection animationType="fade-up" delay={300}>
-        <section className="mb-16">
-          <SectionHeader
-            title="Latest "
-            highlightedWord="Videos"
-            subtitle={`${filteredVideos.length} video${
-              filteredVideos.length !== 1 ? 's' : ''
-            } ${
-              selectedCategory
-                ? `in "${selectedCategory}"`
-                : 'from TegalDev YouTube'
-            }`}
-          />
+          <section className="mb-16">
+            <SectionHeader
+              title="Latest "
+              highlightedWord="Videos"
+              subtitle={`${filteredVideos.length} video${
+                filteredVideos.length !== 1 ? 's' : ''
+              } ${
+                selectedCategory
+                  ? `in "${selectedCategory}"`
+                  : 'from TegalDev YouTube'
+              }`}
+            />
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 mt-8">
-            {filteredVideos.map((video) => (
-              <VideoCard key={video.id} video={video} />
-            ))}
-          </div>
-
-          {filteredVideos.length === 0 && (
-            <div className="text-center py-12">
-              <p className="text-gray-400 text-lg">
-                No videos found for the selected category.
-              </p>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 mt-8">
+              {filteredVideos.map((video) => (
+                <VideoCard key={video.id} video={video} />
+              ))}
             </div>
-          )}
-        </section>
+
+            {filteredVideos.length === 0 && (
+              <div className="text-center py-12">
+                <p className="text-gray-400 text-lg">
+                  No videos found for the selected category.
+                </p>
+              </div>
+            )}
+          </section>
         </ScrollAnimatedSection>
 
         {/* Channel Stats */}
-        <ScrollAnimatedSection animationType="slide-right" delay={400}>
-        <section className="mb-16">
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
-            <div className="bg-white/10 backdrop-blur-sm rounded-lg p-6 border border-white/20 text-center">
-              <div className="text-3xl font-bold text-red-400 mb-2">150+</div>
-              <div className="text-gray-300">Videos Published</div>
-            </div>
-            <div className="bg-white/10 backdrop-blur-sm rounded-lg p-6 border border-white/20 text-center">
-              <div className="text-3xl font-bold text-purple-400 mb-2">
-                25K+
+        <ScrollAnimatedSection animationType="fade-up" delay={400}>
+          <section className="mb-16">
+            <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
+              <div className="bg-white/10 backdrop-blur-sm rounded-lg p-6 border border-white/20 text-center">
+                <div className="text-3xl font-bold text-red-400 mb-2">150+</div>
+                <div className="text-gray-300">Videos Published</div>
               </div>
-              <div className="text-gray-300">Subscribers</div>
+              <div className="bg-white/10 backdrop-blur-sm rounded-lg p-6 border border-white/20 text-center">
+                <div className="text-3xl font-bold text-purple-400 mb-2">
+                  25K+
+                </div>
+                <div className="text-gray-300">Subscribers</div>
+              </div>
+              <div className="bg-white/10 backdrop-blur-sm rounded-lg p-6 border border-white/20 text-center">
+                <div className="text-3xl font-bold text-blue-400 mb-2">
+                  500K+
+                </div>
+                <div className="text-gray-300">Total Views</div>
+              </div>
+              <div className="bg-white/10 backdrop-blur-sm rounded-lg p-6 border border-white/20 text-center">
+                <div className="text-3xl font-bold text-green-400 mb-2">
+                  200+
+                </div>
+                <div className="text-gray-300">Hours of Content</div>
+              </div>
             </div>
-            <div className="bg-white/10 backdrop-blur-sm rounded-lg p-6 border border-white/20 text-center">
-              <div className="text-3xl font-bold text-blue-400 mb-2">500K+</div>
-              <div className="text-gray-300">Total Views</div>
-            </div>
-            <div className="bg-white/10 backdrop-blur-sm rounded-lg p-6 border border-white/20 text-center">
-              <div className="text-3xl font-bold text-green-400 mb-2">200+</div>
-              <div className="text-gray-300">Hours of Content</div>
-            </div>
-          </div>
-        </section>
+          </section>
         </ScrollAnimatedSection>
 
         {/* Popular Playlists */}
         <ScrollAnimatedSection animationType="fade-up" delay={500}>
-        <section className="mb-16">
-          <SectionHeader
-            title="Popular "
-            highlightedWord="Playlists"
-            subtitle="Curated learning paths for different skill levels"
-          />
+          <section className="mb-16">
+            <SectionHeader
+              title="Popular "
+              highlightedWord="Playlists"
+              subtitle="Curated learning paths for different skill levels"
+            />
 
-          <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6 mt-8">
-            <Link
-              href="https://youtube.com/playlist?list=tegaldev-react-series"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <div className="bg-white/10 backdrop-blur-sm rounded-lg p-6 border border-white/20 hover:bg-white/20 cursor-pointer transition-all duration-300 group">
-                <div className="flex items-center mb-4">
-                  <div className="w-12 h-12 bg-gradient-to-br from-blue-600 to-purple-600 rounded-lg flex items-center justify-center mr-4">
-                    <Play className="h-6 w-6 text-white" />
+            <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6 mt-8">
+              <Link
+                href="https://youtube.com/playlist?list=tegaldev-react-series"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <div className="bg-white/10 backdrop-blur-sm rounded-lg p-6 border border-white/20 hover:bg-white/20 cursor-pointer transition-all duration-300 group">
+                  <div className="flex items-center mb-4">
+                    <div className="w-12 h-12 bg-gradient-to-br from-blue-600 to-purple-600 rounded-lg flex items-center justify-center mr-4">
+                      <Play className="h-6 w-6 text-white" />
+                    </div>
+                    <div>
+                      <h3 className="text-lg font-semibold text-white group-hover:text-blue-300 transition-colors">
+                        React Mastery Series
+                      </h3>
+                      <p className="text-gray-400 text-sm">
+                        25 videos • 15 hours
+                      </p>
+                    </div>
                   </div>
-                  <div>
-                    <h3 className="text-lg font-semibold text-white group-hover:text-blue-300 transition-colors">
-                      React Mastery Series
-                    </h3>
-                    <p className="text-gray-400 text-sm">
-                      25 videos • 15 hours
-                    </p>
-                  </div>
+                  <p className="text-gray-300 text-sm">
+                    Complete React learning path from basics to advanced
+                    concepts including hooks, context, and performance
+                    optimization.
+                  </p>
                 </div>
-                <p className="text-gray-300 text-sm">
-                  Complete React learning path from basics to advanced concepts
-                  including hooks, context, and performance optimization.
-                </p>
-              </div>
-            </Link>
+              </Link>
 
-            <Link
-              href="https://youtube.com/playlist?list=tegaldev-fullstack-series"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <div className="bg-white/10 backdrop-blur-sm rounded-lg p-6 border border-white/20 hover:bg-white/20 cursor-pointer transition-all duration-300 group">
-                <div className="flex items-center mb-4">
-                  <div className="w-12 h-12 bg-gradient-to-br from-green-600 to-blue-600 rounded-lg flex items-center justify-center mr-4">
-                    <Play className="h-6 w-6 text-white" />
+              <Link
+                href="https://youtube.com/playlist?list=tegaldev-fullstack-series"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <div className="bg-white/10 backdrop-blur-sm rounded-lg p-6 border border-white/20 hover:bg-white/20 cursor-pointer transition-all duration-300 group">
+                  <div className="flex items-center mb-4">
+                    <div className="w-12 h-12 bg-gradient-to-br from-green-600 to-blue-600 rounded-lg flex items-center justify-center mr-4">
+                      <Play className="h-6 w-6 text-white" />
+                    </div>
+                    <div>
+                      <h3 className="text-lg font-semibold text-white group-hover:text-green-300 transition-colors">
+                        Full-Stack Development
+                      </h3>
+                      <p className="text-gray-400 text-sm">
+                        18 videos • 22 hours
+                      </p>
+                    </div>
                   </div>
-                  <div>
-                    <h3 className="text-lg font-semibold text-white group-hover:text-green-300 transition-colors">
-                      Full-Stack Development
-                    </h3>
-                    <p className="text-gray-400 text-sm">
-                      18 videos • 22 hours
-                    </p>
-                  </div>
+                  <p className="text-gray-300 text-sm">
+                    Build complete applications from frontend to backend,
+                    including databases, APIs, authentication, and deployment.
+                  </p>
                 </div>
-                <p className="text-gray-300 text-sm">
-                  Build complete applications from frontend to backend,
-                  including databases, APIs, authentication, and deployment.
-                </p>
-              </div>
-            </Link>
-          </div>
-        </section>
+              </Link>
+            </div>
+          </section>
         </ScrollAnimatedSection>
 
         {/* Call to Action */}
         <ScrollAnimatedSection animationType="scale-up" delay={600}>
-        <section className="text-center py-16">
-          <div className="bg-white/10 backdrop-blur-sm rounded-lg p-8 border border-white/20">
-            <h2 className="text-3xl font-bold text-white mb-4">
-              Suggest a Video Topic
-            </h2>
-            <p className="text-gray-300 mb-6 max-w-2xl mx-auto">
-              Have an idea for a tutorial or topic you&apos;d like us to cover?
-              We love hearing from our community and creating content that helps
-              you learn.
-            </p>
-            <Link href="mailto:videos@tegaldev.com?subject=Video Topic Suggestion">
-              <Button
-                size="lg"
-                className="w-full sm:w-auto bg-gradient-to-r from-red-600 to-purple-600 hover:from-red-700 hover:to-purple-700 text-white px-6 sm:px-8 py-3"
-              >
-                Suggest a Topic
-              </Button>
-            </Link>
-          </div>
-        </section>
+          <section className="text-center py-16">
+            <div className="bg-white/10 backdrop-blur-sm rounded-lg p-8 border border-white/20">
+              <h2 className="text-3xl font-bold text-white mb-4">
+                Suggest a Video Topic
+              </h2>
+              <p className="text-gray-300 mb-6 max-w-2xl mx-auto">
+                Have an idea for a tutorial or topic you&apos;d like us to
+                cover? We love hearing from our community and creating content
+                that helps you learn.
+              </p>
+              <Link href="mailto:videos@tegaldev.com?subject=Video Topic Suggestion">
+                <Button
+                  size="lg"
+                  className="w-full sm:w-auto bg-gradient-to-r from-red-600 to-purple-600 hover:from-red-700 hover:to-purple-700 text-white px-6 sm:px-8 py-3"
+                >
+                  Suggest a Topic
+                </Button>
+              </Link>
+            </div>
+          </section>
         </ScrollAnimatedSection>
       </div>
 

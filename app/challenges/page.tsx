@@ -21,7 +21,12 @@ interface Challenge {
   id: string;
   title: string;
   description: string;
-  type: 'hackathon' | 'coding-challenge' | 'algorithm' | 'project' | 'innovation';
+  type:
+    | 'hackathon'
+    | 'coding-challenge'
+    | 'algorithm'
+    | 'project'
+    | 'innovation';
   difficulty: 'beginner' | 'intermediate' | 'advanced' | 'expert';
   duration: string;
   participants: number;
@@ -42,7 +47,8 @@ const challenges: Challenge[] = [
   {
     id: '1',
     title: 'TegalDev Hackathon 2024',
-    description: 'Join our annual hackathon and build innovative solutions for real-world problems. Work with fellow developers and showcase your skills.',
+    description:
+      'Join our annual hackathon and build innovative solutions for real-world problems. Work with fellow developers and showcase your skills.',
     type: 'hackathon',
     difficulty: 'intermediate',
     duration: '48 hours',
@@ -53,13 +59,13 @@ const challenges: Challenge[] = [
     prizes: [
       '1st Place: IDR 10,000,000 + Job opportunities',
       '2nd Place: IDR 5,000,000 + Tech gadgets',
-      '3rd Place: IDR 2,500,000 + Learning resources'
+      '3rd Place: IDR 2,500,000 + Learning resources',
     ],
     requirements: [
       'Basic programming knowledge',
       'Team of 2-4 members',
       'Laptop and development tools',
-      'Innovation mindset'
+      'Innovation mindset',
     ],
     category: 'Full Stack',
     tags: ['Hackathon', 'Innovation', 'Team Building', 'Networking'],
@@ -71,7 +77,8 @@ const challenges: Challenge[] = [
   {
     id: '2',
     title: 'React Performance Challenge',
-    description: 'Optimize a React application for maximum performance. Learn advanced techniques and compete with other developers.',
+    description:
+      'Optimize a React application for maximum performance. Learn advanced techniques and compete with other developers.',
     type: 'coding-challenge',
     difficulty: 'advanced',
     duration: '1 week',
@@ -82,13 +89,13 @@ const challenges: Challenge[] = [
     prizes: [
       'Winner: IDR 3,000,000 + React certification',
       'Runner-up: IDR 1,500,000 + Premium courses',
-      'Honorable mentions: Tech gadgets'
+      'Honorable mentions: Tech gadgets',
     ],
     requirements: [
       'Strong React knowledge',
       'Performance optimization experience',
       'Understanding of React DevTools',
-      'GitHub account'
+      'GitHub account',
     ],
     category: 'Frontend',
     tags: ['React', 'Performance', 'Optimization', 'Frontend'],
@@ -100,7 +107,8 @@ const challenges: Challenge[] = [
   {
     id: '3',
     title: 'Algorithm Master Challenge',
-    description: 'Solve complex algorithmic problems and improve your problem-solving skills. Perfect for competitive programming enthusiasts.',
+    description:
+      'Solve complex algorithmic problems and improve your problem-solving skills. Perfect for competitive programming enthusiasts.',
     type: 'algorithm',
     difficulty: 'expert',
     duration: '4 hours',
@@ -111,16 +119,21 @@ const challenges: Challenge[] = [
     prizes: [
       '1st Place: IDR 5,000,000 + Interview opportunities',
       '2nd Place: IDR 2,500,000 + Algorithm books',
-      '3rd Place: IDR 1,000,000 + Online courses'
+      '3rd Place: IDR 1,000,000 + Online courses',
     ],
     requirements: [
       'Advanced programming skills',
       'Algorithm and data structure knowledge',
       'Competitive programming experience',
-      'Fast problem-solving ability'
+      'Fast problem-solving ability',
     ],
     category: 'Algorithms',
-    tags: ['Algorithms', 'Competitive Programming', 'Problem Solving', 'Data Structures'],
+    tags: [
+      'Algorithms',
+      'Competitive Programming',
+      'Problem Solving',
+      'Data Structures',
+    ],
     registrationUrl: 'https://challenges.tegaldev.com/algorithm-master',
     image: '/placeholder-algorithm.jpg',
     featured: false,
@@ -129,7 +142,8 @@ const challenges: Challenge[] = [
   {
     id: '4',
     title: 'Open Source Contribution Challenge',
-    description: 'Contribute to open source projects and make a positive impact on the developer community. Learn collaboration and best practices.',
+    description:
+      'Contribute to open source projects and make a positive impact on the developer community. Learn collaboration and best practices.',
     type: 'project',
     difficulty: 'beginner',
     duration: '2 weeks',
@@ -140,13 +154,13 @@ const challenges: Challenge[] = [
     prizes: [
       'Top Contributors: Swag packages + Recognition',
       'Active Contributors: Digital certificates',
-      'All participants: Community badges'
+      'All participants: Community badges',
     ],
     requirements: [
       'Basic Git knowledge',
       'Willingness to learn',
       'GitHub account',
-      'Communication skills'
+      'Communication skills',
     ],
     category: 'Open Source',
     tags: ['Open Source', 'Git', 'Collaboration', 'Community'],
@@ -158,7 +172,8 @@ const challenges: Challenge[] = [
   {
     id: '5',
     title: 'AI/ML Innovation Challenge',
-    description: 'Build innovative AI/ML solutions that can solve real-world problems. Showcase your machine learning skills and creativity.',
+    description:
+      'Build innovative AI/ML solutions that can solve real-world problems. Showcase your machine learning skills and creativity.',
     type: 'innovation',
     difficulty: 'advanced',
     duration: '3 weeks',
@@ -169,13 +184,13 @@ const challenges: Challenge[] = [
     prizes: [
       '1st Place: IDR 8,000,000 + AI conference tickets',
       '2nd Place: IDR 4,000,000 + ML courses',
-      '3rd Place: IDR 2,000,000 + Tech gadgets'
+      '3rd Place: IDR 2,000,000 + Tech gadgets',
     ],
     requirements: [
       'Machine learning experience',
       'Python programming skills',
       'Understanding of AI/ML frameworks',
-      'Innovation and creativity'
+      'Innovation and creativity',
     ],
     category: 'AI/ML',
     tags: ['AI', 'Machine Learning', 'Python', 'Innovation'],
@@ -187,7 +202,8 @@ const challenges: Challenge[] = [
   {
     id: '6',
     title: 'Mobile App Development Challenge',
-    description: 'Create innovative mobile applications using React Native or Flutter. Build apps that can make a difference in people\'s lives.',
+    description:
+      "Create innovative mobile applications using React Native or Flutter. Build apps that can make a difference in people's lives.",
     type: 'project',
     difficulty: 'intermediate',
     duration: '2 weeks',
@@ -198,13 +214,13 @@ const challenges: Challenge[] = [
     prizes: [
       'Best App: IDR 6,000,000 + App store promotion',
       'Most Innovative: IDR 3,000,000 + Development tools',
-      'Best UI/UX: IDR 2,000,000 + Design resources'
+      'Best UI/UX: IDR 2,000,000 + Design resources',
     ],
     requirements: [
       'React Native or Flutter experience',
       'Mobile app development knowledge',
       'UI/UX design skills',
-      'App store deployment experience'
+      'App store deployment experience',
     ],
     category: 'Mobile',
     tags: ['React Native', 'Flutter', 'Mobile Development', 'App Store'],
@@ -252,13 +268,25 @@ function ChallengeCard({ challenge }: { challenge: Challenge }) {
             <Trophy className="h-6 w-6 text-white" />
           </div>
           <div>
-            <h3 className="text-lg font-semibold text-white mb-1">{challenge.title}</h3>
+            <h3 className="text-lg font-semibold text-white mb-1">
+              {challenge.title}
+            </h3>
             <div className="flex items-center space-x-2">
-              <span className={`px-2 py-1 rounded-full text-xs font-medium ${getStatusColor(challenge.status)}`}>
-                {challenge.status.charAt(0).toUpperCase() + challenge.status.slice(1)}
+              <span
+                className={`px-2 py-1 rounded-full text-xs font-medium ${getStatusColor(
+                  challenge.status,
+                )}`}
+              >
+                {challenge.status.charAt(0).toUpperCase() +
+                  challenge.status.slice(1)}
               </span>
-              <span className={`px-2 py-1 rounded-full text-xs font-medium ${getDifficultyColor(challenge.difficulty)}`}>
-                {challenge.difficulty.charAt(0).toUpperCase() + challenge.difficulty.slice(1)}
+              <span
+                className={`px-2 py-1 rounded-full text-xs font-medium ${getDifficultyColor(
+                  challenge.difficulty,
+                )}`}
+              >
+                {challenge.difficulty.charAt(0).toUpperCase() +
+                  challenge.difficulty.slice(1)}
               </span>
             </div>
           </div>
@@ -270,7 +298,9 @@ function ChallengeCard({ challenge }: { challenge: Challenge }) {
         )}
       </div>
 
-      <p className="text-gray-300 text-sm mb-4 line-clamp-3">{challenge.description}</p>
+      <p className="text-gray-300 text-sm mb-4 line-clamp-3">
+        {challenge.description}
+      </p>
 
       <div className="space-y-3 mb-4">
         <div className="flex items-center text-gray-300 text-sm">
@@ -283,7 +313,8 @@ function ChallengeCard({ challenge }: { challenge: Challenge }) {
         </div>
         <div className="flex items-center text-gray-300 text-sm">
           <Calendar className="h-4 w-4 mr-2" />
-          {new Date(challenge.startDate).toLocaleDateString()} - {new Date(challenge.endDate).toLocaleDateString()}
+          {new Date(challenge.startDate).toLocaleDateString()} -{' '}
+          {new Date(challenge.endDate).toLocaleDateString()}
         </div>
       </div>
 
@@ -308,11 +339,16 @@ function ChallengeCard({ challenge }: { challenge: Challenge }) {
           {challenge.prizes.length > 0 && (
             <span className="flex items-center">
               <Award className="h-3 w-3 mr-1" />
-              {challenge.prizes.length} prize{challenge.prizes.length !== 1 ? 's' : ''}
+              {challenge.prizes.length} prize
+              {challenge.prizes.length !== 1 ? 's' : ''}
             </span>
           )}
         </div>
-        <Link href={challenge.registrationUrl} target="_blank" rel="noopener noreferrer">
+        <Link
+          href={challenge.registrationUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+        >
           <Button
             size="sm"
             className="bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 text-white"
@@ -328,24 +364,35 @@ function ChallengeCard({ challenge }: { challenge: Challenge }) {
 
 export default function ChallengesPage() {
   const [selectedType, setSelectedType] = useState<string | null>(null);
-  const [selectedDifficulty, setSelectedDifficulty] = useState<string | null>(null);
+  const [selectedDifficulty, setSelectedDifficulty] = useState<string | null>(
+    null,
+  );
   const [selectedStatus, setSelectedStatus] = useState<string | null>(null);
 
   // Get all unique types, difficulties, and statuses
-  const allTypes = Array.from(new Set(challenges.map((challenge) => challenge.type)));
-  const allDifficulties = Array.from(new Set(challenges.map((challenge) => challenge.difficulty)));
-  const allStatuses = Array.from(new Set(challenges.map((challenge) => challenge.status)));
+  const allTypes = Array.from(
+    new Set(challenges.map((challenge) => challenge.type)),
+  );
+  const allDifficulties = Array.from(
+    new Set(challenges.map((challenge) => challenge.difficulty)),
+  );
+  const allStatuses = Array.from(
+    new Set(challenges.map((challenge) => challenge.status)),
+  );
 
   // Filter challenges by selected filters
   const filteredChallenges = challenges.filter((challenge) => {
     const typeMatch = !selectedType || challenge.type === selectedType;
-    const difficultyMatch = !selectedDifficulty || challenge.difficulty === selectedDifficulty;
+    const difficultyMatch =
+      !selectedDifficulty || challenge.difficulty === selectedDifficulty;
     const statusMatch = !selectedStatus || challenge.status === selectedStatus;
     return typeMatch && difficultyMatch && statusMatch;
   });
 
   // Get featured challenges
-  const featuredChallenges = challenges.filter((challenge) => challenge.featured);
+  const featuredChallenges = challenges.filter(
+    (challenge) => challenge.featured,
+  );
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-black to-blue-800">
@@ -370,7 +417,7 @@ export default function ChallengesPage() {
               <Link href="mailto:challenges@tegaldev.com?subject=Challenge Proposal">
                 <Button
                   size="lg"
-                  className="bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 text-white px-8 py-3 flex items-center gap-2"
+                  className="bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 text-white px-8 py-3 flex items-center gap-2 w-full"
                 >
                   <Trophy className="h-5 w-5" />
                   Propose Challenge
@@ -389,46 +436,65 @@ export default function ChallengesPage() {
         </ScrollAnimatedSection>
 
         {/* Filters */}
-        <ScrollAnimatedSection animationType="slide-left" delay={200}>
+        <ScrollAnimatedSection animationType="fade-up" delay={200}>
           <section className="mb-8">
             <div className="flex flex-wrap gap-4 justify-center">
               <div className="flex flex-wrap gap-2">
                 <Button
-                  variant={selectedType === null ? "default" : "outline"}
+                  variant={selectedType === null ? 'default' : 'outline'}
                   size="sm"
                   onClick={() => setSelectedType(null)}
-                  className={selectedType === null ? "bg-purple-600 text-white" : "border-white/20 hover:bg-white/10"}
+                  className={
+                    selectedType === null
+                      ? 'bg-purple-600 text-white'
+                      : 'border-white/20 hover:bg-white/10'
+                  }
                 >
                   All Types
                 </Button>
                 {allTypes.map((type) => (
                   <Button
                     key={type}
-                    variant={selectedType === type ? "default" : "outline"}
+                    variant={selectedType === type ? 'default' : 'outline'}
                     size="sm"
                     onClick={() => setSelectedType(type)}
-                    className={selectedType === type ? "bg-purple-600 text-white" : "border-white/20 hover:bg-white/10"}
+                    className={
+                      selectedType === type
+                        ? 'bg-purple-600 text-white'
+                        : 'border-white/20 hover:bg-white/70'
+                    }
                   >
-                    {type.charAt(0).toUpperCase() + type.slice(1).replace('-', ' ')}
+                    {type.charAt(0).toUpperCase() +
+                      type.slice(1).replace('-', ' ')}
                   </Button>
                 ))}
               </div>
               <div className="flex flex-wrap gap-2">
                 <Button
-                  variant={selectedDifficulty === null ? "default" : "outline"}
+                  variant={selectedDifficulty === null ? 'default' : 'outline'}
                   size="sm"
                   onClick={() => setSelectedDifficulty(null)}
-                  className={selectedDifficulty === null ? "bg-blue-600 text-white" : "border-white/20 hover:bg-white/10"}
+                  className={
+                    selectedDifficulty === null
+                      ? 'bg-blue-600 text-white'
+                      : 'border-white/20 hover:bg-white/10'
+                  }
                 >
                   All Levels
                 </Button>
                 {allDifficulties.map((difficulty) => (
                   <Button
                     key={difficulty}
-                    variant={selectedDifficulty === difficulty ? "default" : "outline"}
+                    variant={
+                      selectedDifficulty === difficulty ? 'default' : 'outline'
+                    }
                     size="sm"
                     onClick={() => setSelectedDifficulty(difficulty)}
-                    className={selectedDifficulty === difficulty ? "bg-blue-600 text-white" : "border-white/20 hover:bg-white/10"}
+                    className={
+                      selectedDifficulty === difficulty
+                        ? 'bg-blue-600 text-white'
+                        : 'border-white/20 hover:bg-white/10'
+                    }
                   >
                     {difficulty.charAt(0).toUpperCase() + difficulty.slice(1)}
                   </Button>
@@ -436,20 +502,28 @@ export default function ChallengesPage() {
               </div>
               <div className="flex flex-wrap gap-2">
                 <Button
-                  variant={selectedStatus === null ? "default" : "outline"}
+                  variant={selectedStatus === null ? 'default' : 'outline'}
                   size="sm"
                   onClick={() => setSelectedStatus(null)}
-                  className={selectedStatus === null ? "bg-green-600 text-white" : "border-white/20 hover:bg-white/10"}
+                  className={
+                    selectedStatus === null
+                      ? 'bg-green-600 text-white'
+                      : 'border-white/20 hover:bg-white/10'
+                  }
                 >
                   All Status
                 </Button>
                 {allStatuses.map((status) => (
                   <Button
                     key={status}
-                    variant={selectedStatus === status ? "default" : "outline"}
+                    variant={selectedStatus === status ? 'default' : 'outline'}
                     size="sm"
                     onClick={() => setSelectedStatus(status)}
-                    className={selectedStatus === status ? "bg-green-600 text-white" : "border-white/20 hover:bg-white/10"}
+                    className={
+                      selectedStatus === status
+                        ? 'bg-green-600 text-white'
+                        : 'border-white/20 hover:bg-white/10'
+                    }
                   >
                     {status.charAt(0).toUpperCase() + status.slice(1)}
                   </Button>
@@ -460,7 +534,7 @@ export default function ChallengesPage() {
         </ScrollAnimatedSection>
 
         {/* Featured Challenges */}
-        <ScrollAnimatedSection animationType="slide-right" delay={300}>
+        <ScrollAnimatedSection animationType="fade-up" delay={300}>
           <section className="mb-16">
             <SectionHeader
               title="Featured "
@@ -512,14 +586,19 @@ export default function ChallengesPage() {
         </ScrollAnimatedSection>
 
         {/* Call to Action */}
-        <ScrollAnimatedSection className="text-center py-16" animationType="scale-up" delay={500}>
+        <ScrollAnimatedSection
+          className="text-center py-16"
+          animationType="scale-up"
+          delay={500}
+        >
           <div className="bg-white/10 backdrop-blur-sm rounded-lg p-8 border border-white/20">
             <h2 className="text-3xl font-bold text-white mb-4">
               Want to Host a Challenge?
             </h2>
             <p className="text-gray-300 mb-6 max-w-2xl mx-auto">
-              Have an idea for an exciting coding challenge? We&apos;d love to help you
-              organize it and reach thousands of developers in our community.
+              Have an idea for an exciting coding challenge? We&apos;d love to
+              help you organize it and reach thousands of developers in our
+              community.
             </p>
             <Link href="mailto:challenges@tegaldev.com?subject=Challenge Proposal">
               <Button
@@ -536,4 +615,4 @@ export default function ChallengesPage() {
       <Footer />
     </div>
   );
-} 
+}

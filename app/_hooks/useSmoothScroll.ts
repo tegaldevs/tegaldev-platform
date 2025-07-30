@@ -1,22 +1,25 @@
-'use client'
+'use client';
 
-import { useLenis } from 'lenis/react'
-import { useCallback } from 'react'
+import { useLenis } from 'lenis/react';
+import { useCallback } from 'react';
 
 export function useSmoothScroll() {
-  const lenis = useLenis()
+  const lenis = useLenis();
 
   const scrollTo = useCallback(
-    (target: string | number | HTMLElement, options?: {
-      offset?: number
-      duration?: number
-      easing?: (t: number) => number
-      immediate?: boolean
-      lock?: boolean
-      force?: boolean
-      onComplete?: () => void
-    }) => {
-      if (!lenis) return
+    (
+      target: string | number | HTMLElement,
+      options?: {
+        offset?: number;
+        duration?: number;
+        easing?: (t: number) => number;
+        immediate?: boolean;
+        lock?: boolean;
+        force?: boolean;
+        onComplete?: () => void;
+      },
+    ) => {
+      if (!lenis) return;
 
       const defaultOptions = {
         offset: 0,
@@ -25,54 +28,57 @@ export function useSmoothScroll() {
         immediate: false,
         lock: false,
         force: false,
-        ...options
-      }
+        ...options,
+      };
 
-      lenis.scrollTo(target, defaultOptions)
+      lenis.scrollTo(target, defaultOptions);
     },
-    [lenis]
-  )
+    [lenis],
+  );
 
   const scrollToTop = useCallback(
     (options?: { duration?: number; immediate?: boolean }) => {
-      scrollTo(0, options)
+      scrollTo(0, options);
     },
-    [scrollTo]
-  )
+    [scrollTo],
+  );
 
   const scrollToBottom = useCallback(
     (options?: { duration?: number; immediate?: boolean }) => {
-      if (!lenis) return
-      scrollTo(document.body.scrollHeight, options)
+      if (!lenis) return;
+      scrollTo(document.body.scrollHeight, options);
     },
-    [scrollTo, lenis]
-  )
+    [scrollTo, lenis],
+  );
 
   const scrollToElement = useCallback(
-    (selector: string, options?: {
-      offset?: number
-      duration?: number
-      immediate?: boolean
-    }) => {
-      const element = document.querySelector(selector)
+    (
+      selector: string,
+      options?: {
+        offset?: number;
+        duration?: number;
+        immediate?: boolean;
+      },
+    ) => {
+      const element = document.querySelector(selector);
       if (element) {
-        scrollTo(element as HTMLElement, options)
+        scrollTo(element as HTMLElement, options);
       }
     },
-    [scrollTo]
-  )
+    [scrollTo],
+  );
 
   const start = useCallback(() => {
-    lenis?.start()
-  }, [lenis])
+    lenis?.start();
+  }, [lenis]);
 
   const stop = useCallback(() => {
-    lenis?.stop()
-  }, [lenis])
+    lenis?.stop();
+  }, [lenis]);
 
   const resize = useCallback(() => {
-    lenis?.resize()
-  }, [lenis])
+    lenis?.resize();
+  }, [lenis]);
 
   return {
     scrollTo,
@@ -82,6 +88,6 @@ export function useSmoothScroll() {
     start,
     stop,
     resize,
-    lenis
-  }
+    lenis,
+  };
 }

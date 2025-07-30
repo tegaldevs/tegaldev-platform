@@ -8,7 +8,12 @@ import { cn } from '@/app/_lib/utils';
 interface ScrollAnimatedSectionProps {
   children: ReactNode;
   className?: string;
-  animationType?: 'fade-up' | 'fade-in' | 'slide-left' | 'slide-right' | 'scale-up';
+  animationType?:
+    | 'fade-up'
+    | 'fade-in'
+    | 'slide-left'
+    | 'slide-right'
+    | 'scale-up';
   delay?: number;
   threshold?: number;
   triggerOnce?: boolean;
@@ -16,17 +21,23 @@ interface ScrollAnimatedSectionProps {
   id?: string;
 }
 
-const ScrollAnimatedSection = forwardRef<HTMLElement, ScrollAnimatedSectionProps>(
-  ({
-    children,
-    className,
-    animationType = 'fade-up',
-    delay = 0,
-    threshold = 0.1,
-    triggerOnce = true,
-    as: Component = 'div',
-    id,
-  }, forwardedRef) => {
+const ScrollAnimatedSection = forwardRef<
+  HTMLElement,
+  ScrollAnimatedSectionProps
+>(
+  (
+    {
+      children,
+      className,
+      animationType = 'fade-up',
+      delay = 0,
+      threshold = 0.1,
+      triggerOnce = true,
+      as: Component = 'div',
+      id,
+    },
+    forwardedRef,
+  ) => {
     const { ref, isVisible } = useScrollAnimation({
       threshold,
       delay,
@@ -35,7 +46,7 @@ const ScrollAnimatedSection = forwardRef<HTMLElement, ScrollAnimatedSectionProps
 
     const getAnimationClasses = () => {
       const baseClasses = 'transition-all duration-700 ease-out';
-      
+
       if (!isVisible) {
         switch (animationType) {
           case 'fade-up':
@@ -52,7 +63,7 @@ const ScrollAnimatedSection = forwardRef<HTMLElement, ScrollAnimatedSectionProps
             return `${baseClasses} opacity-0 translate-y-8`;
         }
       }
-      
+
       return `${baseClasses} opacity-100 translate-y-0 translate-x-0 scale-100`;
     };
 
@@ -66,7 +77,9 @@ const ScrollAnimatedSection = forwardRef<HTMLElement, ScrollAnimatedSectionProps
           if (typeof forwardedRef === 'function') {
             forwardedRef(node);
           } else if (forwardedRef) {
-            (forwardedRef as React.MutableRefObject<HTMLElement | null>).current = node;
+            (
+              forwardedRef as React.MutableRefObject<HTMLElement | null>
+            ).current = node;
           }
         }}
         className={cn(getAnimationClasses(), className)}
@@ -74,7 +87,7 @@ const ScrollAnimatedSection = forwardRef<HTMLElement, ScrollAnimatedSectionProps
         {children}
       </Component>
     );
-  }
+  },
 );
 
 ScrollAnimatedSection.displayName = 'ScrollAnimatedSection';

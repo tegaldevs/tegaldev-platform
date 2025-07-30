@@ -385,7 +385,7 @@ export default function MerchandisePage() {
         </ScrollAnimatedSection>
 
         {/* Features */}
-        <ScrollAnimatedSection animationType="slide-left" delay={200}>
+        <ScrollAnimatedSection animationType="fade-up" delay={200}>
           <section className="mb-12">
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 sm:gap-6">
               <div className="bg-white/10 backdrop-blur-sm rounded-lg p-6 border border-white/20 text-center">
@@ -439,7 +439,7 @@ export default function MerchandisePage() {
         </ScrollAnimatedSection>
 
         {/* Category Filter */}
-        <ScrollAnimatedSection animationType="slide-right" delay={400}>
+        <ScrollAnimatedSection animationType="fade-up" delay={400}>
           <section className="mb-8">
             <div className="flex flex-wrap gap-2 justify-center px-4">
               <Button
