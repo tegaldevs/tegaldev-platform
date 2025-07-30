@@ -518,13 +518,15 @@ export function AuthNavigation() {
             <SheetHeader>
               <div className="flex items-center justify-between">
                 <SheetTitle className="text-white flex items-center space-x-2">
-                  <Image
-                    src="/Tegal.dev-AAA.png"
-                    alt="TegalDev Logo"
-                    width={96}
-                    height={96}
-                    className="rounded-md"
-                  />
+                  <Link href="/">
+                    <Image
+                      src="/Tegal.dev-AAA.png"
+                      alt="TegalDev Logo"
+                      width={64}
+                      height={64}
+                      className="transition-all duration-300 cursor-pointer hover:scale-110 active:scale-95 hover:opacity-80"
+                    />
+                  </Link>
                 </SheetTitle>
                 <Button
                   variant="ghost"
