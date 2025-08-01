@@ -18,6 +18,7 @@ import {
   ChevronDown,
   Trophy,
   Briefcase,
+  ShoppingBag,
 } from 'lucide-react';
 import Image from 'next/image';
 import {
@@ -490,7 +491,7 @@ export function AuthNavigation() {
                 : 'text-gray-300 hover:text-white hover:bg-white/10'
             }`}
           >
-            <ShoppingCart className="h-4 w-4" />
+            <ShoppingBag className="h-4 w-4" />
             <span className="text-sm">Store</span>
             {pathname === '/merchandise' && (
               <div className="absolute -bottom-1 left-1/2 transform -translate-x-1/2 w-1 h-1 bg-purple-400 rounded-full"></div>
