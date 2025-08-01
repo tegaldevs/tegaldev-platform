@@ -148,6 +148,15 @@ export default function Home() {
 
             {/* Enhanced CTA Buttons */}
             <div className="flex flex-col lg:flex-row gap-6 justify-center items-center mt-16">
+              <Link href="/auth/register" className="w-full sm:w-auto">
+                <Button
+                  size="lg"
+                  className="bg-gradient-to-r from-purple-600 via-purple-700 to-blue-600 hover:from-purple-700 hover:via-purple-800 hover:to-blue-700 text-white px-10 py-4 text-lg font-semibold flex items-center gap-3 w-full sm:w-64 h-16 rounded-xl shadow-lg hover:shadow-xl hover:shadow-purple-500/25 transition-all duration-300 transform hover:scale-105"
+                >
+                  <Users className="h-6 w-6" />
+                  Join Community
+                </Button>
+              </Link>
               <Link
                 href="https://linktr.ee/tegaldev"
                 target="_blank"
@@ -576,7 +585,7 @@ export default function Home() {
               <div className="max-w-5xl mx-auto mt-8">
                 <Accordion>
                   <AccordionItem title="What is Tegal Dev and how can I join?">
-                    <p className='text-start'>
+                    <p className="text-start">
                       Tegal Dev is a curated software engineer community based
                       in Tegal, Central Java, Indonesia. We focus on improving
                       educational activities and fostering innovation in
@@ -588,7 +597,7 @@ export default function Home() {
                   </AccordionItem>
 
                   <AccordionItem title="What types of events and activities do you organize?">
-                    <p className='text-start'>
+                    <p className="text-start">
                       We organize a variety of activities including tech
                       meetups, workshops, coding challenges, tech talks, sharing
                       sessions, and networking events. Our events cover various
@@ -601,7 +610,7 @@ export default function Home() {
                   </AccordionItem>
 
                   <AccordionItem title="How can I contribute to the community?">
-                    <p className='text-start'>
+                    <p className="text-start">
                       There are many ways to contribute! You can share your
                       knowledge through tech talks or workshops, participate in
                       coding challenges, mentor other developers, contribute to
@@ -612,7 +621,7 @@ export default function Home() {
                   </AccordionItem>
 
                   <AccordionItem title="Do I need to be from Tegal to join the community?">
-                    <p className='text-start'>
+                    <p className="text-start">
                       Not at all! While we&apos;re based in Tegal, our community
                       is open to software engineers from anywhere in Indonesia
                       and around the world. We believe in the power of diverse
@@ -622,7 +631,7 @@ export default function Home() {
                   </AccordionItem>
 
                   <AccordionItem title="How can I stay updated with community activities?">
-                    <p className='text-start'>
+                    <p className="text-start">
                       You can stay updated by subscribing to our newsletter,
                       following our social media channels, joining our community
                       platforms, and regularly checking our website for upcoming
@@ -632,7 +641,7 @@ export default function Home() {
                   </AccordionItem>
 
                   <AccordionItem title="Are there any membership fees or costs?">
-                    <p className='text-start'>
+                    <p className="text-start">
                       Most of our community activities and events are free to
                       attend. However, some specialized workshops or events may
                       have a small fee to cover materials or venue costs. We
@@ -641,7 +650,10 @@ export default function Home() {
                     </p>
                   </AccordionItem>
 
-                  <AccordionItem title="How can companies or organizations collaborate with Tegal Dev?" className='text-start'>
+                  <AccordionItem
+                    title="How can companies or organizations collaborate with Tegal Dev?"
+                    className="text-start"
+                  >
                     <p>
                       We welcome collaborations with companies and
                       organizations! You can sponsor events, provide venues for
@@ -653,7 +665,7 @@ export default function Home() {
                   </AccordionItem>
 
                   <AccordionItem title="What resources and learning materials are available?">
-                    <p className='text-start'>
+                    <p className="text-start">
                       We provide access to various learning resources including
                       workshop materials, recorded tech talks, coding challenge
                       solutions, and curated learning paths. Our community also
