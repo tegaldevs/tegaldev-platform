@@ -325,7 +325,7 @@ export function AuthNavigation() {
                           : 'text-gray-300 hover:text-white hover:bg-white/10'
                       }`}
                     >
-                      <ShoppingCart className="h-4 w-4" />
+                      <ShoppingBag className="h-4 w-4" />
                       <div className="flex flex-col items-start">
                         <span>Store</span>
                         <span className="text-xs text-gray-400">
