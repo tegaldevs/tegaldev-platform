@@ -1,0 +1,16 @@
+{
+  "editor.fontFamily": "'Fira Code' ,Consolas, 'Courier New', monospace",
+  "editor.tabSize": 2,
+  "editor.minimap.maxColumn": 80,
+  "editor.rulers": [80],
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "reactSnippets.settings.prettierEnabled": true,
+  "prettier.experimentalTernaries": true,
+  "prettier.singleQuote": true,
+  "prettier.trailingComma": "all",
+  "WillLuke.nextjs.addTypesOnSave": true,
+  "WillLuke.nextjs.hasPrompted": true,
+  "[svg]": {
+    "editor.defaultFormatter": "jock.svg"
+  }
+}
