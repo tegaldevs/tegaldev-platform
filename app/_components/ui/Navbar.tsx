@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { usePathname } from 'next/navigation';
-import { AuthNavigation } from '@/app/_components/auth/AuthNavigation';
+import { Navigation } from '@/app/_components/molecules/Navigation';
 import { CartIcon } from '@/app/_components/ui/CartIcon';
 import { useSmoothScroll } from '@/app/_hooks/useSmoothScroll';
 
@@ -53,7 +53,7 @@ export function Navbar() {
             </Link>
           </div>
           <div className="flex items-center gap-4">
-            <AuthNavigation />
+            <Navigation />
             <CartIcon />
           </div>
         </div>
@@ -61,7 +61,7 @@ export function Navbar() {
         {/* Mobile Layout */}
         <div className="flex md:hidden justify-between items-center py-6">
           <div className="flex items-center">
-            <AuthNavigation />
+            <Navigation />
           </div>
           <div className="flex items-center">
             <Link href="/" onClick={handleLogoClick}>
