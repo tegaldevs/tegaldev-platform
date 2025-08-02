@@ -3,6 +3,7 @@ import {
   Briefcase,
   Calendar,
   Mic,
+  ShoppingBag,
   Trophy,
   Youtube,
 } from 'lucide-react';
@@ -47,5 +48,14 @@ export const contentLinks: NavigationItem[] = [
     label: 'Videos',
     icon: Youtube,
     description: 'Video tutorials & content',
+  },
+];
+
+export const shopLinks: NavigationItem[] = [
+  {
+    href: '/merchandise',
+    label: 'Store',
+    icon: ShoppingBag,
+    description: 'Merchandise & gear',
   },
 ];
