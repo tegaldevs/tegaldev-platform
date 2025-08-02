@@ -55,7 +55,7 @@ export const metadata: Metadata = {
   openGraph: {
     type: 'website',
     locale: 'en_US',
-    url: 'https://tegaldev.vercel.app',
+    url: 'https://tegal.dev',
     siteName: 'Tegal Dev',
     title: 'Tegal Dev - Software Engineer Community Platform',
     description:
