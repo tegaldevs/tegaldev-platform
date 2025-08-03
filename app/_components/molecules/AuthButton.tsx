@@ -32,20 +32,19 @@ export function AuthButton({
       variant={variant}
       size={size}
       onClick={!href ? onClick : undefined}
-      className={`w-full justify-start py-3 ${className}`}
+      className={`w-full justify-start ${className}`}
     >
-      <Icon className="h-4 w-4" />
+      <Icon />
       <span>{label}</span>
     </Button>
   );
 
-  if (href) {
+  if (href)
     return (
       <Link href={href} onClick={onClick}>
         {buttonContent}
       </Link>
     );
-  }
 
   return buttonContent;
 }
