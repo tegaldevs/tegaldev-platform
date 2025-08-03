@@ -10,12 +10,6 @@ interface NavigationLinkItemProps {
   description?: string;
   showDescription?: boolean;
   className?: string;
-  activeClassName?: string;
-  inactiveClassName?: string;
-  iconClassName?: string;
-  labelClassName?: string;
-  descriptionClassName?: string;
-  containerClassName?: string;
 }
 
 export function NavigationLinkItem({
@@ -25,12 +19,6 @@ export function NavigationLinkItem({
   description,
   showDescription = true,
   className = '',
-  activeClassName = 'bg-white/20 text-white',
-  inactiveClassName = 'text-gray-300',
-  iconClassName = 'h-5 w-5',
-  labelClassName = 'font-medium',
-  descriptionClassName = 'text-xs text-gray-400',
-  containerClassName = 'flex flex-col',
 }: NavigationLinkItemProps) {
   const pathname = usePathname();
   const isActive = pathname === href;
@@ -40,15 +28,15 @@ export function NavigationLinkItem({
       href={href}
       className={cn(
         'hover:cursor-pointer hover:bg-white/10',
-        isActive ? activeClassName : inactiveClassName,
+        isActive ? 'bg-white/20 text-white' : 'text-gray-300',
         className,
       )}
     >
-      <Icon className={iconClassName} />
-      <div className={containerClassName}>
-        <span className={labelClassName}>{label}</span>
+      <Icon />
+      <div className="flex flex-col">
+        <span className="font-medium">{label}</span>
         {showDescription && description && (
-          <span className={descriptionClassName}>{description}</span>
+          <span className="text-xs text-gray-400">{description}</span>
         )}
       </div>
     </Link>
