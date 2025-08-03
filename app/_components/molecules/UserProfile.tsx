@@ -1,3 +1,4 @@
+import { cn } from '@/app/_lib/utils';
 import { useSession } from 'next-auth/react';
 
 interface UserProfileProps {
@@ -9,7 +10,7 @@ interface UserProfileProps {
 export function UserProfile({
   showWelcomeMessage = true,
   avatarSize = 'sm',
-  className = 'flex items-center space-x-2 mb-4',
+  className = '',
 }: UserProfileProps) {
   const { data: session } = useSession();
 
@@ -18,9 +19,8 @@ export function UserProfile({
   const getUserInitials = () => {
     const name = session.user.name || session.user.username || '';
     const nameParts = name.split(' ');
-    if (nameParts.length >= 2) {
+    if (nameParts.length >= 2)
       return `${nameParts[0][0]}${nameParts[1][0]}`.toUpperCase();
-    }
     return name.slice(0, 2).toUpperCase();
   };
 
@@ -38,9 +38,20 @@ export function UserProfile({
   };
 
   return (
-    <div className={className}>
+    <div className={cn('flex items-center gap-2', className)}>
       <div
-        className={`${getAvatarSize()} bg-gradient-to-r from-purple-600 to-blue-600 rounded-full flex items-center justify-center text-white font-semibold`}
+        className={cn(
+          `${getAvatarSize()}
+          bg-gradient-to-r
+          from-purple-600
+          to-blue-600
+          rounded-full
+          flex
+          items-center
+          justify-center
+          text-white
+          font-semibold`,
+        )}
       >
         {getUserInitials()}
       </div>

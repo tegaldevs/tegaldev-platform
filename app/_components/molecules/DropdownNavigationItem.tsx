@@ -20,8 +20,6 @@ export function DropdownNavigationItem({
   description,
   showDescription = true,
   className = '',
-  activeClassName = 'bg-white/20 text-white',
-  inactiveClassName = 'text-gray-300',
 }: DropdownNavigationItemProps) {
   return (
     <DropdownMenuItem key={href} asChild>
@@ -32,8 +30,6 @@ export function DropdownNavigationItem({
         description={description}
         showDescription={showDescription}
         className={className}
-        activeClassName={activeClassName}
-        inactiveClassName={inactiveClassName}
       />
     </DropdownMenuItem>
   );
