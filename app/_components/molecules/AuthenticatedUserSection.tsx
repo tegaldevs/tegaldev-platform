@@ -2,6 +2,7 @@ import { signOut, useSession } from 'next-auth/react';
 import { UserProfile } from './UserProfile';
 import { AuthButton } from './AuthButton';
 import { LogOut } from 'lucide-react';
+import { cn } from '@/app/_lib/utils';
 
 interface AuthenticatedUserSectionProps {
   onClose: () => void;
@@ -15,7 +16,7 @@ export function AuthenticatedUserSection({
   if (!session) return null;
 
   return (
-    <>
+    <div className="flex flex-col gap-5">
       <UserProfile />
       <AuthButton
         icon={LogOut}
@@ -25,8 +26,13 @@ export function AuthenticatedUserSection({
           onClose();
         }}
         variant="outline"
-        className="border-white/20 text-white hover:bg-white/10"
+        className={cn(
+          `border-red-500
+          text-red-500
+          hover:text-red-500
+          hover:bg-white/90`,
+        )}
       />
-    </>
+    </div>
   );
 }
