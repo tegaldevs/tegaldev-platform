@@ -2,7 +2,7 @@
 
 export const dynamic = 'force-dynamic';
 
-import { Navbar } from '@/app/_components/ui/Navbar';
+import { Navbar } from '@/app/_components/organisms/Navbar';
 import { Footer } from '@/app/_components/ui/Footer';
 import { SectionHeader } from '@/app/_components/ui/SectionHeader';
 import { ScrollAnimatedSection } from '@/app/_components/ui/ScrollAnimatedSection';
