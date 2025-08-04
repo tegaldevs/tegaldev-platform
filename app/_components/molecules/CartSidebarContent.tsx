@@ -27,7 +27,7 @@ export function CartSidebarContent() {
           </span>
         </SheetTitle>
       </SheetHeader>
-      <div className="flex-1 overflow-y-auto px-4">
+      <div className="flex-1 overflow-y-auto px-5">
         {items.length === 0 ? (
           <EmptyCartState />
         ) : (
