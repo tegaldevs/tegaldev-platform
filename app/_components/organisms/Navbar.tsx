@@ -1,23 +1,17 @@
-'use client';
-
-import { useState, useEffect } from 'react';
-import Link from 'next/link';
-import Image from 'next/image';
-import { usePathname } from 'next/navigation';
-import { Navigation } from '@/app/_components/molecules/Navigation';
-import { CartIcon } from '@/app/_components/ui/CartIcon';
 import { useSmoothScroll } from '@/app/_hooks/useSmoothScroll';
+import { cn } from '@/app/_lib/utils';
+import { usePathname } from 'next/navigation';
+import { useEffect, useState } from 'react';
+import { DesktopNavbar } from '../molecules/DesktopNavbar';
+import { MobileNavbar } from '../molecules/MobileNavbar';
 
 export function Navbar() {
-  const [isScrolled, setIsScrolled] = useState(false);
   const pathname = usePathname();
+  const [isScrolled, setIsScrolled] = useState(false);
   const { scrollToTop } = useSmoothScroll();
 
   useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50);
-    };
-
+    const handleScroll = () => setIsScrolled(window.scrollY > 50);
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
@@ -31,54 +25,24 @@ export function Navbar() {
 
   return (
     <nav
-      className={`max-w-4xl mx-auto fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+      className={cn(
+        `max-w-4xl
+        mx-auto
+        fixed
+        top-0
+        left-0
+        right-0
+        p-6
+        z-20
+        transition-all
+        duration-300`,
         isScrolled
-          ? 'bg-black/20 backdrop-blur-md mx-4 md:mt-4 rounded-md shadow-lg'
-          : 'bg-transparent'
-      }`}
-      style={{ transform: 'none' }} // Ensure no transform interference
+          ? 'bg-black/40 backdrop-blur-md md:mt-4 rounded-md shadow-md'
+          : 'bg-transparent',
+      )}
     >
-      <div className="container max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Desktop Layout */}
-        <div className="hidden md:flex justify-between items-center py-6">
-          <div className="flex items-center space-x-2">
-            <Link href="/" onClick={handleLogoClick}>
-              <Image
-                src="/Tegal.dev-AAA.png"
-                alt="TegalDev Logo"
-                width={96}
-                height={96}
-                className="transition-all duration-300 cursor-pointer hover:scale-110 active:scale-95 hover:opacity-80"
-              />
-            </Link>
-          </div>
-          <div className="flex items-center gap-4">
-            <Navigation />
-            <CartIcon />
-          </div>
-        </div>
-
-        {/* Mobile Layout */}
-        <div className="flex md:hidden justify-between items-center py-6">
-          <div className="flex items-center">
-            <Navigation />
-          </div>
-          <div className="flex items-center">
-            <Link href="/" onClick={handleLogoClick}>
-              <Image
-                src="/Tegal.dev-AAA.png"
-                alt="TegalDev Logo"
-                width={64}
-                height={64}
-                className="transition-all duration-300 cursor-pointer hover:scale-110 active:scale-95 hover:opacity-80"
-              />
-            </Link>
-          </div>
-          <div className="flex items-center">
-            <CartIcon />
-          </div>
-        </div>
-      </div>
+      <DesktopNavbar handleLogoClick={handleLogoClick} />
+      <MobileNavbar handleLogoClick={handleLogoClick} />
     </nav>
   );
 }
