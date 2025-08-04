@@ -5,7 +5,7 @@ export const dynamic = 'force-dynamic';
 import React, { useEffect, useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
-import { Navbar } from '@/app/_components/ui/Navbar';
+import { Navbar } from '@/app/_components/organisms/Navbar';
 import { Button } from '@/app/_components/ui/button';
 import { Footer } from '@/app/_components/ui/Footer';
 import { ActivityCard } from '@/app/_components/ui/ActivityCard';
