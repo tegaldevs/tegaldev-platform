@@ -1,5 +1,5 @@
 import { Minus, Plus, ShoppingBag, Trash2 } from 'lucide-react';
-import { CartItem as CartItemType } from './types/CartItem';
+import { CartItem as CartItemType } from '@/app/_lib/cart-store';
 import { Button } from '../ui/button';
 import { cn } from '@/app/_lib/utils';
 

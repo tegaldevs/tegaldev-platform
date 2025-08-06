@@ -1,7 +1,7 @@
 'use client';
 
 import { cn } from '@/app/_lib/utils';
-import { useCart } from '../providers/CartProvider';
+import { useCart } from '@/app/_lib/cart-store';
 import { Sheet, SheetContent } from '../ui/sheet';
 import { CartSidebarContent } from './CartSidebarContent';
 
