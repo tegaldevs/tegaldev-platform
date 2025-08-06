@@ -19,7 +19,7 @@ import {
   Sticker,
 } from 'lucide-react';
 import { useState } from 'react';
-import { useCart } from '@/app/_components/providers/CartProvider';
+import { useCart } from '@/app/_lib/cart-store';
 
 interface MerchandiseItem {
   id: string;

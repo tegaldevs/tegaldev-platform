@@ -1,4 +1,4 @@
-import { CartItem as CartItemType } from '../providers/CartProvider';
+import { CartItem as CartItemType } from '@/app/_lib/cart-store';
 import CartItem from './CartItem';
 
 interface CartItemListProps {
