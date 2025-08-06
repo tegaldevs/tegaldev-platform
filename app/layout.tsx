@@ -7,7 +7,7 @@ import { SpeedInsights } from '@vercel/speed-insights/next';
 import { SessionProvider } from '@/app/_components/providers/SessionProvider';
 import { ProgressProvider } from '@/app/_components/providers/ProgressProvider';
 import SmoothScrollProvider from '@/app/_components/providers/SmoothScrollProvider';
-import { CartProvider } from '@/app/_components/providers/CartProvider';
+
 import { CartSidebar } from '@/app/_components/molecules/CartSidebar';
 
 const geistSans = Geist({
@@ -112,10 +112,8 @@ export default function RootLayout({
           <SmoothScrollProvider>
             <ProgressProvider>
               <SessionProvider>
-                <CartProvider>
                   {children}
                   <CartSidebar />
-                </CartProvider>
               </SessionProvider>
             </ProgressProvider>
           </SmoothScrollProvider>

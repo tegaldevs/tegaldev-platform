@@ -8,7 +8,7 @@ import Link from 'next/link';
 import { Navbar } from '@/app/_components/organisms/Navbar';
 import { Button } from '@/app/_components/ui/button';
 import { Footer } from '@/app/_components/ui/Footer';
-import { ActivityCard } from '@/app/_components/ui/ActivityCard';
+import { ActivityCard } from '@/app/_components/molecules/ActivityCard';
 import { StatCard } from '@/app/_components/ui/StatCard';
 import { SectionHeader } from '@/app/_components/ui/SectionHeader';
 import { ScrollAnimatedSection } from '@/app/_components/ui/ScrollAnimatedSection';
@@ -404,32 +404,24 @@ export default function Home() {
                   icon={Calendar}
                   title="Meetups"
                   description="Regular in-person and virtual gatherings to network and share experiences with the community."
-                  gradientFrom="blue-500"
-                  gradientTo="cyan-500"
                 />
 
                 <ActivityCard
                   icon={MessageSquare}
                   title="Sharing Sessions"
                   description="Interactive sessions where members share knowledge, experiences, and best practices."
-                  gradientFrom="green-500"
-                  gradientTo="emerald-500"
                 />
 
                 <ActivityCard
                   icon={Wrench}
                   title="Workshops"
                   description="Hands-on learning sessions covering various technologies and development practices."
-                  gradientFrom="orange-500"
-                  gradientTo="red-500"
                 />
 
                 <ActivityCard
                   icon={Mic}
                   title="Tech Talks"
                   description="Expert presentations on cutting-edge technologies and industry trends."
-                  gradientFrom="purple-500"
-                  gradientTo="pink-500"
                 />
               </div>
             </ScrollAnimatedSection>

@@ -1,7 +1,7 @@
 'use client';
 
 import { ShoppingCart } from 'lucide-react';
-import { useCart } from '../providers/CartProvider';
+import { useCart } from '@/app/_lib/cart-store';
 import { SheetHeader, SheetTitle } from '../ui/sheet';
 import { EmptyCartState } from './EmptyCartState';
 import CartItemList from './CartItemList';
