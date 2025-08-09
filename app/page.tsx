@@ -7,11 +7,11 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { Navbar } from '@/app/_components/organisms/Navbar';
 import { Button } from '@/app/_components/ui/button';
-import { Footer } from '@/app/_components/ui/Footer';
+import { Footer } from '@/app/_components/organisms/Footer';
 import { ActivityCard } from '@/app/_components/molecules/ActivityCard';
-import { StatCard } from '@/app/_components/ui/StatCard';
-import { SectionHeader } from '@/app/_components/ui/SectionHeader';
-import { ScrollAnimatedSection } from '@/app/_components/ui/ScrollAnimatedSection';
+import { StatCard } from '@/app/_components/molecules/StatCard';
+import { SectionHeader } from '@/app/_components/molecules/SectionHeader';
+import { ScrollAnimatedSection } from '@/app/_components/layouts/ScrollAnimatedSection';
 import {
   Users,
   Zap,
@@ -30,7 +30,7 @@ import {
 } from 'lucide-react';
 import { Input } from '@/app/_components/ui/input';
 import { Label } from '@/app/_components/ui/label';
-import { LoadingButton } from '@/app/_components/ui/LoadingButton';
+import { LoadingButton } from '@/app/_components/molecules/LoadingButton';
 import { Accordion, AccordionItem } from '@/app/_components/ui/accordion';
 
 export default function Home() {

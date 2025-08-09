@@ -3,10 +3,10 @@
 export const dynamic = 'force-dynamic';
 
 import { Navbar } from '@/app/_components/organisms/Navbar';
-import { Footer } from '@/app/_components/ui/Footer';
-import { SectionHeader } from '@/app/_components/ui/SectionHeader';
+import { Footer } from '@/app/_components/organisms/Footer';
+import { SectionHeader } from '@/app/_components/molecules/SectionHeader';
 import { Button } from '@/app/_components/ui/button';
-import { ScrollAnimatedSection } from '@/app/_components/ui/ScrollAnimatedSection';
+import { ScrollAnimatedSection } from '@/app/_components/layouts/ScrollAnimatedSection';
 import Link from 'next/link';
 import {
   ShoppingCart,

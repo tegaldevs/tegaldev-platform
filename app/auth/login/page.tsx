@@ -6,10 +6,10 @@ import { useState } from 'react';
 import { signIn } from 'next-auth/react';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
-import { AuthLayout } from '@/app/_components/ui/AuthLayout';
-import { FormField } from '@/app/_components/ui/FormField';
-import { LoadingButton } from '@/app/_components/ui/LoadingButton';
-import { ErrorAlert } from '@/app/_components/ui/ErrorAlert';
+import { AuthLayout } from '@/app/_components/layouts/AuthLayout';
+import { FormField } from '@/app/_components/molecules/FormField';
+import { LoadingButton } from '@/app/_components/molecules/LoadingButton';
+import { ErrorAlert } from '@/app/_components/molecules/ErrorAlert';
 import { Button } from '@/app/_components/ui/button';
 import {
   Card,
