@@ -1,3 +1,5 @@
+'use client';
+
 import { Calendar, MessageSquare, Mic, Wrench } from 'lucide-react';
 import { ScrollAnimatedSection } from '../layouts/ScrollAnimatedSection';
 import { ActivityCard } from '../molecules/ActivityCard';
