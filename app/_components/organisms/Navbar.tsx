@@ -1,3 +1,5 @@
+'use client';
+
 import { useSmoothScroll } from '@/app/_hooks/useSmoothScroll';
 import { cn } from '@/app/_lib/utils';
 import { usePathname } from 'next/navigation';
