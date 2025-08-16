@@ -47,7 +47,7 @@ export default function HeroSection() {
         </div>
 
         {/* Enhanced description */}
-        <p className="text-lg md:text-xl text-gray-300 max-w-4xl mx-auto leading-relaxed">
+        <p className="text-lg md:text-xl text-gray-300 max-w-4xl mx-auto leading-relaxed text-center">
           The curated software engineer community based in{' '}
           <span className="text-blue-300 font-medium">
             Tegal, Central Java, Indonesia.{' '}
