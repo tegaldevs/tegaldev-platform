@@ -1,14 +1,14 @@
-import type { Metadata } from 'next';
+import { Metadata } from 'next';
+import './globals.css';
 import { Geist, Geist_Mono } from 'next/font/google';
 import { Suspense } from 'react';
-import './globals.css';
+import SmoothScrollProvider from './_components/providers/SmoothScrollProvider';
+import { ProgressProvider } from './_components/providers/ProgressProvider';
+import { SessionProvider } from './_components/providers/SessionProvider';
+import { Navbar } from './_components/organisms/Navbar';
+import { CartSidebar } from './_components/molecules/CartSidebar';
 import { Analytics } from '@vercel/analytics/next';
 import { SpeedInsights } from '@vercel/speed-insights/next';
-import { SessionProvider } from '@/app/_components/providers/SessionProvider';
-import { ProgressProvider } from '@/app/_components/providers/ProgressProvider';
-import SmoothScrollProvider from '@/app/_components/providers/SmoothScrollProvider';
-
-import { CartSidebar } from '@/app/_components/molecules/CartSidebar';
 
 const geistSans = Geist({
   variable: '--font-geist-sans',
@@ -112,8 +112,9 @@ export default function RootLayout({
           <SmoothScrollProvider>
             <ProgressProvider>
               <SessionProvider>
-                  {children}
-                  <CartSidebar />
+                <Navbar />
+                {children}
+                <CartSidebar />
               </SessionProvider>
             </ProgressProvider>
           </SmoothScrollProvider>
