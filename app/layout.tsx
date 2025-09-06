@@ -1,7 +1,6 @@
 import { Metadata } from 'next';
 import './globals.css';
 import { Geist, Geist_Mono } from 'next/font/google';
-import { Suspense } from 'react';
 import SmoothScrollProvider from './_components/providers/SmoothScrollProvider';
 import { ProgressProvider } from './_components/providers/ProgressProvider';
 import { SessionProvider } from './_components/providers/SessionProvider';
@@ -108,17 +107,15 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <Suspense fallback={null}>
-          <SmoothScrollProvider>
-            <ProgressProvider>
-              <SessionProvider>
-                <Navbar />
-                {children}
-                <CartSidebar />
-              </SessionProvider>
-            </ProgressProvider>
-          </SmoothScrollProvider>
-        </Suspense>
+        <SmoothScrollProvider>
+          <ProgressProvider>
+            <SessionProvider>
+              <Navbar />
+              {children}
+              <CartSidebar />
+            </SessionProvider>
+          </ProgressProvider>
+        </SmoothScrollProvider>
         <Analytics />
         <SpeedInsights />
       </body>
