@@ -34,8 +34,7 @@ export default function CommunityPhotosGallerySection() {
           <div className="aspect-square bg-gradient-to-br from-blue-500/20 to-purple-500/20 flex items-center justify-center border border-white/10 rounded-lg hover:border-white/20 transition-all duration-300 cursor-default">
             <div className="text-center text-white/60">
               <Users className="h-12 w-12 mx-auto mb-2" />
-              <p className="text-sm font-medium">Tech Meetup 2024</p>
-              <p className="text-xs opacity-75">Jakarta Community Event</p>
+              <p className="text-sm font-medium">Tech Meetup</p>
             </div>
           </div>
         </div>

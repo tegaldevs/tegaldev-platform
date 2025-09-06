@@ -23,7 +23,7 @@ export function NavigationDropdown({
 }: NavigationDropdownProps) {
   return (
     <DropdownMenu>
-      <DropdownMenuTrigger>
+      <DropdownMenuTrigger asChild>
         <DropdownTriggerButton
           title={title}
           icon={TriggerIcon}

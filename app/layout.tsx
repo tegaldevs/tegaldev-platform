@@ -4,10 +4,10 @@ import { Geist, Geist_Mono } from 'next/font/google';
 import SmoothScrollProvider from './_components/providers/SmoothScrollProvider';
 import { ProgressProvider } from './_components/providers/ProgressProvider';
 import { SessionProvider } from './_components/providers/SessionProvider';
-import { Navbar } from './_components/organisms/Navbar';
 import { CartSidebar } from './_components/molecules/CartSidebar';
 import { Analytics } from '@vercel/analytics/next';
 import { SpeedInsights } from '@vercel/speed-insights/next';
+import ConditionalNavbar from './_components/layouts/ConditionalNavbar';
 
 const geistSans = Geist({
   variable: '--font-geist-sans',
@@ -110,7 +110,7 @@ export default function RootLayout({
         <SmoothScrollProvider>
           <ProgressProvider>
             <SessionProvider>
-              <Navbar />
+              <ConditionalNavbar />
               {children}
               <CartSidebar />
             </SessionProvider>

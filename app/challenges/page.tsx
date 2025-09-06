@@ -7,15 +7,7 @@ import { ScrollAnimatedSection } from '@/app/_components/layouts/ScrollAnimatedS
 import { Button } from '@/app/_components/ui/button';
 import Link from 'next/link';
 import { useState } from 'react';
-import {
-  Calendar,
-  Clock,
-  Users,
-  Trophy,
-  ExternalLink,
-  Filter,
-  Award,
-} from 'lucide-react';
+import { Calendar, Clock, Users, Trophy, Filter, Award } from 'lucide-react';
 
 interface Challenge {
   id: string;
@@ -344,17 +336,12 @@ function ChallengeCard({ challenge }: { challenge: Challenge }) {
             </span>
           )}
         </div>
-        <Link
-          href={challenge.registrationUrl}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
+        <Link href={`/challenges/${challenge.id}`}>
           <Button
             size="sm"
             className="bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 text-white"
           >
-            <ExternalLink className="h-4 w-4 mr-1" />
-            Register
+            View Details
           </Button>
         </Link>
       </div>
