@@ -1,16 +1,17 @@
 'use client';
 
-import Image from 'next/image';
 import { useEffect, useState } from 'react';
-import { Label } from '../ui/label';
-import { Input } from '../ui/input';
-import { LoadingButton } from '../molecules/LoadingButton';
-import { ExternalLink, HandHeart, Mail, Users } from 'lucide-react';
-import Link from 'next/link';
-import { Button } from '../ui/button';
+import { HeroLogo } from '../atoms/HeroLogo';
+import { HeroDescription, HeroDescriptionHighlight } from '../molecules/HeroDescription';
+import { HeroSubscriptionForm } from '../molecules/HeroSubscriptionForm';
+import { HeroActionButtons } from '../molecules/HeroActionButtons';
+import { subscribeEmail } from '@/lib/subscription-service';
 
 export default function HeroSection() {
   const [heroVisible, setHeroVisible] = useState(false);
+  const [isSubscribing, setIsSubscribing] = useState(false);
+  const [subscriptionMessage, setSubscriptionMessage] = useState<string | null>(null);
+  const [subscriptionError, setSubscriptionError] = useState<string | null>(null);
 
   useEffect(() => {
     const timeoutHero = setTimeout(() => setHeroVisible(true), 100);
@@ -18,6 +19,28 @@ export default function HeroSection() {
       clearTimeout(timeoutHero);
     };
   }, []);
+
+  const handleSubscription = async (email: string) => {
+    setIsSubscribing(true);
+    setSubscriptionMessage(null);
+    setSubscriptionError(null);
+
+    try {
+      const response = await subscribeEmail(email);
+      setSubscriptionMessage(response.message);
+      
+      // Clear success message after 5 seconds
+      setTimeout(() => setSubscriptionMessage(null), 5000);
+    } catch (error) {
+      const errorMessage = error instanceof Error ? error.message : 'Subscription failed';
+      setSubscriptionError(errorMessage);
+      
+      // Clear error message after 5 seconds
+      setTimeout(() => setSubscriptionError(null), 5000);
+    } finally {
+      setIsSubscribing(false);
+    }
+  };
 
   return (
     <div
@@ -27,117 +50,42 @@ export default function HeroSection() {
       }
     >
       <div className="space-y-12">
-        {/* Logo Section with enhanced presentation */}
         <div className="flex flex-col items-center space-y-8">
-          <div className="relative group">
-            <div className="absolute -inset-4 bg-gradient-to-r from-purple-600/20 to-blue-600/20 rounded-full blur-lg group-hover:blur-xl transition-all duration-500"></div>
-            <Image
-              src="/Tegal.dev-AAA.png"
-              alt="Tegaldev Logo"
-              width={280}
-              height={280}
-              className="relative transition-all duration-500 hover:scale-105 drop-shadow-2xl"
-            />
-          </div>
-
-          {/* Enhanced title */}
+          <HeroLogo
+            src="/Tegal.dev-AAA.png"
+            alt="Tegaldev Logo"
+            width={280}
+            height={280}
+          />
           <div className="space-y-4">
             <div className="w-24 h-1 bg-gradient-to-r from-purple-500 to-blue-500 mx-auto rounded-full"></div>
           </div>
         </div>
-
-        {/* Enhanced description */}
-        <p className="text-lg md:text-xl text-gray-300 max-w-4xl mx-auto leading-relaxed text-center">
+        <HeroDescription>
           The curated software engineer community based in{' '}
-          <span className="text-blue-300 font-medium">
+          <HeroDescriptionHighlight variant="blue">
             Tegal, Central Java, Indonesia.{' '}
-          </span>
-          <span className="text-white font-semibold">Tegal Dev</span> is
-          collaborating with various tech communities worldwide.{' '}
-          <span className="text-purple-300">
+          </HeroDescriptionHighlight>
+          <HeroDescriptionHighlight variant="white">
+            Tegal Dev
+          </HeroDescriptionHighlight>{' '}
+          is collaborating with various tech communities worldwide.{' '}
+          <HeroDescriptionHighlight variant="purple">
             We aim to improve educational activities
-          </span>{' '}
+          </HeroDescriptionHighlight>{' '}
           and{' '}
-          <span className="text-purple-300">
+          <HeroDescriptionHighlight variant="purple">
             foster innovation in technology.
-          </span>
-        </p>
-
-        {/* Enhanced Hero Input Section */}
-        <form
-          className="mt-12 max-w-lg mx-auto flex flex-col gap-2 items-center"
-          onSubmit={(e) => e.preventDefault()}
-        >
-          <div className="w-full flex flex-col gap-2">
-            <Label htmlFor="hero-email" className="sr-only">
-              Email address
-            </Label>
-            <Input
-              id="hero-email"
-              type="email"
-              placeholder="Enter your email to subscribe"
-              className="h-12 bg-white/10 border-white/20 text-white placeholder:text-gray-300 focus:border-purple-400 focus:ring-2 focus:ring-purple-400/20 transition-all duration-200"
-              required
-            />
-          </div>
-          <LoadingButton
-            isLoading={false}
-            loadingText="Subscribing..."
-            type="submit"
-            className="w-full h-12 mt-2 bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 text-white transition-all duration-200 transform hover:scale-[1.02] shadow-lg hover:shadow-purple-500/25 rounded-xl text-lg font-semibold"
-            icon={Mail}
-          >
-            Subscribe
-          </LoadingButton>
-          <p className="text-gray-300 text-sm mt-4 text-center leading-relaxed">
-            🚀 Stay updated with the latest tech events, workshops, and
-            opportunities
-          </p>
-        </form>
+          </HeroDescriptionHighlight>
+        </HeroDescription>
+        <HeroSubscriptionForm
+          onSubmit={handleSubscription}
+          isLoading={isSubscribing}
+          successMessage={subscriptionMessage}
+          errorMessage={subscriptionError}
+        />
       </div>
-
-      {/* Enhanced CTA Buttons */}
-      <div className="flex flex-col lg:flex-row gap-6 justify-center items-center mt-16">
-        <Link href="/auth/register" className="w-full sm:w-auto">
-          <Button
-            size="lg"
-            className="bg-gradient-to-r from-purple-600 via-purple-700 to-blue-600 hover:from-purple-700 hover:via-purple-800 hover:to-blue-700 text-white px-10 py-4 text-lg font-semibold flex items-center gap-3 w-full sm:w-64 h-16 rounded-xl shadow-lg hover:shadow-xl hover:shadow-purple-500/25 transition-all duration-300 transform hover:scale-105"
-          >
-            <Users className="h-6 w-6" />
-            Join Community
-          </Button>
-        </Link>
-        <Link
-          href="https://linktr.ee/tegaldev"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="w-full sm:w-auto"
-        >
-          <Button
-            variant="outline"
-            size="lg"
-            className="px-10 py-4 text-lg font-semibold border-2 border-white/30 hover:border-white/50 hover:bg-white/70 flex items-center gap-3 w-full sm:w-64 h-16 rounded-xl backdrop-blur-sm transition-all duration-300 transform hover:scale-105"
-          >
-            <ExternalLink className="h-6 w-6" />
-            Connect Community
-          </Button>
-        </Link>
-        <Link
-          href="https://saweria.co/tegaldev"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="w-full sm:w-auto"
-        >
-          <Button
-            variant="outline"
-            size="lg"
-            className="px-10 py-4 text-lg font-semibold border-2 border-orange-400/50 text-orange-300 hover:text-orange-300 hover:border-orange-400 hover:bg-orange-100 flex items-center gap-3 w-full sm:w-64 h-16 rounded-xl backdrop-blur-sm transition-all duration-300 transform hover:scale-105"
-          >
-            <HandHeart className="h-6 w-6" />
-            Support Community
-          </Button>
-        </Link>
-      </div>
+      <HeroActionButtons />
     </div>
   );
 }
