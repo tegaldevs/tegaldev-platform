@@ -18,7 +18,7 @@ import {
   Save,
   X,
 } from 'lucide-react';
-import { Button } from '@/app/_components/ui/button';
+import { Button } from '@/components/ui/button';
 
 interface ContentItem {
   id: string;

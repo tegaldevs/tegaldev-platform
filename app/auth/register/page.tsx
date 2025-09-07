@@ -5,18 +5,18 @@ export const dynamic = 'force-dynamic';
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
-import { AuthLayout } from '@/app/_components/layouts/AuthLayout';
-import { FormField } from '@/app/_components/molecules/FormField';
-import { LoadingButton } from '@/app/_components/molecules/LoadingButton';
-import { ErrorAlert } from '@/app/_components/molecules/ErrorAlert';
+import { AuthLayout } from '@/components/layouts/AuthLayout';
+import { FormField } from '@/components/molecules/FormField';
+import { LoadingButton } from '@/components/molecules/LoadingButton';
+import { ErrorAlert } from '@/components/molecules/ErrorAlert';
 import {
   Card,
   CardContent,
   CardDescription,
   CardHeader,
   CardTitle,
-} from '@/app/_components/ui/card';
-import { useFormValidation } from '@/app/_hooks/useFormValidation';
+} from '@/components/ui/card';
+import { useFormValidation } from '@/hooks/useFormValidation';
 import {
   Lock,
   Mail,
@@ -25,7 +25,7 @@ import {
   CheckCircle,
   Github,
 } from 'lucide-react';
-import { Button } from '@/app/_components/ui/button';
+import { Button } from '@/components/ui/button';
 
 export default function RegisterPage() {
   const [isLoading, setIsLoading] = useState(false);

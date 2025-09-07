@@ -1,13 +1,13 @@
 import { Metadata } from 'next';
 import './globals.css';
 import { Geist, Geist_Mono } from 'next/font/google';
-import SmoothScrollProvider from './_components/providers/SmoothScrollProvider';
-import { ProgressProvider } from './_components/providers/ProgressProvider';
-import { SessionProvider } from './_components/providers/SessionProvider';
-import { CartSidebar } from './_components/molecules/CartSidebar';
+import SmoothScrollProvider from '@/components/providers/SmoothScrollProvider';
+import { ProgressProvider } from '@/components/providers/ProgressProvider';
+import { SessionProvider } from '@/components/providers/SessionProvider';
+import { CartSidebar } from '@/components/molecules/CartSidebar';
 import { Analytics } from '@vercel/analytics/next';
 import { SpeedInsights } from '@vercel/speed-insights/next';
-import ConditionalNavbar from './_components/layouts/ConditionalNavbar';
+import ConditionalNavbar from '@/components/layouts/ConditionalNavbar';
 
 const geistSans = Geist({
   variable: '--font-geist-sans',

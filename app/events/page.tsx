@@ -2,12 +2,12 @@
 
 export const dynamic = 'force-dynamic';
 
-import { Navbar } from '@/app/_components/organisms/Navbar';
-import { Footer } from '@/app/_components/organisms/Footer';
-import { SectionHeader } from '@/app/_components/molecules/SectionHeader';
-import { ScrollAnimatedSection } from '@/app/_components/layouts/ScrollAnimatedSection';
-import { Button } from '@/app/_components/ui/button';
-import { Event, getUpcomingEvents, getPastEvents } from '@/app/_data/events';
+import { Navbar } from '@/components/organisms/Navbar';
+import { Footer } from '@/components/organisms/Footer';
+import { SectionHeader } from '@/components/molecules/SectionHeader';
+import { ScrollAnimatedSection } from '@/components/layouts/ScrollAnimatedSection';
+import { Button } from '@/components/ui/button';
+import { Event, getUpcomingEvents, getPastEvents } from '@/data/events';
 import Link from 'next/link';
 import { Calendar, MapPin, Users, Clock, ArrowRight } from 'lucide-react';
 

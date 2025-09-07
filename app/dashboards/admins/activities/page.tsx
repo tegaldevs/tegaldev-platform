@@ -16,7 +16,7 @@ import {
   MapPin,
   DollarSign,
 } from 'lucide-react';
-import { Button } from '@/app/_components/ui/button';
+import { Button } from '@/components/ui/button';
 
 interface Activity {
   id: string;
