@@ -16,8 +16,7 @@
     "prod:setup": "prisma generate && prisma migrate deploy"
   },
   "prisma": {
-    "schema": "src/infrastructures/database/prisma/schema.prisma",
-    "seed": "tsx src/infrastructures/database/prisma/seed.ts"
+    "seed": "tsx ./prisma/seed.ts"
   },
   "dependencies": {
     "@bprogress/core": "^1.3.4",

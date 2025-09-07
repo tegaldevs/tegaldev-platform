@@ -2,11 +2,11 @@
 
 export const dynamic = 'force-dynamic';
 
-import { Navbar } from '@/app/_components/organisms/Navbar';
-import { Footer } from '@/app/_components/organisms/Footer';
-import { SectionHeader } from '@/app/_components/molecules/SectionHeader';
-import { Button } from '@/app/_components/ui/button';
-import { ScrollAnimatedSection } from '@/app/_components/layouts/ScrollAnimatedSection';
+import { Navbar } from '@/components/organisms/Navbar';
+import { Footer } from '@/components/organisms/Footer';
+import { SectionHeader } from '@/components/molecules/SectionHeader';
+import { Button } from '@/components/ui/button';
+import { ScrollAnimatedSection } from '@/components/layouts/ScrollAnimatedSection';
 import Link from 'next/link';
 import {
   ShoppingCart,
@@ -19,7 +19,7 @@ import {
   Sticker,
 } from 'lucide-react';
 import { useState } from 'react';
-import { useCart } from '@/app/_lib/cart-store';
+import { useCart } from '@/lib/cart-store';
 
 interface MerchandiseItem {
   id: string;

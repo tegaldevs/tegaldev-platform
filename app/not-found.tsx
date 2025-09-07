@@ -1,6 +1,6 @@
-import ErrorPageLayout from './_components/layouts/ErrorPageLayout';
-import ErrorActions from './_components/molecules/ErrorActions';
-import ErrorMessage from './_components/molecules/ErrorMessage';
+import ErrorPageLayout from '@/components/layouts/ErrorPageLayout';
+import ErrorActions from '@/components/molecules/ErrorActions';
+import ErrorMessage from '@/components/molecules/ErrorMessage';
 
 export default function NotFound() {
   return (
