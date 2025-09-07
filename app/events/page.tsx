@@ -2,103 +2,17 @@
 
 export const dynamic = 'force-dynamic';
 
-import { Navbar } from '@/app/_components/organisms/Navbar';
-import { Footer } from '@/app/_components/organisms/Footer';
-import { SectionHeader } from '@/app/_components/molecules/SectionHeader';
-import { ScrollAnimatedSection } from '@/app/_components/layouts/ScrollAnimatedSection';
-import { Button } from '@/app/_components/ui/button';
+import { Navbar } from '@/components/organisms/Navbar';
+import { Footer } from '@/components/organisms/Footer';
+import { SectionHeader } from '@/components/molecules/SectionHeader';
+import { ScrollAnimatedSection } from '@/components/layouts/ScrollAnimatedSection';
+import { Button } from '@/components/ui/button';
+import { Event, getUpcomingEvents, getPastEvents } from '@/data/events';
 import Link from 'next/link';
-import { Calendar, MapPin, Users, Clock, ExternalLink } from 'lucide-react';
+import { Calendar, MapPin, Users, Clock, ArrowRight } from 'lucide-react';
 
-interface Event {
-  id: string;
-  title: string;
-  description: string;
-  date: string;
-  time: string;
-  location: string;
-  type: 'workshop' | 'meetup' | 'conference' | 'webinar';
-  attendees: number;
-  maxAttendees: number;
-  image: string;
-  registrationUrl: string;
-}
-
-const upcomingEvents: Event[] = [
-  {
-    id: '1',
-    title: 'React Advanced Workshop',
-    description:
-      'Deep dive into advanced React patterns, hooks, and performance optimization techniques.',
-    date: '2024-02-15',
-    time: '09:00 - 17:00',
-    location: 'Tegal Tech Hub, Central Java',
-    type: 'workshop',
-    attendees: 25,
-    maxAttendees: 30,
-    image: '/placeholder-event.jpg',
-    registrationUrl: 'https://eventbrite.com/tegaldev-react-workshop',
-  },
-  {
-    id: '2',
-    title: 'Monthly Tech Meetup',
-    description:
-      'Join us for networking, tech talks, and community discussions about the latest in software development.',
-    date: '2024-02-20',
-    time: '18:00 - 21:00',
-    location: 'Coworking Space Tegal',
-    type: 'meetup',
-    attendees: 45,
-    maxAttendees: 50,
-    image: '/placeholder-event.jpg',
-    registrationUrl: 'https://meetup.com/tegaldev',
-  },
-  {
-    id: '3',
-    title: 'AI & Machine Learning Webinar',
-    description:
-      'Explore the fundamentals of AI and ML with practical examples and real-world applications.',
-    date: '2024-02-25',
-    time: '14:00 - 16:00',
-    location: 'Online (Zoom)',
-    type: 'webinar',
-    attendees: 120,
-    maxAttendees: 200,
-    image: '/placeholder-event.jpg',
-    registrationUrl: 'https://zoom.us/webinar/tegaldev-ai-ml',
-  },
-];
-
-const pastEvents: Event[] = [
-  {
-    id: '4',
-    title: 'JavaScript Fundamentals Workshop',
-    description:
-      'A comprehensive workshop covering ES6+, async programming, and modern JavaScript development.',
-    date: '2024-01-15',
-    time: '09:00 - 17:00',
-    location: 'Tegal Tech Hub, Central Java',
-    type: 'workshop',
-    attendees: 28,
-    maxAttendees: 30,
-    image: '/placeholder-event.jpg',
-    registrationUrl: '',
-  },
-  {
-    id: '5',
-    title: 'New Year Tech Conference 2024',
-    description:
-      'Annual conference featuring industry leaders and emerging technologies.',
-    date: '2024-01-10',
-    time: '08:00 - 18:00',
-    location: 'Grand Ballroom, Tegal',
-    type: 'conference',
-    attendees: 150,
-    maxAttendees: 150,
-    image: '/placeholder-event.jpg',
-    registrationUrl: '',
-  },
-];
+const upcomingEvents = getUpcomingEvents();
+const pastEvents = getPastEvents();
 
 function EventCard({
   event,
@@ -169,24 +83,20 @@ function EventCard({
       </div>
 
       <div className="mt-auto">
-        {!isPast && event.registrationUrl ? (
-          <Link
-            href={event.registrationUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
+        {!isPast ? (
+          <Link href={`/events/${event.id}`}>
             <Button className="w-full bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 text-white flex items-center gap-2">
-              <ExternalLink className="h-4 w-4" />
-              Register Now
+              <Calendar className="h-4 w-4" />
+              RSVP
             </Button>
           </Link>
         ) : (
-          <Button
-            disabled
-            className="w-full bg-gray-600 text-gray-400 cursor-not-allowed flex items-center gap-2"
-          >
-            {isPast ? 'Event Completed' : 'Registration Closed'}
-          </Button>
+          <Link href={`/events/${event.id}`}>
+            <Button className="w-full bg-gray-600 hover:bg-gray-500 text-gray-300 hover:text-white flex items-center gap-2">
+              <ArrowRight className="h-4 w-4" />
+              View Event
+            </Button>
+          </Link>
         )}
       </div>
     </div>
