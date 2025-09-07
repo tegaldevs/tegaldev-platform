@@ -2,16 +2,24 @@
 
 import { useEffect, useState } from 'react';
 import { HeroLogo } from '../atoms/HeroLogo';
-import { HeroDescription, HeroDescriptionHighlight } from '../molecules/HeroDescription';
+import {
+  HeroDescription,
+  HeroDescriptionHighlight,
+} from '../molecules/HeroDescription';
 import { HeroSubscriptionForm } from '../molecules/HeroSubscriptionForm';
 import { HeroActionButtons } from '../molecules/HeroActionButtons';
 import { subscribeEmail } from '@/lib/subscription-service';
+import { cn } from '@/lib/utils';
 
 export default function HeroSection() {
   const [heroVisible, setHeroVisible] = useState(false);
   const [isSubscribing, setIsSubscribing] = useState(false);
-  const [subscriptionMessage, setSubscriptionMessage] = useState<string | null>(null);
-  const [subscriptionError, setSubscriptionError] = useState<string | null>(null);
+  const [subscriptionMessage, setSubscriptionMessage] = useState<string | null>(
+    null,
+  );
+  const [subscriptionError, setSubscriptionError] = useState<string | null>(
+    null,
+  );
 
   useEffect(() => {
     const timeoutHero = setTimeout(() => setHeroVisible(true), 100);
@@ -28,13 +36,14 @@ export default function HeroSection() {
     try {
       const response = await subscribeEmail(email);
       setSubscriptionMessage(response.message);
-      
+
       // Clear success message after 5 seconds
       setTimeout(() => setSubscriptionMessage(null), 5000);
     } catch (error) {
-      const errorMessage = error instanceof Error ? error.message : 'Subscription failed';
+      const errorMessage =
+        error instanceof Error ? error.message : 'Subscription failed';
       setSubscriptionError(errorMessage);
-      
+
       // Clear error message after 5 seconds
       setTimeout(() => setSubscriptionError(null), 5000);
     } finally {
@@ -58,7 +67,17 @@ export default function HeroSection() {
             height={280}
           />
           <div className="space-y-4">
-            <div className="w-24 h-1 bg-gradient-to-r from-purple-500 to-blue-500 mx-auto rounded-full"></div>
+            <div
+              className={cn(
+                `w-24
+                h-1
+                bg-gradient-to-r
+                from-purple-500
+                to-blue-500
+                mx-auto
+                rounded-full`,
+              )}
+            ></div>
           </div>
         </div>
         <HeroDescription>
