@@ -31,16 +31,18 @@ export function Navbar() {
         `max-w-4xl
         mx-auto
         fixed
-        top-0
         left-0
         right-0
-        p-6
+        p-5
         z-20
         transition-all
         duration-300`,
         isScrolled
-          ? 'bg-black/40 backdrop-blur-md md:mt-4 rounded-md shadow-md'
-          : 'bg-transparent',
+          ? `bg-black/40
+            backdrop-blur-md
+            md:mt-4
+            md:rounded-md`
+          : '',
       )}
     >
       <DesktopNavbar handleLogoClick={handleLogoClick} />

@@ -1,12 +1,12 @@
 import PageLayout from '@/components/layouts/PageLayout';
-import HeroSection from '@/components/organisms/HeroSection';
-import CommunityPhotosGallerySection from '@/components/organisms/CommunityPhotosGallerySection';
-import PlatformFeaturesSection from '@/components/organisms/PlatformFeaturesSection';
 import ActivitiesSection from '@/components/organisms/ActivitiesSection';
-import CommunityGallerySection from '@/components/organisms/CommunityGallerySection';
 import CollaborationSection from '@/components/organisms/CollaborationSection';
-import StatsSection from '@/components/organisms/StatsSection';
+import CommunityGallerySection from '@/components/organisms/CommunityGallerySection';
+import CommunityPhotosGallerySection from '@/components/organisms/CommunityPhotosGallerySection';
 import FAQSection from '@/components/organisms/FAQSection';
+import HeroSection from '@/components/organisms/HeroSection';
+import PlatformFeaturesSection from '@/components/organisms/PlatformFeaturesSection';
+import StatsSection from '@/components/organisms/StatsSection';
 
 export default function Home() {
   return (

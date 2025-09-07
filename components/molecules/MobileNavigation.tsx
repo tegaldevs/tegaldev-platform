@@ -14,8 +14,8 @@ export default function MobileNavigation() {
         <SheetTrigger asChild>
           <Button
             variant="ghost"
-            size="sm"
-            className="text-white hover:text-white hover:bg-white/10"
+            size="icon"
+            className="text-white hover:bg-white/10"
           >
             <Menu />
           </Button>

@@ -1,8 +1,8 @@
 'use client';
 
-import { cn } from '@/lib/utils';
 import { useCart } from '@/lib/cart-store';
 import { Sheet, SheetContent } from '../ui/sheet';
+import { cn } from '@/lib/utils';
 import { CartSidebarContent } from './CartSidebarContent';
 
 export function CartSidebar() {

@@ -27,9 +27,8 @@ export function NavigationLink({
         variant="ghost"
         size="sm"
         className={cn(
-          'flex items-center space-x-1 relative',
           isActive
-            ? 'text-white bg-white/20 border-b-2 border-purple-400'
+            ? 'text-white bg-white/20'
             : 'text-gray-300 hover:text-white hover:bg-white/10',
           className,
         )}

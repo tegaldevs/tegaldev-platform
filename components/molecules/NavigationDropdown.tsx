@@ -23,7 +23,7 @@ export function NavigationDropdown({
 }: NavigationDropdownProps) {
   return (
     <DropdownMenu>
-      <DropdownMenuTrigger asChild>
+      <DropdownMenuTrigger>
         <DropdownTriggerButton
           title={title}
           icon={TriggerIcon}
@@ -32,7 +32,7 @@ export function NavigationDropdown({
       </DropdownMenuTrigger>
       <DropdownMenuContent
         align="start"
-        className="w-64 bg-black/40 backdrop-blur-md border-white/10"
+        className="bg-black/40 backdrop-blur-md border-white/10"
       >
         {items.map(({ href, label, icon, description }) => (
           <DropdownNavigationItem

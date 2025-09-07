@@ -5,7 +5,7 @@ import { NavigationLink } from './NavigationLink';
 
 export default function DesktopNavigation() {
   return (
-    <nav className="hidden md:flex items-center gap-3">
+    <nav className="hidden md:flex items-center gap-2">
       <NavigationDropdown
         title="Activities"
         icon={Calendar}

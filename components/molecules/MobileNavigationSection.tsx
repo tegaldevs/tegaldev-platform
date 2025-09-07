@@ -20,7 +20,7 @@ export function MobileNavigationSection({
   const pathname = usePathname();
 
   return (
-    <div className={cn('flex flex-col gap-2', className)}>
+    <div className={cn('flex flex-col gap-1', className)}>
       <h3
         className={cn(
           `text-sm font-semibold text-gray-400 uppercase tracking-wider`,
@@ -36,16 +36,10 @@ export function MobileNavigationSection({
               <Button
                 variant="ghost"
                 className={cn(
-                  `w-full justify-start ${
+                  `w-full justify-start py-6 text-gray-300 ${
                     isActive
-                      ? `text-white
-                      bg-white/20
-                      border-l-1 border-purple-400
-                      py-6`
-                      : `text-gray-300
-                      hover:text-white
-                      hover:bg-white/10
-                      py-6`
+                      ? `text-white bg-white/20`
+                      : `hover:text-white hover:bg-white/10`
                   }`,
                 )}
               >

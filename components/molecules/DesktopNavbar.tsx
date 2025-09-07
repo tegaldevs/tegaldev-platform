@@ -1,10 +1,10 @@
 'use client';
 
-import Link from 'next/link';
-import Image from 'next/image';
-import { Navigation } from '@/components/molecules/Navigation';
-import { CartIcon } from '@/components/molecules/CartIcon';
 import { cn } from '@/lib/utils';
+import Image from 'next/image';
+import Link from 'next/link';
+import { Navigation } from './Navigation';
+import { CartIcon } from './CartIcon';
 
 interface DesktopNavbarProps {
   handleLogoClick: (e: React.MouseEvent) => void;
@@ -16,7 +16,7 @@ export function DesktopNavbar({ handleLogoClick }: DesktopNavbarProps) {
       <Link href="/" onClick={handleLogoClick}>
         <Image
           src="/Tegal.dev-AAA.png"
-          alt="TegalDev Logo"
+          alt="Tegal Dev Logo"
           width={96}
           height={96}
           className={cn(

@@ -1,8 +1,8 @@
 import { useSession } from 'next-auth/react';
 import { AuthenticatedUserSection } from './AuthenticatedUserSection';
+import { cn } from '@/lib/utils';
 import { AuthButton } from './AuthButton';
 import { User, Users } from 'lucide-react';
-import { cn } from '@/lib/utils';
 
 interface MobileAuthSectionProps {
   onClose: () => void;
