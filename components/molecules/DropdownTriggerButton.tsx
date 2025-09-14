@@ -1,5 +1,4 @@
 import { ChevronDown, LucideIcon } from 'lucide-react';
-import { Button } from '../ui/button';
 import { cn } from '@/lib/utils';
 
 interface DropdownTriggerButtonProps {
@@ -16,9 +15,9 @@ export function DropdownTriggerButton({
   className = '',
 }: DropdownTriggerButtonProps) {
   return (
-    <Button
+    <div
       className={cn(
-        `text-gray-300
+        `inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 h-10 px-4 py-2 text-gray-300
         hover:text-white
         hover:bg-white/10
         transition-colors
@@ -26,9 +25,9 @@ export function DropdownTriggerButton({
         className,
       )}
     >
-      <TriggerIcon />
+      <TriggerIcon className="h-4 w-4" />
       <span>{title}</span>
-      {showChevron && <ChevronDown />}
-    </Button>
+      {showChevron && <ChevronDown className="h-4 w-4" />}
+    </div>
   );
 }

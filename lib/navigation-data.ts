@@ -2,6 +2,8 @@ import {
   BookOpen,
   Briefcase,
   Calendar,
+  Github,
+  Image,
   Mic,
   ShoppingBag,
   Trophy,
@@ -28,6 +30,12 @@ export const activitiesLinks: NavigationItem[] = [
     icon: Briefcase,
     description: 'Career opportunities & positions',
   },
+  {
+    href: '/open-source',
+    label: 'Open Source',
+    icon: Github,
+    description: 'Community-driven projects & contributions',
+  },
 ];
 
 export const contentLinks: NavigationItem[] = [
@@ -48,6 +56,12 @@ export const contentLinks: NavigationItem[] = [
     label: 'Videos',
     icon: Youtube,
     description: 'Video tutorials & content',
+  },
+  {
+    href: '/galleries',
+    label: 'Galleries',
+    icon: Image,
+    description: 'Documentation images & videos',
   },
 ];
 
