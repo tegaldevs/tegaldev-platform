@@ -76,7 +76,7 @@ export default function PlatformFeaturesSection() {
         subtitle="Discover what makes Tegal Dev the perfect place for software engineers to grow, connect, and collaborate"
       />
 
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-8 max-w-6xl mx-auto">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-8">
         {features.map((feature) => (
           <FeatureCard
             key={feature.title}

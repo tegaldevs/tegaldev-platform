@@ -50,7 +50,7 @@ export function LeaderboardSection() {
       animationType="fade-up"
       delay={400}
     >
-      <div className="max-w-4xl mx-auto">
+      <div>
         <SectionHeader
           title="Community Leaderboard"
           highlightedWord="Leaderboard"

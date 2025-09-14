@@ -16,7 +16,7 @@ export default function FAQSection() {
         subtitle="Find answers to common questions about Tegal Dev community and platform"
       />
 
-      <div className="max-w-5xl mx-auto mt-8">
+      <div className="mt-8">
         <Accordion>
           <AccordionItem title="What is Tegal Dev and how can I join?">
             <p className="text-start">

@@ -28,9 +28,7 @@ export function Navbar() {
   return (
     <nav
       className={cn(
-        `max-w-4xl
-        mx-auto
-        fixed
+        `fixed
         left-0
         right-0
         p-5
@@ -38,10 +36,7 @@ export function Navbar() {
         transition-all
         duration-300`,
         isScrolled
-          ? `bg-black/40
-            backdrop-blur-md
-            md:mt-4
-            md:rounded-md`
+          ? `bg-black/40 backdrop-blur-md`
           : '',
       )}
     >

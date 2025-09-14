@@ -12,7 +12,7 @@ interface DesktopNavbarProps {
 
 export function DesktopNavbar({ handleLogoClick }: DesktopNavbarProps) {
   return (
-    <div className="hidden md:flex justify-between">
+    <div className="hidden md:flex justify-between container mx-auto">
       <Link href="/" onClick={handleLogoClick}>
         <Image
           src="/Tegal.dev-AAA.png"
