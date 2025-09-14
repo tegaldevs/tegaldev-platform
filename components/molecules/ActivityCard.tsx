@@ -34,7 +34,7 @@ export function ActivityCard({
       )}
     >
       <Icon className="text-white" />
-      <div className="flex flex-col gap-3">
+      <div className="flex flex-col gap-3 text-center">
         <h3 className="text-xl font-semibold text-white">{title}</h3>
         <p className="text-gray-200 text-sm">{description}</p>
       </div>
