@@ -13,10 +13,9 @@ export default function PageLayout({ children, className }: PageLayoutProps) {
         `bg-gradient-to-br
       from-black
       to-blue-800`,
-        className,
       )}
     >
-      <div className="container max-w-5xl mx-auto pt-32 pb-16 px-5">
+      <div className={cn('container mx-auto pt-36 pb-16 px-5', className)}>
         {children}
       </div>
       <Footer />

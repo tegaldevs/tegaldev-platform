@@ -30,7 +30,7 @@ export function HeroActionButtons({ className = '' }: HeroActionButtonsProps) {
         <Button
           variant="outline"
           size="lg"
-          className="px-10 py-4 text-lg font-semibold border-2 border-white/30 hover:border-white/50 hover:bg-white/70 flex items-center gap-3 w-full sm:w-64 h-16 rounded-xl backdrop-blur-sm transition-all duration-300 transform hover:scale-105"
+          className="px-10 py-4 text-lg font-semibold border-2 border-green-400/50 bg-green-100/10 text-green-300 hover:text-green-200 hover:border-green-400 hover:bg-green-100/20 flex items-center gap-3 w-full sm:w-64 h-16 rounded-xl backdrop-blur-sm transition-all duration-300 transform hover:scale-105"
         >
           <ExternalLink className="h-6 w-6" />
           Connect Community
@@ -46,9 +46,9 @@ export function HeroActionButtons({ className = '' }: HeroActionButtonsProps) {
         <Button
           variant="outline"
           size="lg"
-          className="px-10 py-4 text-lg font-semibold border-2 border-orange-400/50 text-orange-300 hover:text-orange-300 hover:border-orange-400 hover:bg-orange-100 flex items-center gap-3 w-full sm:w-64 h-16 rounded-xl backdrop-blur-sm transition-all duration-300 transform hover:scale-105"
+          className="px-10 py-4 text-lg font-semibold border-2 border-red-400/50 bg-red-100/10 text-red-300 hover:text-red-200 hover:border-red-400 hover:bg-red-100/20 flex items-center gap-3 w-full sm:w-64 h-16 rounded-xl backdrop-blur-sm transition-all duration-300 transform hover:scale-105"
         >
-          <HandHeart className="h-6 w-6" />
+          <HandHeart className="h-6 w-6 text-red-400" />
           Support Community
         </Button>
       </Link>
